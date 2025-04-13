@@ -6,7 +6,8 @@
 		"args": {
 			// Update 'VARIANT' to pick a .NET Core version: 3.1, 6.0
 			// Append -bullseye or -focal to pin to an OS version.
-			"VARIANT": "6.0-bullseye",
+			// "VARIANT": "6.0-bullseye",
+			"VARIANT": "9.0-bookworm",
 			// Options
 			"NODE_VERSION": "lts/*"
 		}
