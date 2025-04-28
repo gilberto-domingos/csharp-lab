@@ -2,11 +2,10 @@
 // Indexes and Ranges example
 
 // Define a sample array 
-string[] words = new string[]
-{
+string[] words = [
     "The","quick","brown","fox","jumps",
     "over","the","lazy","dog"       
-};
+];
 
 // The index operator provides access to array elements
 Console.WriteLine(words[1]);
