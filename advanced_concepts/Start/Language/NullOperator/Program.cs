@@ -2,7 +2,7 @@
 // Example file for the null coalescing operator
 
 // A common scenario is to test a value for null and assign one if it is
-void OldSchoolLogString(string theString) {
+void OldSchoolLogString(string? theString) {
     if (theString == null) {
         Console.WriteLine("No string given!");
     }
