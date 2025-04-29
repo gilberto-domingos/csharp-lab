@@ -14,7 +14,7 @@ else {
 
 // The "is" expression can also be used to extract a value if one is present
 // This is called the Declaration pattern
-void dashedline(object o) {
+void DashedLine(object o) {
     // The old way of doing this is to try determine the type of the argument
     // int l = 0;
     // if (o.GetType() == typeof(int)) {
@@ -39,9 +39,9 @@ void dashedline(object o) {
     }
 }
 
-dashedline(25);
-dashedline("50");
-dashedline(20.5);
+DashedLine(25);
+DashedLine("50");
+DashedLine(20.5);
 
 // Property pattern examines the properties of an object
 bool IsTheIdesOfMarch(DateTime date) {

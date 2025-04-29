@@ -9,7 +9,7 @@ string? str = null;
 
 // The "is" expression can also be used to extract a value if one is present
 // This is called the Declaration pattern
-void dashedline(object o) {
+void DashedLine(object o) {
     // The old way of doing this is to try determine the type of the argument
     int l = 0;
     if (o.GetType() == typeof(int)) {
