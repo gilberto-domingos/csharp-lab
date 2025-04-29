@@ -20,6 +20,13 @@ Console.WriteLine(NumToString(4));
 // switch statements can operate on just about any type
 // string ShapeToString(object shape) {
 // }
+// Console.WriteLine(ShapeToString(new Circle { Radius = 10 }));
+// Console.WriteLine(ShapeToString(new Rectangle { Length = 5, Width = 10 }));
 
 
 // This can be made a little more concise with the switch expression
+
+// Console.WriteLine(ShapeToString2(new Circle { Radius = 20 }));
+// Console.WriteLine(ShapeToString2(new Circle { Radius = 10 }));
+// Console.WriteLine(ShapeToString2(new Rectangle { Length = 10, Width = 10 }));
+// Console.WriteLine(ShapeToString2(new Rectangle { Length = 5, Width = 10 }));
