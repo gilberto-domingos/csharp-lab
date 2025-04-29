@@ -6,12 +6,6 @@
 // The "is" expression is used for this to test the Constant pattern
 string? str = null;
 
-if (str is not null) {
-    Console.WriteLine($"The value of str is '{str}'");
-}
-else {
-    Console.WriteLine("str is null");
-}
 
 // The "is" expression can also be used to extract a value if one is present
 // This is called the Declaration pattern
