@@ -25,16 +25,20 @@ namespace ComposableDelegates
         {
             MyDelegate? f1 = func1;
             MyDelegate? f2 = func2;
+            MyDelegate? f1f2 = f1 + f2;
 
             // call each delegate and then the chain
             Console.WriteLine("Calling the first delegate");
             f1(10, 20);
             Console.WriteLine("Calling the second delegate");
             f2(10, 20);
-            // Console.WriteLine("\nCalling the chained delegates");
+            Console.WriteLine("\nCalling the chained delegates");
+            f1f2(10, 20);
 
             // subtract off one of the delegates
-            // Console.WriteLine("\nCalling the unchained delegates");
+            Console.WriteLine("\nCalling the unchained delegates");
+            f1f2 -= f1;
+            f1f2(20, 20);
         }
     }
 }
