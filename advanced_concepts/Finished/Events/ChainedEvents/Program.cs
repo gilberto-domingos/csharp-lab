@@ -4,30 +4,30 @@
 namespace ChainedEvents
 {
     // define the delegate for the event handler
-    public delegate void myEventHandler(string value);
+    public delegate void MyEventHandler(string value);
 
     class MyClass
     {
-        private string theVal;
+        private string TheVal;
         // declare the event handler
-        public event myEventHandler valueChanged;
-        public event EventHandler<ObjChangeEventArgs> objChanged;
+        public event MyEventHandler ValueChanged;
+        public event EventHandler<ObjChangeEventArgs> ObjChanged;
 
         public string Val
         {
             set
             {
-                this.theVal = value;
+                this.TheVal = value;
                 // when the value changes, fire the event
-                this.valueChanged(theVal);
-                this.objChanged(this, new ObjChangeEventArgs() { propChanged = "Val" });
+                this.ValueChanged(TheVal);
+                this.ObjChanged(this, new ObjChangeEventArgs() { PropChanged = "Val" });
             }
         }
     }
 
     class ObjChangeEventArgs : EventArgs
     {
-        public string propChanged;
+        public string PropChanged;
     }
 
     class Program
@@ -37,16 +37,16 @@ namespace ChainedEvents
             // create the test class
             MyClass obj = new MyClass();
             // Connect multiple event handlers
-            obj.valueChanged += new myEventHandler(changeListener1);
-            obj.valueChanged += new myEventHandler(changeListener2);
+            obj.ValueChanged += new MyEventHandler(ChangeListener1);
+            obj.ValueChanged += new MyEventHandler(ChangeListener2);
 
             // Use an anonymous delegate as the event handler
-            obj.valueChanged += delegate(string s) {
+            obj.ValueChanged += delegate(string s) {
                 Console.WriteLine("This came from the anonymous handler!");
             };
 
-            obj.objChanged += delegate(object sender, ObjChangeEventArgs e) {
-                Console.WriteLine("{0} had the '{1}' property changed", sender.GetType(), e.propChanged);
+            obj.ObjChanged += delegate(object sender, ObjChangeEventArgs e) {
+                Console.WriteLine("{0} had the '{1}' property changed", sender.GetType(), e.PropChanged);
             };
 
             string str;
@@ -60,11 +60,11 @@ namespace ChainedEvents
             Console.WriteLine("Goodbye!");
         }
 
-        static void changeListener1(string value)
+        static void ChangeListener1(string value)
         {
             Console.WriteLine("The value changed to {0}", value);
         }
-        static void changeListener2(string value)
+        static void ChangeListener2(string value)
         {
             Console.WriteLine("I also listen to the event, and got {0}", value);
         }

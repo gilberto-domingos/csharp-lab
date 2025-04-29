@@ -4,22 +4,22 @@
 namespace ChainedEvents
 {
     // define the delegate for the event handler
-    public delegate void myEventHandler(string value);
+    public delegate void MyEventHandler(string value);
 
     class EventPublisher
     {
-        private string theVal;
+        private string TheVal;
         // declare the event handler
-        public event myEventHandler valueChanged;
+        public event MyEventHandler ValueChanged;
         // TODO4: Use the EventArgs class
 
 
         public string Val
         {
             set {
-                this.theVal = value;
+                this.TheVal = value;
                 // when the value changes, fire the event
-                this.valueChanged(theVal);
+                this.ValueChanged(TheVal);
                 // TODO5: Use the custom event handler
 
             }

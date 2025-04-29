@@ -4,22 +4,22 @@
 namespace BasicEvents
 {
     // define the delegate for the event handler
-    public delegate void myEventHandler(string value);
+    public delegate void MyEventHandler(string value);
 
     class EventPublisher
     {
-        private string theVal = "";
+        private string TheVal = "";
 
         // declare the event
-        public event myEventHandler? valueChanged;
+        public event MyEventHandler ValueChanged;
 
         public string Val
         {
             set
             {
-                this.theVal = value;
+                this.TheVal = value;
                 // when the value changes, fire the event
-                this.valueChanged?.Invoke(theVal);
+                this.ValueChanged(TheVal);
             }
         }
     }
@@ -30,10 +30,10 @@ namespace BasicEvents
         {
             // use a named function as an event handler
             EventPublisher obj = new EventPublisher();
-            obj.valueChanged += new myEventHandler(obj_valueChanged);
+            obj.ValueChanged += new MyEventHandler(ObjValueChanged);
 
             // use an anonymous delegate as an event handler
-            obj.valueChanged += delegate(string val) {
+            obj.ValueChanged += delegate(string val) {
                 Console.WriteLine("The value changed to {0}", val);
             };
 
@@ -48,7 +48,7 @@ namespace BasicEvents
             Console.WriteLine("Goodbye!");
         }
 
-        static void obj_valueChanged(string value)
+        static void ObjValueChanged(string value)
         {
             Console.WriteLine("The value changed to {0}", value);
         }
