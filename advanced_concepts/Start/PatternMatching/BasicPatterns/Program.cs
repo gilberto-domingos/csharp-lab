@@ -1,15 +1,22 @@
 ﻿// LinkedIn Learning Course exercise file for Advanced C# Programming by Joe Marini
 // C# Pattern Matching for type testing
+#pragma warning disable CS8321
 
 // a very common use for pattern matching is to compare values, such as checking for null
 // The "is" expression is used for this to test the Constant pattern
 string? str = null;
 
+if (str is not null) {
+    Console.WriteLine($"The value of str is '{str}'");
+}
+else {
+    Console.WriteLine("str is null");
+}
 
 // The "is" expression can also be used to extract a value if one is present
 // This is called the Declaration pattern
 void dashedline(object o) {
-    The old way of doing this is to try determine the type of the argument
+    // The old way of doing this is to try determine the type of the argument
     int l = 0;
     if (o.GetType() == typeof(int)) {
         l = (int)o;
