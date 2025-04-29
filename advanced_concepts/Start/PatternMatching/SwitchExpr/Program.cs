@@ -25,7 +25,8 @@ Console.WriteLine(NumToString(4));
 
 
 // This can be made a little more concise with the switch expression
-
+// string ShapeToString2(object shape) => {
+// }
 // Console.WriteLine(ShapeToString2(new Circle { Radius = 20 }));
 // Console.WriteLine(ShapeToString2(new Circle { Radius = 10 }));
 // Console.WriteLine(ShapeToString2(new Rectangle { Length = 10, Width = 10 }));
