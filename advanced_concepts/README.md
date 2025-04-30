@@ -8,10 +8,9 @@ This is the repository for the LinkedIn Learning course `Advanced C# Programming
 
 ## Instructor
 
-Instructor name
+As a technology industry veteran, Joe Marini has held multiple roles in engineering, product management, and leadership.
 
-Instructor description
-
+Joe Marini has more than 35 years of experience in the technology industry, and has authored several books and more than 40 educational courses on software development. He has held prominent roles at several Silicon Valley companies including Adobe, Microsoft, Google, and Databricks.
                             
 
 Check out my other courses on [LinkedIn Learning](https://www.linkedin.com/learning/instructors/joe-marini).
