@@ -6,7 +6,6 @@ namespace BasicLambdas
     // define a few delegate types
     public delegate int MyDelegate(int x);
     public delegate void MyDelegate2(int x, string prefix);
-    public delegate bool ExprDelegate(int x);
 
     class Program
     {
@@ -25,11 +24,6 @@ namespace BasicLambdas
                 Console.WriteLine("The two-arg lambda: {1}, {0}", x * 10, y);
             };
             func2(25, "Some string");
-
-            // Define an expression delegate
-            ExprDelegate func3 = (x) => x > 10;
-            Console.WriteLine("Calling baz with 5: {0}", func3(5));
-            Console.WriteLine("Calling bax with 15: {0}", func3(15));
         }
     }
 }
