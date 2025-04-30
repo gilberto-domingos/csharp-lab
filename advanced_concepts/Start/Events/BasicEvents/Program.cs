@@ -10,12 +10,12 @@ namespace BasicEvents
         private string TheVal = "";
 
         // TODO: declare the event
-        public event MyEventHandler ValueChanged;
+
         public string Val {
             set {
                 this.TheVal = value;
                 // TODO: when the value changes, fire the event
-                this.ValueChanged(TheVal);
+
             }
         }
     }
