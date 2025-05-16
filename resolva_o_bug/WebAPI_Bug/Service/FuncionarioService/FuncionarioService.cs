@@ -113,9 +113,9 @@ namespace WebAPI_Bug.Service.FuncionarioService
 
                 try
                 {
-                    _context.Funcionarios.ToList();
+                    var funcionarios = _context.Funcionarios.ToList();
 
-                    serviceResponse.Dados = dados;
+                    serviceResponse.Dados = funcionarios;
 
                     if (serviceResponse.Dados.Count == 0)
                     {
