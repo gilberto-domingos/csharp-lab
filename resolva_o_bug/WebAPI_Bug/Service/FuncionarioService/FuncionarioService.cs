@@ -149,7 +149,7 @@ namespace WebAPI_Bug.Service.FuncionarioService
                     serviceResponse.Sucesso = false;
                 }
 
-                funcionario.Ativo = true;
+                funcionario.Ativo = false;
                 funcionario.DataDeAlteracao = DateTime.Now.ToLocalTime();
 
                 _context.Funcionarios.Update(funcionario);
