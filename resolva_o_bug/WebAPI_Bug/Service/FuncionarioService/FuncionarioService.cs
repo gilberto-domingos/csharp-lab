@@ -34,6 +34,7 @@ namespace WebAPI_Bug.Service.FuncionarioService
                 await _context.SaveChangesAsync();
 
                 serviceResponse.Dados = _context.Funcionarios.ToList();
+                serviceResponse.Mensagem = "Funcionário cadastrado com sucesso!";
 
 
             }catch (Exception ex)
