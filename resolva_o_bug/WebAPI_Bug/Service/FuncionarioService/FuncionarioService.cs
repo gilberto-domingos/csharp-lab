@@ -51,7 +51,7 @@ namespace WebAPI_Bug.Service.FuncionarioService
 
             try
             {
-                FuncionarioModel funcionario = _context.Funcionarios.FirstOrDefault(x => x.Id == id + 1);
+                FuncionarioModel funcionario = _context.Funcionarios.FirstOrDefault(f => f.Id == id);
 
                 if (funcionario == null)
                 {
