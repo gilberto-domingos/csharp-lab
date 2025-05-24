@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # .NET + RabbitMQ com  Mass Transit
 
 Usando o conceito central em arquiteturas orientadas a eventos e sistemas distribuídos, onde componentes independentes se comunicam trocando mensagens por meio do RabbitMQ.
@@ -14,3 +15,6 @@ Usando o conceito central em arquiteturas orientadas a eventos e sistemas distri
 
 
 MassTransit com RabbitMQ, o termo Bus se refere ao "Service Bus", ou Barramento de Mensagens. 
+=======
+# Net_RabbitMQ
+>>>>>>> bc8bce1 (initial commit)
