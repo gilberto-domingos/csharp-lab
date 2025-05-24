@@ -1,4 +1,5 @@
 using MassTransit;
+using RabbitMQ.Bus;
 
 namespace RabbitMQ.Extensions;
 
