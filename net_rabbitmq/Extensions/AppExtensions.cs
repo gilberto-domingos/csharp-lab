@@ -20,10 +20,12 @@ internal static class AppExtensions
                 var host = Environment.GetEnvironmentVariable("RABBITMQ_HOST");
                 var vhost = Environment.GetEnvironmentVariable("RABBITMQ_VHOST");
 
-                cfg.Host(new Uri($"amqp://{host}:5672{vhost}"), hostCfg =>
+                var uri = new Uri($"amqp://{username}:{password}@{host}:5672{vhost}");
+
+                cfg.Host(uri, h =>
                 {
-                    hostCfg.Username(username);
-                    hostCfg.Password(password);
+                    h.Username(username);
+                    h.Password(password);
                 });
 
                 cfg.ConfigureEndpoints(ctx);
