@@ -1,6 +1,5 @@
 using RabbitMQ.Bus;
 using RabbitMQ.Relatorios;
-using MassTransit;
 using Microsoft.AspNetCore.Mvc;
 
 namespace RabbitMQ.Controllers;
@@ -9,7 +8,7 @@ namespace RabbitMQ.Controllers;
 [Route("api/[Controller]")]
 internal static class ApiEndpoints
 {
-    public static void AddEndPointRabbit(this WebApplication app)
+    public static void AddApiEndPoints(this WebApplication app)
     {
         app.MapPost("solicitar-relatorio/{name}", async (string name, IBusPublish bus, CancellationToken ct = default) =>
         {
@@ -21,7 +20,6 @@ internal static class ApiEndpoints
                 ProcessedTime = null
             };
             
-            //Simulação: salvando no banco
             Lista.Relatorios.Add(solicitacao);
 
             var eventRequest = new RelatorioSolicitadoEvent(solicitacao.Id, solicitacao.Nome);
