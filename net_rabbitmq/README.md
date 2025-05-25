@@ -1,7 +1,7 @@
 
 # .NET + RabbitMQ com  Mass Transit
 
-Usando o conceito central em arquiteturas orientadas a eventos e sistemas distribuídos, onde componentes independentes se comunicam trocando mensagens por meio do RabbitMQ.
+Usando o conceito central em arquiteturas orientadas a 'eventos' e sistemas distribuídos, onde componentes independentes se comunicam trocando mensagens por meio do RabbitMQ.
 
 - #### Descrição do funcionamento e objetivo :
 - Simulação de uma lista de relatorios.
@@ -13,3 +13,5 @@ Usando o conceito central em arquiteturas orientadas a eventos e sistemas distri
 - simulação de timer delay "Processando Relatório".
 - Após RabbitMQ consumir "Realtório Processado" 
 
+
+![Processamento](Assets/Processamento.png)
