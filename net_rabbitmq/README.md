@@ -9,7 +9,7 @@ Usando o conceito central em arquiteturas orientadas a eventos e sistemas distri
 - Quando fazer uma solicitação do relatorio.
 - Publica eventos mensagens do tipo publish.
 - Envent Consumer escuta verifica código da mensagem.
-**- Adiciona solicitação exibindo para o cliente como "Pendente".
+- Adiciona solicitação exibindo para o cliente como "Pendente".
 - simulação de timer delay "Processando Relatório".
 - Após RabbitMQ consumir "Realtório Processado" 
 
