@@ -1,31 +1,49 @@
 using DotNetEnv;
-using RabbitMQ.Controllers;
 using RabbitMQ.Extensions;
+using Microsoft.OpenApi.Models;
+using RabbitMQ.Controllers;
 
 Env.Load();
 
 var builder = WebApplication.CreateBuilder(args);
 
-builder.Services.AddRabbitMqService();
-builder.Services.AddOpenApi();
+builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen(c =>
 {
-    c.SwaggerDoc("v1", new Microsoft.OpenApi.Models.OpenApiInfo
+    c.SwaggerDoc("v1", new OpenApiInfo
     {
         Title = "RabbitMQ",
         Version = "v1",
         Description = "Documentação da RabbitMQ",
-        Contact = new Microsoft.OpenApi.Models.OpenApiContact
+        Contact = new OpenApiContact
         {
             Name = "Gilberto Domingos Jr",
-            Email = "jrdomingosjr00@gmail.com",
+            Email = "jrdomingosjr00@gmail.com"
         }
     });
 });
 
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("AllowAll", policy =>
+    {
+        policy.AllowAnyOrigin()
+            .AllowAnyMethod()
+            .AllowAnyHeader();
+    });
+});
+
+builder.Services.AddRabbitMqService();
+builder.Services.AddOpenApi();
+
 var app = builder.Build();
 
+app.UseHttpsRedirection();
+app.UseRouting();
+app.UseCors("AllowAll");
+app.UseAuthorization();
+app.MapControllers();
 app.AddApiEndPoints();
 
 if (app.Environment.IsDevelopment())
@@ -37,5 +55,4 @@ if (app.Environment.IsDevelopment())
     });
 }
 
-app.UseHttpsRedirection();
 app.Run();
