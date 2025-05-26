@@ -1,6 +1,9 @@
+using System.Security.Claims;
 using ApiIdentityEndpoint.Data;
 using ApiIdentityEndpoint.Models;
 using DotNetEnv;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
 Env.Load();
@@ -25,6 +28,14 @@ app.MapSwagger();
 
 app.MapGet("/", () => "Hello World!");
 
+app.MapGet("/.", (ClaimsPrincipal user) => user.Identity!.Name).RequireAuthorization();
+
 app.MapIdentityApi<User>();
+
+app.MapPost("/logout", async (SignInManager<User> signInManager, [FromBody] object empty) =>
+{
+    await signInManager.SignOutAsync();
+    return Results.Ok();
+});
 
 app.Run();
