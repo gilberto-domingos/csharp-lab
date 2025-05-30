@@ -1,5 +1,4 @@
 using DotNetEnv;
-using JwtBearer.Config;
 using JwtBearer.Models;
 using JwtBearer.Service;
 
