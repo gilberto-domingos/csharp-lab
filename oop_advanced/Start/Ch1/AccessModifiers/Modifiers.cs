@@ -1,30 +1,29 @@
 public class MyClass {
+    
+    private int _someValue = 1;
     public MyClass() {}
 
     public void Func1() {
         Console.WriteLine("This is Func1");
-        SomeValue += 1;
+        _someValue += 1;
     }
 
     protected void Func2() {
         Console.WriteLine("This is Func2");
-        SomeValue -= 1;
+        _someValue -= 1;
     }
-
-    private int SomeValue = 1;
-
     
     public int Data {
-        get => SomeValue;
-        set => SomeValue = value;
+        get => _someValue;
+        set => _someValue = value;
     }
 }
 
-public class DerivedClass : MyClass {
-    public DerivedClass() {}
+    public class DerivedClass : MyClass {
+        public DerivedClass() {}
 
-    public void Func3() {
-        Console.WriteLine("This is Func3");
-        base.Func2();
-    }
+        public void Func3() {
+            Console.WriteLine("This is Func3");
+            base.Func2();
+        }
 }
