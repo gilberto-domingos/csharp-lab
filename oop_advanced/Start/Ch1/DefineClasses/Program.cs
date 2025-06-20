@@ -1,7 +1,10 @@
-﻿// Example file for Advanced C#: Object Oriented Programming by Joe Marini
-// Defining and instantiating classes
+﻿
+Retangle rect1 = new Retangle(10,20);
+Retangle rect2 = new Retangle(30);
 
-// TODO: Create some new Rectangle objects with dimensions
+Console.WriteLine(rect1.GetArea());
+Console.WriteLine(rect2.GetArea());
 
-
-// TODO: Change the values of width and height
+rect2.width = 5;;
+rect2.height = 7;
+Console.WriteLine(rect2.GetArea());
