@@ -1,7 +1,7 @@
 class Retangle
 {
-    public int width;
-    public int height;
+    int width;
+    int height;
 
     public Retangle(int w, int h)
     {
@@ -18,4 +18,28 @@ class Retangle
     {
         return width * height;
     }
+
+    public int Width
+    {
+        get { return width; }
+        set { width = value; }
+    }
+
+    public int Height
+    {
+        get { return height; }
+        set
+        {
+            if (value < 0)
+            {
+                throw new ArgumentOutOfRangeException("Height", "must be >=0");
+            }
+            height = value;
+        }
+    }
+
+    public int BorderSize
+    {
+        get; set;
+    } = 1;
 }
