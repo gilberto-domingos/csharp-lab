@@ -1,34 +1,22 @@
-// Example file for Advanced C#: Object Oriented Programming by Joe Marini
-// The "required" modifier
+using System.Diagnostics.CodeAnalysis;
+using System.Runtime.CompilerServices;
 
 public class Employee {
+    public Guid Id { get; init; }
+    public required string FirstName { get; set; } = string.Empty;
+    public required string LastName { get; set; } = string.Empty;
+    public required string Department { get; set; } = string.Empty;
+    
     public Employee() {}
 
-    // TODO: The SetsRequiredMembers attribute indicates that the constructor sets the 
-    // required members, but the compiler doesn't actually check - it trusts you
-    // Use this attribute with caution
-    // public Employee(string fname, string lname, int id, string dept) {
-    //     ID = id;
-    //     FirstName = fname;
-    //     LastName = lname;
-    //     Department = dept;
-    // }
-
-    // TODO: The "required" keyword means that a value must be assigned during construction
-    // Members that are required must be at least as visible as the containing type
-    public int ID {
-        get; 
-        init;
+    [SetsRequiredMembers]
+    public Employee(Guid id, string firstname, string lastName, string dept)
+    {
+        Id = id;
+        FirstName = firstname;
+        LastName = lastName;
+        Department = dept;
     }
-    public string? Department {
-        get; set;
-    }
-    public string? FirstName {
-        get; set;
-    }
-    public string LastName {
-        get; set;
-    }
-
-    public override string ToString() => $"{FirstName} {LastName}, ID:{ID} in {Department}";
+    
+    public override string ToString() => $"{FirstName} {LastName}, ID:{Id} in {Department}";
 }
