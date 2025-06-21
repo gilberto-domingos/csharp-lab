@@ -1,12 +1,38 @@
-// Example file for Advanced C#: Object Oriented Programming by Joe Marini
-// Solution to the Employee Class challenge
+public abstract class Employee
+{
+    public required int Id { get; init; }
+    public required string Department { get; set; } = string.Empty;
+    public required string FullName { get; set; } = string.Empty;
 
-public class Employee {
-    public Employee() {}
+    public abstract void AdjustPay(decimal percentage);
 
-    // YOUR CODE GOES HERE
-
-    public override string ToString() => $"{ID}:{FullName}, {Department} ";
+    public override string ToString() => $"{FullName}, ID: {Id}, Department: {Department}";
 }
 
-// DEFINE OTHER CLASSES HERE
+
+public class HourlyEmployee : Employee
+{
+    public decimal PayRate { get; set; }
+
+    public override void AdjustPay(decimal percentage)
+    {
+        PayRate += PayRate * (percentage / 100);
+    }
+
+    public override string ToString() =>
+        $"{base.ToString()}, Hourly PayRate: {PayRate:C}";
+}
+
+// Funcionário assalariado
+public class SalariedEmployee : Employee
+{
+    public decimal Salary { get; set; }
+
+    public override void AdjustPay(decimal percentage)
+    {
+        Salary += Salary * (percentage / 100);
+    }
+
+    public override string ToString() =>
+        $"{base.ToString()}, Salary: {Salary:C}";
+}
