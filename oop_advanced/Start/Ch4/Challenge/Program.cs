@@ -1,7 +1,4 @@
-﻿// Example file for Advanced C#: Object Oriented Programming by Joe Marini
-// Challenge: add static features to the employee class
-
-var Emp1 = new HourlyEmployee() {FullName="John Doe", Department="Sales", PayRate=35.0m};
+﻿var Emp1 = new HourlyEmployee() {FullName="John Doe", Department="Sales", PayRate=35.0m};
 var Emp2 = new SalariedEmployee() {FullName="Jane Deaux", Department="Marketing", Salary=75000.0m};
 
 Console.WriteLine($"Count: {Employee.EmployeeCount}");

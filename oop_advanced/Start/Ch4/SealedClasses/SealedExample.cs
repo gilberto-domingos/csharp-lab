@@ -1,7 +1,3 @@
-// Example file for Advanced C#: Object Oriented Programming by Joe Marini
-// Sealed classes and members
-
-// Example 1: Sealing a class
 public class A {
     public A() {
         Console.WriteLine("A");
@@ -22,7 +18,6 @@ public class B : A {
     }
 }
 
-// Example 2: Sealing an individual member
 public class C {
     public C() {}
 
