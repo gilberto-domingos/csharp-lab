@@ -11,27 +11,25 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout repo
+      - name: Checkout repository
         uses: actions/checkout@v4
 
       - name: Get latest commit message
         id: get_commit
         run: |
           COMMIT_MSG=$(git log -1 --pretty=%B)
-          echo "Commit Message: $COMMIT_MSG"
-
           CLEAN_MSG=$(echo "$COMMIT_MSG" | xargs)
+          echo "issue_title=$CLEAN_MSG" >> $GITHUB_OUTPUT
 
-          echo "issue_title<<EOF" >> $GITHUB_OUTPUT
-          echo "$CLEAN_MSG" >> $GITHUB_OUTPUT
-          echo "EOF" >> $GITHUB_OUTPUT
-
-      - name: Create a new GitHub issue
+      - name: Create GitHub issue
         env:
           MY_GITHUB_TOKEN: ${{ secrets.MY_GITHUB_TOKEN }}
         run: |
           TITLE="${{ steps.get_commit.outputs.issue_title }}"
 
-          curl -X POST -H "Authorization: token $MY_GITHUB_TOKEN" \
+          curl -i -X POST \
+               -H "Authorization: Bearer $MY_GITHUB_TOKEN" \
+               -H "Accept: application/vnd.github.v3+json" \
                -d "{\"title\":\"$TITLE\"}" \
-               "https://api.github.com/repos/gilberto-domingos/Csharp/issues"
+               "https://api.github.com/repos/${{ github.repository }}/issues"
+
