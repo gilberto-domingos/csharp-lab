@@ -1,8 +1,3 @@
-// LinkedIn Learning Course exercise file for Advanced C# Programming by Joe Marini
-// Example file for using class indexers
-
-// StockRecord is a sample class that returns information about
-// a week's worth of stock information - closing prices, etc.
 public class StockRecord {
     public string Symbol {
         get => "ABCD";
@@ -12,7 +7,6 @@ public class StockRecord {
         105.1m, 103.12m, 106.93m, 104.5m, 103.7m
     };
 
-    // Define some public properties
     public decimal Average {
         get => prices.Sum() / prices.Length;
     }
@@ -23,11 +17,30 @@ public class StockRecord {
         get => prices.Min();
     }
 
-    // TODO: implement Length property 
+    public int length => prices.Length;
 
+    public decimal this[int index]
+    {
+        get => prices[index];
+    }
 
-    // TODO: implement this[] to enable indexing
+    public decimal this[string day]
+    {
+        get
+        {
+            if (day == "mon")
+            {
+                return prices[0];
+            }
 
-    // TODO: You can overload the indexer to provide another way to access
+            if (day == "tue")
+            {
+                return prices[1];
+            }
+
+            throw new IndexOutOfRangeException($"{day} is not valid");
+            return 0m;
+        }
+    }
 
 }

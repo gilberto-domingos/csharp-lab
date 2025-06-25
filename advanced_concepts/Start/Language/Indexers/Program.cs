@@ -1,15 +1,17 @@
-﻿// LinkedIn Learning Course exercise file for Advanced C# Programming by Joe Marini
-// Example file for using class indexers
+﻿StockRecord stock1 = new StockRecord();
 
-// Create a new sample data set
-StockRecord stock1 = new StockRecord();
-
-// Access a couple of the properties
 Console.WriteLine($"Average: {stock1.Average:C}");
 Console.WriteLine($"High: {stock1.High:C}");
 Console.WriteLine($"Low: {stock1.Low:C}");
 
-// Use the indexer method
+Console.WriteLine($"Days: {stock1.length}");
 
+for (int i = 0; i < stock1.length; i++)
+{
+    decimal val = stock1[i];
+    Console.WriteLine($"Val: {val:c3}");
+}
 
-// Index using a different value
+Console.WriteLine($"Val: {stock1["mon"]:C}");
+Console.WriteLine($"Val: {stock1["tue"]:C}");
+Console.WriteLine($"Val: {stock1["BLA BLA BLÁ"]:C}");
