@@ -15,11 +15,22 @@ public class Planet
         DistanceFromSunKm = distance;
     }
 
-    // Define a Deconstruct method to return the name and moon count
+    public void Desconstruct(out string Name, out int Moons)
+    {
+        Name = this.Name;
+        Moons = this.MoonCount;
+    }
+    
+    public void Desconstruct(out string Name, out int Moons, out int Radius)
+    {
+        Name = this.Name;
+        Moons = this.MoonCount;
+        Radius = this.Radius;
+    }
 
-
-    // Define a Deconstruct method to return the name, moon count, and radius
-
-
-    // Defining a Deconstruct with the name number of parameters will cause an error
+    public void Desconstruct(out string name, out int distance)
+    {
+        name = this.Name;
+        distance = this.DistanceFromSunKm;
+    }
 }
