@@ -1,7 +1,4 @@
-﻿// LinkedIn Learning Course exercise file for Advanced C# Programming by Joe Marini
-// Example file for multiple interfaces
-
-namespace MultipleInterfaces
+﻿namespace MultipleInterfaces
 {
     interface IStorable
     {
@@ -10,10 +7,14 @@ namespace MultipleInterfaces
         Boolean NeedsSave { get; set; }
     }
 
-    // TODO: Create an IEncryptable interface
+    interface IEncryptable
+    {
+        void Encrypt();
+        void Decrypt();
+    }
 
     // TODO: Implement from both interfaces
-    class Document : IStorable
+    class Document : IStorable, IEncryptable
     {
         private string name;
 
@@ -34,16 +35,25 @@ namespace MultipleInterfaces
             get; set;
         }
 
-        // TODO: Implement IEncryptable
+        public void Encrypt()
+        {
+            Console.WriteLine("Encrypting the document");
+        }
+
+        public void Decrypt()
+        {
+            Console.WriteLine("Decrypting the document");
+        }
     }
 
     class Program
     {
         static void Main(string[] args) {
             Document d = new Document("Test Document");
-
-            // TODO: Exercise the interfaces
-
+            d.Load();
+            d.Encrypt();
+            d.Save();
+            d.Decrypt();
         }
     }
 }
