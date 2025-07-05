@@ -5,7 +5,9 @@
 
 ### Terminologia de Testes
 
+- **NUnit**
 - **Teste unitário**
+- **Teste TDD**
 - **Teste Red/green**
 - **Sistema sob teste (SUT)**
 - **Organizar, agir, afirmar (AAA: Arrange, Act, Assert)**
@@ -21,14 +23,6 @@
 - Refatoração precoce, não tardia
 - Testes automatizados
 - Documentação viva
-
-
-## Ferramentas de Teste e Bibliotecas de Mock
-
-### **Frameworks de Teste**
-- MSTest
-- NUnit
-- xUnit
 
 ### **Bibliotecas de Mock**
 - Moq
