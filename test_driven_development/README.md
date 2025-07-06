@@ -1,3 +1,5 @@
+[![Certificado LinkedIn Learning](https://img.shields.io/badge/LinkedIn%20Learning-C%23%20Avançado-blue?logo=linkedin&style=for-the-badge)](https://www.linkedin.com/learning/)
+
 # Test-Driven Development
 
 <img src="assets/TDD.png" width="500" alt="TDD"><br/>
