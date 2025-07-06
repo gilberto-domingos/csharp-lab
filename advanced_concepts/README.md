@@ -1,4 +1,6 @@
-# Conceitos e recursos avançados do C# por Joe Marini
+[![Certificado LinkedIn Learning](https://img.shields.io/badge/LinkedIn%20Learning-C%23%20Avançado-blue?logo=linkedin&style=for-the-badge)](https://www.linkedin.com/learning/)
+
+# Conceitos avançados de programação em C# (.NET) por Joe Marini
 Technology Industry Veteran
 
 - Ocupou cargos de destaque em diversas empresas do Vale do Silício, incluindo Microsoft, Adobe, Google e Databricks.
@@ -21,3 +23,62 @@ This is the repository for the LinkedIn Learning course `Advanced C# Programming
 
 [lil-course-url]: https://www.linkedin.com/learning/advanced-c-sharp-programming-concepts
 [lil-thumbnail-url]: https://media.licdn.com/dms/image/v2/D4E0DAQEAwibW5-phug/learning-public-crop_675_1200/B4EZdCHJEiHQAk-/0/1749160858554?e=2147483647&v=beta&t=Z2_SIdNFNvT28MoXjnWKAxG-0xtnYZPzI0gZXY1n6V4
+
+
+<img src="Assets/certificate.png" width="1000" alt="Logo do Projeto">
+
+# Conceitos avançados de programação em C# (.NET)
+
+## Conteúdo do Curso
+
+### 1. Recursos Avançados da Linguagem
+
+- Indexadores e intervalos 
+- Indexadores de classe 
+- Operador de coalescência nula 
+- Desconstrução com tuplas 
+- Desconstrução com classes 
+- Melhorias em literais numéricos 
+- Code Live - Desafio de código: Desconstrução
+- Quiz do capítulo (11 questões)
+
+### 2. Correspondência Estrutural de Padrões 
+
+- Visão geral da correspondência de padrões
+- Padrões básicos
+- Instruções aprimoradas
+- Padrões posicionais
+- Padrões relacionais
+- Code Live - Desafio de código: Padrões
+- Quiz do capítulo (12 questões)
+
+### 3. Delegados
+
+- Delegados anônimos
+- Delegados compostos
+- Code Live - Desafio de código: Delegados
+- Quiz do capítulo (8 questões)
+
+### 4. Eventos
+
+- Manipuladores de eventos em C#
+- Encadeamento de eventos
+- Code Live - Desafio: Eventos
+- Quiz do capítulo (8 questões)
+
+### 5. Funções Lambda
+
+- Visão geral de funções lambda
+- Lambdas como delegados
+- Code Live - Desafio: Funções lambda
+- Quiz do capítulo (9 questões)
+
+### 6. Interfaces
+
+- Interfaces e conversões
+- Múltiplas interfaces
+- Interfaces explícitas
+- Interfaces definidas pelo .NET
+- Code Live - Desafio de código: Interfaces
+- Quiz do capítulo (9 questões)
+
