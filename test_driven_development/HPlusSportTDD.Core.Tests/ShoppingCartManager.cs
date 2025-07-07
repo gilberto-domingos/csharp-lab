@@ -1,5 +1,5 @@
 namespace HPlusSportTDD.Core.Tests;
-// Gerenciador Carrinho Compras 
+// Gerenciador do Carrinho Compras 
 // Tipo: Classe de Domínio / Serviço
 // Executar a lógica de negócios relacionada ao carrinho de compras.
 
@@ -11,9 +11,17 @@ internal class ShoppingCartManager
         _shoppingCart = new List<AddToCartItem>();
     }
 
-    public AddToCartResponse AddToCart(AddToCartRequest request)
+    internal AddToCartResponse AddToCart(AddToCartRequest request)
     {
-        _shoppingCart.Add(request.Item);
+        var item = _shoppingCart.Find(i => i.ArticleId == request.Item.ArticleId);
+        if (item != null)
+        {
+            item.Quantity += request.Item.Quantity;
+        }
+        else
+        {
+            _shoppingCart.Add(request.Item);
+        }
         
         return new AddToCartResponse()
         {

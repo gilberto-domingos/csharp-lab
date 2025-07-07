@@ -1,5 +1,5 @@
 namespace HPlusSportTDD.Core.Tests;
-// Requisição Adicionar Ao Carrinho 
+// Requisição para Adicionar Ao Carrinho 
 // Tipo: DTO
 // Representar uma requisição para adicionar um item ao carrinho.
 
