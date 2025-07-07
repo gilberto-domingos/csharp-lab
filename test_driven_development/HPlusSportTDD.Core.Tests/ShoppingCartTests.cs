@@ -87,7 +87,7 @@ class ShoppingCartTests
 
         var item2 = new AddToCartItem()
         {
-            ArticleId = 43,
+            ArticleId = 42,
             Quantity = 10
         };
 
@@ -103,7 +103,6 @@ class ShoppingCartTests
         AddToCartResponse response = manager.AddToCart(request2);
 
         Assert.That(response, Is.Not.Null);
-        Assert.That(Array.Exists(response.Items, item => item.ArticleId == 42 && item.Quantity == 10));
+        Assert.That(Array.Exists(response.Items, item => item.ArticleId == 42 && item.Quantity == 5));
     }
-
 }

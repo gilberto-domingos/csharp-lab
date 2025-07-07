@@ -3,7 +3,7 @@ namespace HPlusSportTDD.Core.Tests;
 // Tipo: Objeto de Valor / DTO
 // Representar um item que será adicionado ao carrinho.
 
-internal class AddToCartItem
+public class AddToCartItem
 {
     public int ArticleId { get; init; }
     public int Quantity { get; set; }
