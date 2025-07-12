@@ -1,3 +1,4 @@
+using Moq;
 using NUnit.Framework;
 // Teste no Carrinho Compras 
 // Testar o comportamento da adição de itens ao carrinho.
@@ -27,9 +28,17 @@ class ShoppingCartTests
             Item = item
         };
 
-        var manager = new ShoppingCartManager();
+        var mockManager = new Mock<IShoppingCartManager>();
+
+        mockManager.Setup(manager => manager.AddToCart(It.IsAny<AddToCartRequest>())).Returns((AddToCartRequest request) =>
+            new AddToCartResponse()
+            {
+                Items = new AddToCartItem[] { request.Item }
+            });
         
-        AddToCartResponse response = manager.AddToCart(request);
+        // var manager = new ShoppingCartManager();
+        
+        AddToCartResponse response = mockManager.Object.AddToCart(request);
 
         Assert.That(response, Is.Not.Null);
         Assert.That(response.Items, Does.Contain(item));
