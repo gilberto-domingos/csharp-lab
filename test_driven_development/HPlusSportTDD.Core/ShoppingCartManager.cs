@@ -1,4 +1,4 @@
-namespace HPlusSportTDD.Core.Tests;
+namespace HPlusSportTDD.Core;
 // Gerenciador do Carrinho Compras 
 // Tipo: Classe de Domínio / Serviço
 // Executar a lógica de negócios relacionada ao carrinho de compras.

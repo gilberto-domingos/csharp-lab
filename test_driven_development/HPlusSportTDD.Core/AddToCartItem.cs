@@ -1,4 +1,4 @@
-namespace HPlusSportTDD.Core.Tests;
+namespace HPlusSportTDD.Core;
 // Item há Adicionar Ao Carrinho 
 // Tipo: Objeto de Valor / DTO
 // Representar um item que será adicionado ao carrinho.
