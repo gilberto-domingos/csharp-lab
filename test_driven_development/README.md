@@ -32,3 +32,5 @@
 - FakeItEasy
 - Microsoft Fakes
 
+<img src="assets/certificate.png" width="600" alt="Certificate">
+
