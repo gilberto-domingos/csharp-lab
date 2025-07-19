@@ -1,7 +1,58 @@
-# Building Angular and ASP.NET Web API Apps
+# Building Angular and ASP.NET Core Web API Apps
 This is the repository for the LinkedIn Learning course Building Angular and ASP.NET Web API Apps. The full course is available from [LinkedIn Learning][lil-course-url].
 
 ![lil-thumbnail-url]
+
+## Conteúdo :
+
+### Back-end
+
+- Projeto ASP.NET Core Web API
+- Definiçao dos modelos de aplicação
+- Configuração do Entity Framework para acesso ao banco de dados
+- Endpoint de criação (Create)
+- Endpoint de leitura de todos os registros (Read-all)
+- Endpoint de leitura por ID (Read by ID)
+- Endpoint de atualização (Update)
+- Endpoint de exclusão (Delete)
+- Realização da limpeza do código
+
+### Front-end
+
+- Projeto Angular
+- Definição e criação de componentes 
+- Configuração de rotas e navegação
+- Criação do serviço de transações com métodos HTTP
+- Projetar o cabeçalho e o rodapé da aplicação
+- Desenvolvimento da página de listagem
+- Load de dados da API de administração
+- Formulários
+- Transação enviando dados via HTTP POST
+- Atualização de dados da transação com HTTP PUT
+- Exclusão de transação com HTTP DELETE
+
+### Autenticação e Token
+
+- Autenticação Baseada em Token
+- Configuração de autenticação baseada em tokens no ASP.NET Web API
+- Endpoint de registro na API
+- Endpoint de login na API
+- Serviço de autenticação no Angular
+- Registrar um novo usuário
+- Validação de dados ao formulário de registro
+- Realizar login em uma conta
+- Proteger rotas usando Angular Guards
+- Atualizar o cabeçalho para a funcionalidade de logout
+- Interceptor de autenticação
+- Definição  do ID do usuário ao criar e carregar uma transação
+
+### Deploy da Aplicação na Azure
+- Explorar os serviços da Azure para deploy
+- Fazer o deploy da aplicação Angular usando Azure Static Website
+- Fazer o deploy do banco de dados SQL no Azure SQL Database Services
+- Fazer o deploy da ASP.NET Web API usando Azure App Services
+
+<img src="assets/certificate.png" width="1000" alt="Certificate">
 
 ## Course Description
 
@@ -33,9 +84,6 @@ Ervis Trupja
 
 Full-Stack .NET Web Developer with a mathematical background
 
-                            
-
-Check out my other courses on [LinkedIn Learning](https://www.linkedin.com/learning/instructors/ervis-trupja?u=104).
 
 
 [0]: # (Replace these placeholder URLs with actual course URLs)
