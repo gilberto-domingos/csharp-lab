@@ -25,6 +25,11 @@ namespace HPlusSportTDD.API.Controllers
         {
             var article = _articles.Find(a => a.Id == id);
             
+            if (article == null)
+            {
+                return NotFound();
+            }
+
             return Ok(article);
         }
     }

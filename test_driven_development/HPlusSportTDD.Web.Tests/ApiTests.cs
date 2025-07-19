@@ -44,8 +44,5 @@ namespace HPlusSportTDD.Web
 
             Assert.AreEqual((result as StatusCodeResult)?.StatusCode, 404);
         }
-
-
-
     }
 }
