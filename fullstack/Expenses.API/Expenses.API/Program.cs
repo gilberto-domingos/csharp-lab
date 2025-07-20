@@ -6,10 +6,29 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
+using DotNetEnv; 
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
+Env.Load();
+
+var dbServer = Environment.GetEnvironmentVariable("DB_SERVER");
+var dbName = Environment.GetEnvironmentVariable("DB_NAME");
+var saPassword = Environment.GetEnvironmentVariable("SA_PASSWORD");
+
+Console.WriteLine($"[DEBUG] DB_SERVER: {dbServer}");
+Console.WriteLine($"[DEBUG] DB_NAME: {dbName}");
+Console.WriteLine($"[DEBUG] SA_PASSWORD: {saPassword}");
+
+
+
+var connectionString =
+    $"Server={dbServer};Database={dbName};User Id=sa;Password={saPassword};TrustServerCertificate=True";
+
+builder.Configuration["ConnectionStrings:DefaultConnection"] = connectionString;
+
+Console.WriteLine($"[DEBUG] Connection String: {connectionString}");
+
 builder.Services.AddCors(opt => opt.AddPolicy("AllowAll",
     opt => opt.AllowAnyHeader()
             .AllowAnyMethod()
@@ -34,18 +53,18 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
 
 builder.Services.AddScoped<PasswordHasher<User>>();
 
-var conn = builder.Configuration.GetConnectionString("Default");
-builder.Services.AddDbContext<AppDbContext>(opt => opt.UseSqlServer(conn));
+builder.Services.AddDbContext<AppDbContext>(opt => opt.UseSqlServer(
+    builder.Configuration.GetConnectionString("DefaultConnection")
+));
+
 builder.Services.AddScoped<ITransactionsService, TransactionsService>();
 
 builder.Services.AddControllers();
-// Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 var app = builder.Build();
 
-// Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
@@ -53,12 +72,9 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseCors("AllowAll");
-
 app.UseHttpsRedirection();
-
 app.UseAuthentication();
 app.UseAuthorization();
-
 app.MapControllers();
 
 app.Run();
