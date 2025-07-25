@@ -1,3 +1,4 @@
+using System.Security.Claims;
 using Expenses.API.Data;
 using Expenses.API.Data.Services;
 using Expenses.API.Models;
@@ -71,10 +72,29 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
+if (app.Environment.IsDevelopment())
+{
+    app.Use(async (context, next) =>
+    {
+        if (!context.User.Identity.IsAuthenticated)
+        {
+            var claims = new List<Claim>
+            {
+                new Claim(ClaimTypes.NameIdentifier, "1"),
+                new Claim(ClaimTypes.Email, "devuser@example.com")
+            };
+            var identity = new ClaimsIdentity(claims, "Development");
+            context.User = new ClaimsPrincipal(identity);
+        }
+        await next();
+    });
+}
+
+
 app.UseCors("AllowAll");
 app.UseHttpsRedirection();
-app.UseAuthentication();
-app.UseAuthorization();
+// app.UseAuthentication();
+// app.UseAuthorization();
 app.MapControllers();
 
 app.Run();

@@ -13,9 +13,24 @@ namespace Expenses.API.Controllers
     [Route("api/[controller]")]
     [ApiController]
     [EnableCors("AllowAll")]
-    [Authorize]
+    // [Authorize]
     public class TransactionsController(ITransactionsService transactionService) : ControllerBase
     {
+        [HttpPost("Create")]
+        public IActionResult CreateTransaction([FromBody]PostTransactionDto payload)
+        {
+            var nameIdentifierClaim = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+
+            if (string.IsNullOrEmpty(nameIdentifierClaim))
+                return BadRequest("Could not get the user id");
+
+            if(!int.TryParse(nameIdentifierClaim, out int userId))
+                return BadRequest();
+
+            var newTrasaction = transactionService.Add(payload, userId);
+            return Ok(newTrasaction);
+        }
+        
         [HttpGet("All")]
         public IActionResult GetAll()
         {
@@ -41,20 +56,7 @@ namespace Expenses.API.Controllers
             return Ok(transactionDb);
         }
 
-        [HttpPost("Create")]
-        public IActionResult CreateTransaction([FromBody]PostTransactionDto payload)
-        {
-            var nameIdentifierClaim = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
-
-            if (string.IsNullOrEmpty(nameIdentifierClaim))
-                return BadRequest("Could not get the user id");
-
-            if(!int.TryParse(nameIdentifierClaim, out int userId))
-                return BadRequest();
-
-            var newTrasaction = transactionService.Add(payload, userId);
-            return Ok(newTrasaction);
-        }
+        
 
         [HttpPut("Update/{id}")]
         public IActionResult UpdateTransaction(int id, [FromBody]PutTransactionDto payload)
