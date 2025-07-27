@@ -2,7 +2,6 @@ mat-toolbar {
   display: flex;
   align-items: center;
 
-  // Adiciona a animação de fundo
   animation: gradient-background 60s infinite;
   background: linear-gradient(
     45deg,
@@ -21,18 +20,19 @@ mat-toolbar {
   flex: 1 1 auto;
 }
 
-.fnt {
-  color: #fff;
-  text-shadow: 1px 1px 1px #000;
-}
+// .fnt {
+//   color: #0431f7;
+//   //text-shadow: 1px 1px 1px #000;
+// }
 
-button {
-  text-shadow: 1px 1px 1px #000;
-  box-shadow: 1px 1px 1px #000;
-}
+// button {
+//   //color: #f5e103;
+//   //text-shadow: 1px 1px 1px #000;
+//   box-shadow: 1px 1px 1px #000;
+// }
 
 .small-button {
-  font-size: 0.8rem;
+  font-size: 0.6rem;
   padding: 2px 8px;
   min-height: 30px;
   line-height: 1;

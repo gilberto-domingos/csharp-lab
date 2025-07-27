@@ -1,0 +1,48 @@
+@use "@angular/material" as mat;
+@use "sass:map";
+
+$red-palette: mat.$blue-palette;
+
+@each $tone in (50, 100, 300, 500, 700, 900) {
+  .btn-blue-#{$tone} {
+    background-color: map.get($red-palette, $tone);
+    color: white;
+  }
+}
+
+// SQUARE BUTTONS .mat-mdc-button,
+// .mat-mdc-raised-button,
+// .mat-mdc-outlined-button,
+// .mat-mdc-flat-button,
+// .mat-mdc-icon-button,
+// .mat-mdc-fab,
+// .mat-mdc-mini-fab
+
+// .square-button {
+//   border-radius: 0 !important;
+// }
+
+// :root {
+//   --mdc-shape-small: 0px;
+//   --mdc-shape-medium: 0px;
+//   --mdc-shape-large: 0px;
+// }
+
+/////////////////////////////////////////
+
+// $mat-red-palette: (
+//   50: #ffebee,
+//   100: #ffcdd2,
+//   200: #ef9a9a,
+//   300: #e57373,
+//   400: #ef5350,
+//   500: #f44336,
+//   600: #e53935,
+//   700: #d32f2f,
+//   800: #c62828,
+//   900: #b71c1c,
+//   A100: #ff8a80,
+//   A200: #ff5252,
+//   A400: #ff1744,
+//   A700: #d50000,
+// );
