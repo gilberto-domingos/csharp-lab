@@ -1,0 +1,177 @@
+mat-toolbar {
+  display: flex;
+  align-items: center;
+
+  // Adiciona a animação de fundo
+  animation: gradient-background 60s infinite;
+  background: linear-gradient(
+    45deg,
+    #ffeb3b,
+    #ff5722,
+    #2182cd,
+    #9f03aa,
+    #b15cd5
+  );
+  background-size: 200% 200%;
+  color: white;
+  text-shadow: 1px 1px 1px #000;
+}
+
+.spacer {
+  flex: 1 1 auto;
+}
+
+.fnt {
+  color: #fff;
+  text-shadow: 1px 1px 1px #000;
+}
+
+button {
+  text-shadow: 1px 1px 1px #000;
+  box-shadow: 1px 1px 1px #000;
+}
+
+.small-button {
+  font-size: 0.8rem;
+  padding: 2px 8px;
+  min-height: 30px;
+  line-height: 1;
+}
+
+mat-icon {
+  font-size: 16px;
+  height: 16px;
+  width: 16px;
+}
+
+/////////////////////////////////////////////////////////////////////
+
+.back-color {
+  font-family: "FiraCode Nerd Font";
+  font-size: 1.9rem;
+  margin-left: 10px;
+
+  background: linear-gradient(
+    45deg,
+    #ffeb3b,
+    #ff5722,
+    #2182cd,
+    #9f03aa,
+    #b15cd5
+  );
+  background-size: 300% 300%;
+  background-clip: text;
+  -webkit-background-clip: text;
+
+  color: transparent;
+  -webkit-text-fill-color: transparent;
+
+  animation: gradient-text 8s ease infinite;
+}
+
+@keyframes gradient-text {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+.back-animation {
+  animation: gradient-background 60s infinite;
+}
+
+@keyframes gradient-background {
+  0%,
+  100% {
+    background: linear-gradient(
+      45deg,
+      #ffeb3b,
+      #ff5722ff,
+      #2182cd,
+      #9f03aa,
+      #ff5722
+    );
+    background-size: 100% 200%;
+  }
+  0%,
+  100% {
+    background: linear-gradient(
+      45deg,
+      #2182cd,
+      #ffeb3b,
+      #9f03aa,
+      #ff5722,
+      #b15cd5
+    );
+    background-size: 120% 200%;
+  }
+  0%,
+  100% {
+    background: linear-gradient(
+      45deg,
+      #2182cd,
+      #9f03aa,
+      #ffeb3b,
+      #ff5722,
+      #b15cd5
+    );
+    background-size: 100% 200%;
+  }
+
+  14.28%,
+  85.72% {
+    background: linear-gradient(
+      45deg,
+      #2182cd,
+      #9f03aa,
+      #ff5722,
+      #ffeb3b,
+      #b15cd5
+    );
+    background-size: 120% 200%;
+  }
+
+  28.56%,
+  71.44% {
+    background: linear-gradient(
+      45deg,
+      #2182cd,
+      #9f03aa,
+      #ffeb3b,
+      #ff5722,
+      #b15cd5
+    );
+    background-size: 100% 200%;
+  }
+
+  42.84%,
+  57.16% {
+    background: linear-gradient(
+      45deg,
+      #2182cd,
+      #ffeb3b,
+      #9f03aa,
+      #ff5722,
+      #b15cd5
+    );
+    background-size: 120% 200%;
+  }
+
+  57.12%,
+  42.88% {
+    background: linear-gradient(
+      45deg,
+      #ffeb3b,
+      #2182cd,
+      #9f03aa,
+      #ff5722ff,
+      #ff5722
+    );
+    background-size: 100% 200%;
+  }
+}
