@@ -1,156 +1,197 @@
-// styles.scss
 @use "@angular/material" as mat;
 
-// -----------------------------
-//  MAIN THEME (BLUE/VIOLET)
-// -----------------------------
-$mat-custom-blue-palette: (
-  50: #e3f2fd,
-  100: #bbdefb,
-  200: #90caf9,
-  300: #64b5f6,
-  400: #42a5f5,
-  500: #2196f3,
-  600: #1e88e5,
-  700: #1976d2,
-  800: #1565c0,
-  900: #0d47a1,
-  // a cor que você pediu como base
-  A100: #82b1ff,
-  A200: #448aff,
-  A400: #2979ff,
-  A700: #2962ff,
+// //base blue 0f33b5 - 900
+$mat-blue-custom-colors: (
+  50: #e5e8fb,
+  100: #c3caf5,
+  200: #9daaf0,
+  300: #788ae8,
+  400: #586fe0,
+  500: #3b55d8,
+  600: #2f47cc,
+  700: #1f39c0,
+  800: #142db5,
+  900: #0f33b5,
+  A100: #889eff,
+  A200: #5c76ff,
+  A400: #2e4eff,
+  A700: #122fff,
 );
 
-$main-color-config: (
-  color: (
-    primary: mat.$blue-palette,
-    tertiary: mat.$violet-palette,
-  ),
+//base green 03a48c - 500
+$mat-green-custom-colors: (
+  50: #e0f3f1,
+  100: #b3ddd8,
+  200: #80c2b9,
+  300: #4da69a,
+  400: #26907f,
+  500: #03a48c,
+  600: #028773,
+  700: #016b59,
+  800: #005040,
+  900: #003527,
+  A100: #b2fff2,
+  A200: #80ffe4,
+  A400: #4dffce,
+  A700: #26ffc1,
 );
 
-$main-theme: mat.define-theme($main-color-config);
+// //////
 
-// -----------------------------
-//  APPLYING MAIN THEME GLOBALLY
-// -----------------------------
-@include mat.all-component-themes($main-theme);
+:root {
+  //   // ////-------- filled --------------
+  @each $key, $value in $mat-green-custom-colors {
+    --md-sys-color-secondary-#{$key}: #{$value};
+  }
+  --md-sys-color-secondary: var(--md-sys-color-secondary-600);
+  --md-sys-color-on-secondary: #ffffff;
 
-html {
-  @include mat.theme($main-theme);
-  color-scheme: light;
+  button[matButton="filled"][color="secondary"] {
+    background-color: var(--md-sys-color-secondary);
+    color: var(--md-sys-color-on-secondary);
+    text-shadow: 1px 1px 1px #00155f;
+    box-shadow: 1px 1px 1px #000;
+    transition: background-color 0.3s ease;
+  }
 
-  background-color: var(--mat-sys-surface);
-  color: var(--mat-sys-on-surface);
-  font: var(--mat-sys-body-medium);
+  button[matButton="filled"][color="secondary"]:hover {
+    background-color: var(
+      --md-sys-color-secondary-400
+    ); // um pouco mais escuro no hover
+  }
+
+  //-----------------------------------------------
+  @each $key, $value in $mat-blue-custom-colors {
+    --md-sys-color-primary-#{$key}: #{$value};
+  }
+  --md-sys-color-primary: var(--md-sys-color-primary-500);
+  --md-sys-color-on-primary: #ffffff;
+
+  button[matButton="filled"][color="primary"] {
+    background-color: var(--md-sys-color-primary);
+    color: var(--md-sys-color-on-primary);
+    text-shadow: 1px 1px 1px #00155f;
+    transition: background-color 0.3s ease;
+  }
+
+  button[matButton="filled"][color="primary"]:hover {
+    background-color: var(--md-sys-color-primary-600); // um tom mais claro
+  }
+
+  --md-sys-color-primary: #3b55d8;
+  --md-sys-color-on-primary: #ffffff;
+
+  // --md-sys-color-secondary: #03a48c;
+  // --md-sys-color-on-secondary: #ffffff;
+
+  --md-sys-color-tertiary: #f44336;
+  --md-sys-color-on-tertiary: #ffffff;
+
+  /* Paleta Primária (azul profundo) */
+  --md-sys-color-primary: #3b55d8;
+  --md-sys-color-on-primary: #ffffff;
+
+  /* Paleta Secundária (verde água) */
+  // --md-sys-color-secondary: #03a48c;
+  // --md-sys-color-on-secondary: #ffffff;
+
+  /* Paleta Terciária (vermelho vibrante) */
+  --md-sys-color-tertiary: #f44336;
+  --md-sys-color-on-tertiary: #ffffff;
+
+  /* Cores neutras (opcional) */
+  --md-sys-color-surface: #ffffff;
+  --md-sys-color-on-surface: #000000;
+  --md-sys-color-background: #f5f5f5;
 }
 
-// -----------------------------
-//  ALTERNATIVE THEME (RED)
-// -----------------------------
-
-$mat-red-palette: (
-  50: #ffebee,
-  100: #ffcdd2,
-  200: #ef9a9a,
-  300: #e57373,
-  400: #ef5350,
-  500: #f44336,
-  600: #e53935,
-  700: #d32f2f,
-  800: #c62828,
-  900: #b71c1c,
-  A100: #ff8a80,
-  A200: #ff5252,
-  A400: #ff1744,
-  A700: #d50000,
-);
-
-$red-color-config: (
-  color: (
-    primary: mat.$red-palette,
-  ),
-);
-
-$red-theme: mat.define-theme($red-color-config);
-
-.red-theme {
-  @include mat.all-component-themes($red-theme);
-  @include mat.theme($red-theme);
+button[matButton][color="primary"] {
+  background-color: var(--md-sys-color-primary);
+  color: var(--md-sys-color-on-primary);
 }
 
-.btn-red-50 {
-  background-color: #ffebee !important;
-  color: black !important;
+button[matButton][color="secondary"] {
+  background-color: var(--md-sys-color-secondary);
+  color: var(--md-sys-color-on-secondary);
 }
 
-//////////////////SQUARE ////////////
-
-.square-button {
-  border-radius: 0 !important;
+button[matButton][color="tertiary"] {
+  background-color: var(--md-sys-color-tertiary);
+  color: var(--md-sys-color-on-tertiary);
 }
 
-.square-primary {
-  @extend .square-button;
-  background-color: var(--mdc-filled-button-container-color);
-  color: var(--mdc-filled-button-label-text-color);
+/* Botões Filled */
+button[matButton="filled"][color="primary"] {
+  background-color: var(--md-sys-color-primary);
+  color: var(--md-sys-color-on-primary);
+  box-shadow: none;
 }
 
-.square-red-theme {
-  @extend .square-button;
-  @include mat.all-component-themes($red-theme);
-  @include mat.theme($red-theme);
+button[matButton="filled"][color="secondary"] {
+  background-color: var(--md-sys-color-secondary);
+  color: var(--md-sys-color-on-secondary);
+  box-shadow: none;
 }
 
-/////////////BLUE //////////////////
-
-// Blue button 50 - 'square' - light color
-.square-blue-50 {
-  border-radius: 0 !important;
-  background-color: #e3f2fd !important; // Approximate value of blue 50
-  color: black !important;
+button[matButton="filled"][color="tertiary"] {
+  background-color: var(--md-sys-color-tertiary);
+  color: var(--md-sys-color-on-tertiary);
+  box-shadow: none;
 }
 
-.square-blue-800 {
-  border-radius: 0 !important;
-  background-color: #1565c0 !important;
-  color: white !important;
+/* Botões Tonal */
+button[matButton="tonal"][color="primary"] {
+  background-color: rgba(59, 85, 216, 0.24); /* 3b55d8 com alpha */
+  color: var(--md-sys-color-primary);
 }
 
-//////////////////////
-//// Green ///
-.btn-green-50 {
-  background-color: #e8f5e9 !important; // Green 50
-  color: black;
+button[matButton="tonal"][color="secondary"] {
+  background-color: rgba(3, 164, 140, 0.24);
+  color: var(--md-sys-color-secondary);
 }
 
-.btn-green-100 {
-  background-color: #c8e6c9 !important;
-  color: black;
+button[matButton="tonal"][color="tertiary"] {
+  background-color: rgba(244, 67, 54, 0.24);
+  color: var(--md-sys-color-tertiary);
 }
 
-.btn-green-300 {
-  background-color: #81c784 !important;
-  color: black;
+/* Botões Outlined */
+button[matButton="outlined"][color="primary"] {
+  border: 1px solid var(--md-sys-color-primary);
+  color: var(--md-sys-color-primary);
+  background-color: transparent;
 }
 
-.btn-green-500 {
-  background-color: #4caf50 !important;
-  color: white;
+button[matButton="outlined"][color="secondary"] {
+  border: 1px solid var(--md-sys-color-secondary);
+  color: var(--md-sys-color-secondary);
+  background-color: transparent;
 }
 
-.btn-green-700 {
-  background-color: #388e3c !important;
-  color: white;
+button[matButton="outlined"][color="tertiary"] {
+  border: 1px solid var(--md-sys-color-tertiary);
+  color: var(--md-sys-color-tertiary);
+  background-color: transparent;
 }
 
-.btn-green-900 {
-  background-color: #1b5e20 !important;
-  color: white;
+/* Botões Elevated */
+button[matButton="elevated"][color="primary"] {
+  background-color: var(--md-sys-color-primary);
+  color: var(--md-sys-color-on-primary);
+  box-shadow: 0px 2px 4px rgba(59, 85, 216, 0.4);
 }
 
-//////
-/// ///////////////////////////////
+button[matButton="elevated"][color="secondary"] {
+  background-color: var(--md-sys-color-secondary);
+  color: var(--md-sys-color-on-secondary);
+  box-shadow: 0px 2px 4px rgba(3, 164, 140, 0.4);
+}
+
+button[matButton="elevated"][color="tertiary"] {
+  background-color: var(--md-sys-color-tertiary);
+  color: var(--md-sys-color-on-tertiary);
+  box-shadow: 0px 2px 4px rgba(244, 67, 54, 0.4);
+}
 
 html,
 body {

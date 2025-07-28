@@ -21,7 +21,6 @@ mat-toolbar {
 }
 
 .fntsm {
-  color: #fff;
   text-shadow: 1px 1px 1px #000;
 }
 
@@ -51,20 +50,20 @@ mat-toolbar {
 }
 
 .adsmll-btn {
-  font-size: 0.95rem;
-  padding: 7px 8px 7px 8px;
-  margin-right: 2px;
+  font-size: 0.9rem;
+  padding: 5px 7px 5px 8px;
   min-height: unset;
   height: auto;
-  line-height: 1.2;
-  border-radius: 12px;
-  background-color: #00dee6;
+  line-height: 1.1;
+  border-radius: 100px;
+  text-shadow: 1px 1px 1px #00155f;
 }
 
-mat-icon {
-  font-size: 16px;
-  height: 16px;
+.mat-icon {
+  font-size: 23px;
+  padding-left: 0 5px 0 5px;
   width: 18px;
+  height: 16px;
 }
 
 /////////////////////////////////////////////////////////////////////
