@@ -1,6 +1,7 @@
 import {
   ApplicationConfig,
   importProvidersFrom,
+  LOCALE_ID,
   provideBrowserGlobalErrorListeners,
   provideZoneChangeDetection,
 } from '@angular/core';
@@ -11,14 +12,18 @@ import { provideRouter } from '@angular/router';
 providers: [importProvidersFrom()];
 
 import { provideHttpClient, withFetch } from '@angular/common/http';
+import localePt from '@angular/common/locales/pt';
 
 provideHttpClient(withFetch()); // ✅ usar com fetch
 
+import { registerLocaleData } from '@angular/common';
 import {
   provideClientHydration,
   withEventReplay,
 } from '@angular/platform-browser';
 import { routes } from './app.routes';
+
+registerLocaleData(localePt);
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -30,5 +35,6 @@ export const appConfig: ApplicationConfig = {
 
     importProvidersFrom(),
     provideHttpClient(withFetch()),
+    { provide: LOCALE_ID, useValue: 'pt-BR' },
   ],
 };
