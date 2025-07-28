@@ -20,24 +20,7 @@ import { TransactionService } from '../../services/transactionService';
   styleUrl: './transaction-list.scss',
 })
 export class TransactionList implements OnInit {
-  transactions: Transaction[] = [
-    {
-      id: 1,
-      createdAt: new Date(),
-      updatedAt: new Date(),
-      type: 'Expense',
-      category: 'Food',
-      amount: 50,
-    },
-    {
-      id: 1,
-      createdAt: new Date(),
-      updatedAt: new Date(),
-      type: 'Expense',
-      category: 'Food',
-      amount: 50,
-    },
-  ];
+  transactions: Transaction[] = [];
   displayedColumns: string[] = [
     'createdAt',
     'type',
@@ -53,6 +36,10 @@ export class TransactionList implements OnInit {
   netBalance = 0;
 
   ngOnInit(): void {
+    this.loadTransactions();
+  }
+
+  loadTransactions(): void {
     this.transactionService.getAll().subscribe((data) => {
       this.transactions = data;
     });

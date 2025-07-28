@@ -7,7 +7,9 @@ import { Transaction } from '../models/transaction';
   providedIn: 'root',
 })
 export class TransactionService {
-  private apiUrl = 'https://localhost:5298/api/Transactions';
+  //private apiUrl = 'https://localhost:5298/api/Transactions';
+  //private apiUrl = 'https://meuappapi.azurewebsites.net/api/Transactions';
+  private apiUrl = 'http://localhost:5298/api/Transactions';
 
   constructor(private http: HttpClient) {}
 
