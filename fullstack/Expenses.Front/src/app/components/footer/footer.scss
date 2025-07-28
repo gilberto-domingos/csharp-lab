@@ -1,0 +1,101 @@
+@keyframes colorChange {
+  0% {
+    background: linear-gradient(
+      45deg,
+      #ffeb3b,
+      #ff5722ff,
+      #2182cd,
+      #9f03aa,
+      #ff5722
+    );
+    background-size: 100% 200%;
+  }
+  14.28%,
+  85.72% {
+    background: linear-gradient(
+      45deg,
+      #2182cd,
+      #9f03aa,
+      #ff5722,
+      #ffeb3b,
+      #b15cd5
+    );
+    background-size: 120% 200%;
+  }
+  28.56%,
+  71.44% {
+    background: linear-gradient(
+      45deg,
+      #2182cd,
+      #9f03aa,
+      #ffeb3b,
+      #ff5722,
+      #b15cd5
+    );
+    background-size: 100% 200%;
+  }
+  42.84%,
+  57.16% {
+    background: linear-gradient(
+      45deg,
+      #2182cd,
+      #ffeb3b,
+      #9f03aa,
+      #ff5722,
+      #b15cd5
+    );
+    background-size: 120% 200%;
+  }
+  57.12%,
+  42.88% {
+    background: linear-gradient(
+      45deg,
+      #ffeb3b,
+      #2182cd,
+      #9f03aa,
+      #ff5722,
+      #ff5722
+    );
+    background-size: 100% 200%;
+  }
+  100% {
+    background: linear-gradient(
+      45deg,
+      #2182cd,
+      #ffeb3b,
+      #9f03aa,
+      #ff5722,
+      #b15cd5
+    );
+    background-size: 100% 200%;
+  }
+}
+
+footer {
+  animation: colorChange 60s infinite;
+  background-size: 100% 100%;
+  //background: linear-gradient(to bottom, #ffffff 0%, #9e007e 15%);
+  text-shadow: 1px 1px 1px #000;
+  padding: 1px 0;
+  text-align: center;
+  position: relative;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  color: #fff;
+  font-size: 14px;
+}
+
+footer p {
+  margin-bottom: 0;
+}
+
+@media (max-width: 768px) {
+  .whats {
+    width: 35px;
+    height: auto;
+    margin: 0 0 6% 90%;
+    position: fixed;
+    bottom: 0;
+  }
+}
