@@ -46,3 +46,67 @@ $red-palette: mat.$blue-palette;
 //   A400: #ff1744,
 //   A700: #d50000,
 // );
+
+/////// PALETE COLORS /////////////////
+// mat.$red-palette
+
+// mat.$pink-palette
+
+// mat.$purple-palette
+
+// mat.$deep-purple-palette
+
+// mat.$indigo-palette
+
+// mat.$blue-palette
+
+// mat.$light-blue-palette
+
+// mat.$cyan-palette
+
+// mat.$teal-palette
+
+// mat.$green-palette
+
+// mat.$light-green-palette
+
+// mat.$lime-palette
+
+// mat.$yellow-palette
+
+// mat.$amber-palette
+
+// mat.$orange-palette
+
+// mat.$deep-orange-palette
+
+// mat.$brown-palette
+
+// mat.$gray-palette
+
+// mat.$blue-gray-palette
+
+/////////////////EXAMPLE /////////////////
+// @use '@angular/material' as mat;
+
+// $my-color-config: (
+//   color: (
+//     primary: mat.$indigo-palette,
+//     tertiary: mat.$pink-palette,
+//     warn: mat.$red-palette,
+//   )
+// );
+
+// $my-theme: mat.define-theme($my-color-config);
+
+// @include mat.all-component-themes($my-theme);
+
+/////////////////////////////// DARK MODE /////////////////////////////////
+// $dark-theme: mat.define-theme((
+//   color: (
+//     primary: mat.$blue-grey-palette,
+//     tertiary: mat.$cyan-palette,
+//     warn: mat.$deep-orange-palette,
+//     is-dark: true
+//   )
+// ));

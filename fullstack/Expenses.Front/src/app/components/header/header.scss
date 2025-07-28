@@ -20,28 +20,51 @@ mat-toolbar {
   flex: 1 1 auto;
 }
 
-// .fnt {
-//   color: #0431f7;
-//   //text-shadow: 1px 1px 1px #000;
-// }
+.fntsm {
+  color: #fff;
+  text-shadow: 1px 1px 1px #000;
+}
 
-// button {
-//   //color: #f5e103;
-//   //text-shadow: 1px 1px 1px #000;
-//   box-shadow: 1px 1px 1px #000;
-// }
+.bxs {
+  box-shadow: 1px 1px 1px #000;
+}
 
-.small-button {
-  font-size: 0.6rem;
-  padding: 2px 8px;
-  min-height: 30px;
-  line-height: 1;
+.align {
+  display: flex;
+  align-items: flex-end;
+  gap: 8px;
+}
+
+.align btn {
+  display: inline-flex;
+  align-items: center;
+}
+
+.bsmll-btn {
+  font-size: 0.81rem;
+  padding: 5px 6px 5px 6px;
+  margin-right: 2px;
+  min-height: unset;
+  height: auto;
+  line-height: 1.2;
+  border-radius: 4px;
+}
+
+.adsmll-btn {
+  font-size: 0.95rem;
+  padding: 7px 8px 7px 8px;
+  margin-right: 2px;
+  min-height: unset;
+  height: auto;
+  line-height: 1.2;
+  border-radius: 12px;
+  background-color: #00dee6;
 }
 
 mat-icon {
   font-size: 16px;
   height: 16px;
-  width: 16px;
+  width: 18px;
 }
 
 /////////////////////////////////////////////////////////////////////
@@ -175,67 +198,3 @@ mat-icon {
     background-size: 100% 200%;
   }
 }
-
-/////// PALETE COLORS /////////////////
-// mat.$red-palette
-
-// mat.$pink-palette
-
-// mat.$purple-palette
-
-// mat.$deep-purple-palette
-
-// mat.$indigo-palette
-
-// mat.$blue-palette
-
-// mat.$light-blue-palette
-
-// mat.$cyan-palette
-
-// mat.$teal-palette
-
-// mat.$green-palette
-
-// mat.$light-green-palette
-
-// mat.$lime-palette
-
-// mat.$yellow-palette
-
-// mat.$amber-palette
-
-// mat.$orange-palette
-
-// mat.$deep-orange-palette
-
-// mat.$brown-palette
-
-// mat.$gray-palette
-
-// mat.$blue-gray-palette
-
-/////////////////EXAMPLE /////////////////
-// @use '@angular/material' as mat;
-
-// $my-color-config: (
-//   color: (
-//     primary: mat.$indigo-palette,
-//     tertiary: mat.$pink-palette,
-//     warn: mat.$red-palette,
-//   )
-// );
-
-// $my-theme: mat.define-theme($my-color-config);
-
-// @include mat.all-component-themes($my-theme);
-
-/////////////////////////////// DARK MODE /////////////////////////////////
-// $dark-theme: mat.define-theme((
-//   color: (
-//     primary: mat.$blue-grey-palette,
-//     tertiary: mat.$cyan-palette,
-//     warn: mat.$deep-orange-palette,
-//     is-dark: true
-//   )
-// ));
