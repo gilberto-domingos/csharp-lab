@@ -1,11 +1,70 @@
-import { Component } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { Component, OnInit } from '@angular/core';
+import { MatButtonModule } from '@angular/material/button';
+import { MatCardModule } from '@angular/material/card';
+import { MatIconModule } from '@angular/material/icon';
+import { MatTableModule } from '@angular/material/table';
+import { Transaction } from '../../models/transaction';
+import { TransactionService } from '../../services/transactionService';
 
 @Component({
   selector: 'app-transaction-list',
-  imports: [],
+  imports: [
+    MatCardModule,
+    CommonModule,
+    MatTableModule,
+    MatIconModule,
+    MatButtonModule,
+  ],
   templateUrl: './transaction-list.html',
-  styleUrl: './transaction-list.scss'
+  styleUrl: './transaction-list.scss',
 })
-export class TransactionList {
+export class TransactionList implements OnInit {
+  transactions: Transaction[] = [
+    {
+      id: 1,
+      createdAt: new Date(),
+      updatedAt: new Date(),
+      type: 'Expense',
+      category: 'Food',
+      amount: 50,
+    },
+    {
+      id: 1,
+      createdAt: new Date(),
+      updatedAt: new Date(),
+      type: 'Expense',
+      category: 'Food',
+      amount: 50,
+    },
+  ];
+  displayedColumns: string[] = [
+    'createdAt',
+    'type',
+    'category',
+    'amount',
+    'actions',
+  ];
 
+  constructor(private transactionService: TransactionService) {}
+
+  totalIncome = 0;
+  totalExpenses = 0;
+  netBalance = 0;
+
+  ngOnInit(): void {
+    this.transactionService.getAll().subscribe((data) => {
+      this.transactions = data;
+    });
+  }
+
+  onEdit(transaction: Transaction) {
+    console.log('Edit:', transaction);
+    // navegar para tela de edição ou abrir modal
+  }
+
+  onDelete(transaction: Transaction) {
+    console.log('Delete:', transaction);
+    // chamar service.delete() se desejar
+  }
 }
