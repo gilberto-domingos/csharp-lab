@@ -48,6 +48,27 @@ export class TransactionList implements OnInit {
     });
   }
 
+  getTotalIncome(): number {
+    return this.transactions
+      .filter((t) => t.type === 'receita')
+      .reduce((sum, t) => sum + t.amount, 0);
+  }
+
+  getTotalExpenses(): number {
+    return this.transactions
+      .filter((e) => e.type === 'despesa')
+      .reduce((sum, e) => sum + e.amount, 0);
+  }
+
+  getLiquidBalance(): number {
+    return this.getTotalIncome() - this.getTotalExpenses();
+  }
+
+  getBalanceClass(): string {
+    const balance = this.getLiquidBalance();
+    return balance <= 0 ? 'negative-balance' : 'balance';
+  }
+
   onEdit(transaction: Transaction) {
     console.log('Edit:', transaction);
     // navegar para tela de edição ou abrir modal
