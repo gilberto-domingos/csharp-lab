@@ -18,6 +18,7 @@ import { TransactionService } from '../../services/transactionService';
   ],
   templateUrl: './transaction-list.html',
   styleUrl: './transaction-list.scss',
+  standalone: true,
 })
 export class TransactionList implements OnInit {
   transactions: Transaction[] = [];
@@ -28,6 +29,8 @@ export class TransactionList implements OnInit {
     'amount',
     'actions',
   ];
+
+  row: any;
 
   constructor(private transactionService: TransactionService) {}
 
@@ -53,5 +56,17 @@ export class TransactionList implements OnInit {
   onDelete(transaction: Transaction) {
     console.log('Delete:', transaction);
     // chamar service.delete() se desejar
+  }
+
+  getRowClass(tx: Transaction): string {
+    // console.log('Tipo:', tx.type);
+
+    const type = tx.type?.toLowerCase().trim();
+
+    return type === 'receita'
+      ? 'income-row'
+      : type === 'despesa'
+      ? 'expense-row'
+      : '';
   }
 }

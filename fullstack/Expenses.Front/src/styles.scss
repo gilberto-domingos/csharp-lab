@@ -18,7 +18,7 @@ $mat-blue-custom-colors: (
   A700: #122fff,
 );
 
-//base green 03a48c - 500
+//base green 03a48c - 500   background-color: rgb(110, 0, 179);
 $mat-green-custom-colors: (
   50: #e0f3f1,
   100: #b3ddd8,
@@ -36,14 +36,32 @@ $mat-green-custom-colors: (
   A700: #26ffc1,
 );
 
+// cor base 500: #6e00b3
+$mat-purple-custom-colors: (
+  50: #f2e6fb,
+  100: #dabff6,
+  200: #bd94f0,
+  300: #9f68ea,
+  400: #893ee5,
+  500: #6e00b3,
+  600: #6200a1,
+  700: #55008e,
+  800: #47007a,
+  900: #36005c,
+  A100: #e0b3ff,
+  A200: #c266ff,
+  A400: #a31aff,
+  A700: #8a00e6,
+);
+
 // //////
 
 :root {
   //   // ////-------- filled --------------
-  @each $key, $value in $mat-green-custom-colors {
+  @each $key, $value in $mat-purple-custom-colors {
     --md-sys-color-secondary-#{$key}: #{$value};
   }
-  --md-sys-color-secondary: var(--md-sys-color-secondary-600);
+  --md-sys-color-secondary: var(--md-sys-color-secondary-500);
   --md-sys-color-on-secondary: #ffffff;
 
   button[matButton="filled"][color="secondary"] {
