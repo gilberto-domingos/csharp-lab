@@ -20,15 +20,11 @@ export const routes: Routes = [
   },
   {
     path: 'transactions',
-    component: TransactionList,
-  },
-  {
-    path: 'add',
-    component: TransactionForm,
-  },
-  {
-    path: 'edit/:id',
-    component: TransactionForm,
+    children: [
+      { path: '', component: TransactionList },
+      { path: 'add', component: TransactionForm },
+      { path: 'edit/:id', component: TransactionForm },
+    ],
   },
   {
     path: '',
