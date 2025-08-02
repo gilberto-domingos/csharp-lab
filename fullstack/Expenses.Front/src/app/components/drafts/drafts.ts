@@ -10,3 +10,16 @@ import { MatToolbarModule } from '@angular/material/toolbar';
   styleUrl: './drafts.scss',
 })
 export class Drafts {}
+
+// clean form
+// onCancel() {
+//   this.transactionForm.reset({
+//     type: 'Expense',
+//     category: null,
+//     amount: 0,
+//     createdAt: new Date(),
+//   });
+
+//   this.transactionForm.markAsPristine();
+//   this.transactionForm.markAsUntouched();
+// }

@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatToolbarModule } from '@angular/material/toolbar';
-import { RouterModule } from '@angular/router';
+import { Router, RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-header',
@@ -11,9 +11,10 @@ import { RouterModule } from '@angular/router';
   styleUrl: './header.scss',
 })
 export class Header {
-  onAddTransaction() {
-    console.log('Add Transaction clicked');
-    // lógica para abrir form ou navegar
+  constructor(private router: Router) {}
+
+  addTransaction() {
+    this.router.navigate(['/transactions/add']);
   }
 
   onLogout() {

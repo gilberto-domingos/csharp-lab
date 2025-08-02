@@ -4,24 +4,31 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { MatIconModule } from '@angular/material/icon';
 import { MatTableModule } from '@angular/material/table';
+import { Observable, combineLatest, map, of } from 'rxjs';
+
 import { Transaction } from '../../models/transaction';
 import { TransactionService } from '../../services/transactionService';
 
 @Component({
   selector: 'app-transaction-list',
+  standalone: true,
   imports: [
-    MatCardModule,
     CommonModule,
+    MatCardModule,
     MatTableModule,
     MatIconModule,
     MatButtonModule,
   ],
   templateUrl: './transaction-list.html',
   styleUrl: './transaction-list.scss',
-  standalone: true,
 })
 export class TransactionList implements OnInit {
-  transactions: Transaction[] = [];
+  transactions$: Observable<Transaction[]> = of([]);
+
+  totalIncome$!: Observable<number>;
+  totalExpenses$!: Observable<number>;
+  netBalance$!: Observable<number>;
+
   displayedColumns: string[] = [
     'createdAt',
     'type',
@@ -30,63 +37,57 @@ export class TransactionList implements OnInit {
     'actions',
   ];
 
-  row: any;
+  readonly TYPE_INCOME = 'income';
+  readonly TYPE_EXPENSE = 'expense';
 
   constructor(private transactionService: TransactionService) {}
-
-  totalIncome = 0;
-  totalExpenses = 0;
-  netBalance = 0;
 
   ngOnInit(): void {
     this.loadTransactions();
   }
 
   loadTransactions(): void {
-    this.transactionService.getAll().subscribe((data) => {
-      this.transactions = data;
-    });
+    this.transactions$ = this.transactionService.getAll();
+
+    this.totalIncome$ = this.transactions$.pipe(
+      map((transactions) =>
+        transactions
+          .filter((t) => ['income', 'receita'].includes(t.type.toLowerCase()))
+          .reduce((total, t) => total + t.amount, 0)
+      )
+    );
+
+    this.totalExpenses$ = this.transactions$.pipe(
+      map((transactions) =>
+        transactions
+          .filter((t) => ['expense', 'despesa'].includes(t.type.toLowerCase()))
+          .reduce((total, t) => total + t.amount, 0)
+      )
+    );
+
+    this.netBalance$ = combineLatest([
+      this.totalIncome$,
+      this.totalExpenses$,
+    ]).pipe(map(([income, expenses]) => income - expenses));
   }
 
-  getTotalIncome(): number {
-    return this.transactions
-      .filter((t) => t.type === 'receita')
-      .reduce((sum, t) => sum + t.amount, 0);
-  }
-
-  getTotalExpenses(): number {
-    return this.transactions
-      .filter((e) => e.type === 'despesa')
-      .reduce((sum, e) => sum + e.amount, 0);
-  }
-
-  getLiquidBalance(): number {
-    return this.getTotalIncome() - this.getTotalExpenses();
-  }
-
-  getBalanceClass(): string {
-    const balance = this.getLiquidBalance();
+  getBalanceClass(balance: number): string {
     return balance <= 0 ? 'negative-balance' : 'balance';
   }
 
-  onEdit(transaction: Transaction) {
+  onEdit(transaction: Transaction): void {
     console.log('Edit:', transaction);
-    // navegar para tela de edição ou abrir modal
   }
 
-  onDelete(transaction: Transaction) {
+  onDelete(transaction: Transaction): void {
     console.log('Delete:', transaction);
-    // chamar service.delete() se desejar
   }
 
   getRowClass(tx: Transaction): string {
-    // console.log('Tipo:', tx.type);
-
     const type = tx.type?.toLowerCase().trim();
-
-    return type === 'receita'
+    return ['income', 'receita'].includes(type)
       ? 'income-row'
-      : type === 'despesa'
+      : ['expense', 'despesa'].includes(type)
       ? 'expense-row'
       : '';
   }

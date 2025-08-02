@@ -14,6 +14,8 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
+import { Router } from '@angular/router';
+import { TransactionService } from '../../services/transactionService';
 
 @Component({
   selector: 'app-transaction-form',
@@ -33,26 +35,30 @@ import { MatSelectModule } from '@angular/material/select';
   styleUrl: './transaction-form.scss',
 })
 export class TransactionForm implements OnInit {
-  onTypeChange() {
-    throw new Error('Method not implemented.');
-  }
   panelColor = new FormControl('red');
 
   transactionForm!: FormGroup;
 
-  types = ['Despesa', 'Receita'];
+  types = [
+    { label: 'Receita', value: 'Income' },
+    { label: 'Despesa', value: 'Expense' },
+  ];
 
   incomeCategories = ['Salário', 'Freelancer', 'Investimento'];
   expenseCategories = ['Alimentação', 'Transporte', 'Entretenimento'];
 
   availableCategories: string[] = [];
 
-  constructor(private fb: FormBuilder) {
+  constructor(
+    private fb: FormBuilder,
+    private router: Router,
+    private transactionService: TransactionService
+  ) {
     this.transactionForm = this.fb.group({
-      type: ['Expense', Validators.required],
+      type: ['', Validators.required],
       category: ['', Validators.required],
       amount: ['', [Validators.required, Validators.min(0)]],
-      createdAt: [new Date(), Validators.required],
+      createdAt: [{ value: new Date(), disabled: true }, Validators.required],
     });
 
     this.setAvailableCategories();
@@ -72,25 +78,30 @@ export class TransactionForm implements OnInit {
   }
 
   onCancel() {
-    this.transactionForm.reset({
-      type: 'Expense',
-      category: null,
-      amount: 0,
-      createdAt: new Date(),
-    });
+    this.router.navigate(['/transactions']);
+  }
+
+  onTypeChange() {
+    this.updateAvailableCategories();
+  }
+
+  updateAvailableCategories() {
+    const type = this.transactionForm.get('type')?.value;
+    this.availableCategories =
+      type === 'Expense' ? this.expenseCategories : this.incomeCategories;
   }
 
   onSubmit() {
     if (this.transactionForm.valid) {
-      console.log('Transaction:', this.transactionForm.value);
-      // Chame seu serviço aqui
+      const transaction = this.transactionForm.getRawValue();
+      this.transactionService.create(transaction).subscribe((data) => {
+        this.router.navigate(['/transactions']);
+      });
     }
   }
 
   ngOnInit(): void {
-    const type = this.transactionForm.get('type')?.value;
-    this.availableCategories =
-      type === 'Expense' ? this.expenseCategories : this.incomeCategories;
+    this.updateAvailableCategories();
     this.transactionForm.patchValue({ category: '' });
   }
 }
