@@ -86,7 +86,17 @@ export class TransactionList implements OnInit {
   }
 
   onDelete(transaction: Transaction): void {
-    console.log('Delete:', transaction);
+    if (transaction.id) {
+      confirm('Tem certeza que deseja apagar essa transação?');
+      this.transactionService.delete(transaction.id).subscribe({
+        next: () => {
+          this.loadTransactions();
+        },
+        error: (error) => {
+          console.log('Error - ', error);
+        },
+      });
+    }
   }
 
   getRowClass(tx: Transaction): string {
