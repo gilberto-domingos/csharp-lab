@@ -26,7 +26,7 @@ export class TransactionService {
   }
 
   update(id: number, transaction: Transaction): Observable<Transaction> {
-    return this.http.post<Transaction>(
+    return this.http.put<Transaction>(
       this.apiUrl + '/Update/' + id,
       transaction
     );

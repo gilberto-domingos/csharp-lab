@@ -14,7 +14,7 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { TransactionService } from '../../services/transactionService';
 
 @Component({
@@ -32,7 +32,7 @@ import { TransactionService } from '../../services/transactionService';
     MatNativeDateModule,
   ],
   templateUrl: './transaction-form.html',
-  styleUrl: './transaction-form.scss',
+  styleUrls: ['./transaction-form.scss'],
 })
 export class TransactionForm implements OnInit {
   panelColor = new FormControl('red');
@@ -49,16 +49,20 @@ export class TransactionForm implements OnInit {
 
   availableCategories: string[] = [];
 
+  editMode = false;
+  transactionId?: number;
+
   constructor(
     private fb: FormBuilder,
     private router: Router,
+    private activateRoute: ActivatedRoute,
     private transactionService: TransactionService
   ) {
     this.transactionForm = this.fb.group({
       type: ['', Validators.required],
       category: ['', Validators.required],
       amount: ['', [Validators.required, Validators.min(0)]],
-      createdAt: [{ value: new Date(), disabled: true }, Validators.required],
+      createdAt: [{ value: new Date(), disabled: true }],
     });
 
     this.setAvailableCategories();
@@ -82,6 +86,7 @@ export class TransactionForm implements OnInit {
   }
 
   onTypeChange() {
+    const type = this.transactionForm.get('type')?.value;
     this.updateAvailableCategories();
   }
 
@@ -94,14 +99,56 @@ export class TransactionForm implements OnInit {
   onSubmit() {
     if (this.transactionForm.valid) {
       const transaction = this.transactionForm.getRawValue();
-      this.transactionService.create(transaction).subscribe((data) => {
-        this.router.navigate(['/transactions']);
-      });
+
+      if (this.editMode && this.transactionId) {
+        this.transactionService
+          .update(this.transactionId, transaction)
+          .subscribe({
+            next: () => {
+              this.router.navigate(['/transactions']);
+            },
+            error: (error) => {
+              console.log('Error - ', error);
+            },
+          });
+      } else {
+        this.transactionService.create(transaction).subscribe({
+          next: () => {
+            this.router.navigate(['/transactions']);
+          },
+          error: (error) => {
+            console.log('Error - ', error);
+          },
+        });
+      }
     }
   }
 
+  loadTransaction(id: number): void {
+    this.transactionService.getById(id).subscribe({
+      next: (transaction) => {
+        this.transactionForm.patchValue({
+          type: transaction.type,
+          category: transaction.category,
+          amount: transaction.amount,
+        });
+        this.updateAvailableCategories();
+      },
+      error: (error) => {
+        console.log('Error - ', error);
+      },
+    });
+  }
+
   ngOnInit(): void {
+    const type = this.transactionForm.get('type')?.value;
     this.updateAvailableCategories();
-    this.transactionForm.patchValue({ category: '' });
+    const id = this.activateRoute.snapshot.paramMap.get('id');
+    if (id) {
+      this.editMode = true;
+      this.transactionId = +id;
+
+      this.loadTransaction(this.transactionId);
+    }
   }
 }

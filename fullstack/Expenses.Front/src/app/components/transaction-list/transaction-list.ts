@@ -6,6 +6,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatTableModule } from '@angular/material/table';
 import { Observable, combineLatest, map, of } from 'rxjs';
 
+import { Router } from '@angular/router';
 import { Transaction } from '../../models/transaction';
 import { TransactionService } from '../../services/transactionService';
 
@@ -40,7 +41,10 @@ export class TransactionList implements OnInit {
   readonly TYPE_INCOME = 'income';
   readonly TYPE_EXPENSE = 'expense';
 
-  constructor(private transactionService: TransactionService) {}
+  constructor(
+    private transactionService: TransactionService,
+    private router: Router
+  ) {}
 
   ngOnInit(): void {
     this.loadTransactions();
@@ -76,7 +80,9 @@ export class TransactionList implements OnInit {
   }
 
   onEdit(transaction: Transaction): void {
-    console.log('Edit:', transaction);
+    if (transaction.id) {
+      this.router.navigate(['/transactions/edit', transaction.id]);
+    }
   }
 
   onDelete(transaction: Transaction): void {
