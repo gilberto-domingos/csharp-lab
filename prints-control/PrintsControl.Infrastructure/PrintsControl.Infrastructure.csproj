@@ -20,10 +20,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Persistence\" />
-  </ItemGroup>
-
-  <ItemGroup>
     <ProjectReference Include="..\PrintsControl.Domain\PrintsControl.Domain.csproj" />
   </ItemGroup>
 

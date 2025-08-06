@@ -4,6 +4,9 @@
 
 - Back-end: ASP.NET Core 9.0
 - Modelo design DDD alinhado com os padrões (POO, SOLID)
+- Clean Architecture
+- Fluent API
+- Migrations
 - Front-end: Angular CLI v20
 - Containers: Docker 
 - Banco de dados: Microsoft SQL Server 2022-latest

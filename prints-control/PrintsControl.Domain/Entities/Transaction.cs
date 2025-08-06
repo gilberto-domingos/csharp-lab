@@ -7,5 +7,5 @@ public class Transaction : BaseEntity
     private string _category;
     
     public int? UserId { get; }
-    public virtual User? User { get; set; }
+    public User User { get; set; } = null!;  
 }

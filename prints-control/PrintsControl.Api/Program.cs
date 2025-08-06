@@ -7,6 +7,7 @@ using DotNetEnv;
 using Microsoft.EntityFrameworkCore;
 using PrintsControl.Domain.Entities;
 using PrintsControl.Infrastructure;
+using PrintsControl.Infrastructure.Persistence;
 
 var builder = WebApplication.CreateBuilder(args);
 
