@@ -1,4 +1,4 @@
-namespace PrintsControl.WebApli;
+namespace PrintsControl.WebApi;
 
 public class WeatherForecast
 {

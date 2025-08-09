@@ -17,7 +17,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PrintsControl.Domain", "Cor
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PrintsControl.Persistence", "Infrastructure\PrintsControl.Persistence\PrintsControl.Persistence.csproj", "{622A83AD-C34B-49D8-922E-E71F5CF4C997}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PrintsControl.WebApli", "Presentation\PrintsControl.WebApli\PrintsControl.WebApli.csproj", "{964B82AF-95E3-431D-8170-3A3B7D9916AC}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PrintsControl.WebApi", "Presentation\PrintsControl.WebApi\PrintsControl.WebApi.csproj", "{964B82AF-95E3-431D-8170-3A3B7D9916AC}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PrintsControl.Test", "Test\PrintsControl.Test\PrintsControl.Test.csproj", "{2BEE1BF5-0E76-4DFF-8259-39108E396537}"
 EndProject

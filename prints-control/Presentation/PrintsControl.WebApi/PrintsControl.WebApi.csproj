@@ -17,8 +17,8 @@
     </ItemGroup>
 
     <ItemGroup>
-      <ProjectReference Include="..\..\Core\PrintsControl.Domain\PrintsControl.Domain.csproj" />
-      <ProjectReference Include="..\..\Infrastructure\PrintsControl.Persistence\PrintsControl.Persistence.csproj" />
+        <ProjectReference Include="..\..\Core\PrintsControl.Application\PrintsControl.Application.csproj" />
+        <ProjectReference Include="..\..\Infrastructure\PrintsControl.Persistence\PrintsControl.Persistence.csproj" />
     </ItemGroup>
 
 </Project>

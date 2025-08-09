@@ -1,6 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
 
-namespace PrintsControl.WebApli.Controllers;
+namespace PrintsControl.WebApi.Controllers;
 
 [ApiController]
 [Route("[controller]")]
