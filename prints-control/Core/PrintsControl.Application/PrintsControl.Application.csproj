@@ -6,4 +6,8 @@
         <Nullable>enable</Nullable>
     </PropertyGroup>
 
+    <ItemGroup>
+      <ProjectReference Include="..\PrintsControl.Domain\PrintsControl.Domain.csproj" />
+    </ItemGroup>
+
 </Project>
