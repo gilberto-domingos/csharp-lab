@@ -3,46 +3,51 @@ using DotNetEnv;
 using PrintsControl.Persistence;
 
 
-var builder = WebApplication.CreateBuilder(args);
+    var builder = WebApplication.CreateBuilder(args);
 
-Env.Load();
+    Env.Load();
 
-builder.Services.ConfigurePersistenceApp(builder.Configuration);
-builder.Services.ConfigureAuthentication();
-builder.Services.ConfigureCors();
-builder.Services.ConfigureSwagger();
+    builder.Services.ConfigurePersistenceApp(builder.Configuration);
+    builder.Services.ConfigureAuthentication();
+    builder.Services.ConfigureCors();
+    builder.Services.ConfigureSwagger();
 
-builder.Services.AddControllers();
+    builder.Services.AddControllers();
+    builder.Services.ConfigurePersistenceApp(builder.Configuration);
+    builder.Services.AddRepositories();
+    builder.Services.AddUnitOfWork();
 
-var app = builder.Build();
 
-if (app.Environment.IsDevelopment())
-{
-    app.UseSwagger();
-    app.UseSwaggerUI();
+    var app = builder.Build();
 
-    app.Use(async (context, next) =>
+    if (app.Environment.IsDevelopment())
     {
-        if (!context.User.Identity.IsAuthenticated)
+        app.UseSwagger();
+        app.UseSwaggerUI();
+
+        app.Use(async (context, next) =>
         {
-            var claims = new List<Claim>
+            if (!context.User.Identity.IsAuthenticated)
             {
-                new Claim(ClaimTypes.NameIdentifier, "1"),
-                new Claim(ClaimTypes.Email, "devuser@example.com")
-            };
-            var identity = new ClaimsIdentity(claims, "Development");
-            context.User = new ClaimsPrincipal(identity);
-        }
-        await next();
-    });
-}
+                var claims = new List<Claim>
+                {
+                    new Claim(ClaimTypes.NameIdentifier, "1"),
+                    new Claim(ClaimTypes.Email, "devuser@example.com")
+                };
+                var identity = new ClaimsIdentity(claims, "Development");
+                context.User = new ClaimsPrincipal(identity);
+            }
 
-app.UseCors("AllowAll");
+            await next();
+        });
+    }
 
-app.UseHttpsRedirection();
-app.UseAuthentication();
-app.UseAuthorization();
+    app.UseCors("AllowAll");
 
-app.MapControllers();
+    app.UseHttpsRedirection();
+    app.UseAuthentication();
+    app.UseAuthorization();
 
-app.Run();
+    app.MapControllers();
+
+    app.Run();

@@ -9,9 +9,23 @@ using PrintsControl.Persistence.Context;
 using PrintsControl.Persistence.Repositories;
 
 namespace PrintsControl.Persistence
-{
+    {
     public static class ServiceExtensions
     {
+        
+        public static IServiceCollection AddRepositories(this IServiceCollection services)
+        {
+            services.AddScoped<IUserRepository, UserRepository>();
+            return services;
+        }
+
+        public static IServiceCollection AddUnitOfWork(this IServiceCollection services)
+        {
+            services.AddScoped<IUnitOfWork, UnitOfWork>();
+            return services;
+        }
+
+        
         public static void ConfigurePersistenceApp(this IServiceCollection services, IConfiguration configuration)
         {
             var dbServer = Environment.GetEnvironmentVariable("DB_SERVER");
