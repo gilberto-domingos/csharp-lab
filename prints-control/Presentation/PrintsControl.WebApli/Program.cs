@@ -1,21 +1,46 @@
+using System.Security.Claims;
+using DotNetEnv;
+using PrintsControl.Persistence;
+
+
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
+Env.Load();
+
+builder.Services.ConfigurePersistenceApp(builder.Configuration);
+builder.Services.ConfigureAuthentication();
+builder.Services.ConfigureCors();
+builder.Services.ConfigureSwagger();
 
 builder.Services.AddControllers();
-// Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
-builder.Services.AddOpenApi();
 
 var app = builder.Build();
 
-// Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
-    app.MapOpenApi();
+    app.UseSwagger();
+    app.UseSwaggerUI();
+
+    app.Use(async (context, next) =>
+    {
+        if (!context.User.Identity.IsAuthenticated)
+        {
+            var claims = new List<Claim>
+            {
+                new Claim(ClaimTypes.NameIdentifier, "1"),
+                new Claim(ClaimTypes.Email, "devuser@example.com")
+            };
+            var identity = new ClaimsIdentity(claims, "Development");
+            context.User = new ClaimsPrincipal(identity);
+        }
+        await next();
+    });
 }
 
-app.UseHttpsRedirection();
+app.UseCors("AllowAll");
 
+app.UseHttpsRedirection();
+app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapControllers();
