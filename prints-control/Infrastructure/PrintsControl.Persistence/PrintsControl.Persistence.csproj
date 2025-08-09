@@ -22,7 +22,7 @@
     </ItemGroup>
 
     <ItemGroup>
-      <ProjectReference Include="..\..\Core\PrintsControl.Domain\PrintsControl.Domain.csproj" />
+        <ProjectReference Include="..\..\Core\PrintsControl.Application\PrintsControl.Application.csproj" />
     </ItemGroup>
 
 </Project>
