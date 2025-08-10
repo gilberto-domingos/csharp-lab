@@ -2,7 +2,7 @@ using FluentValidation;
 
 namespace PrintsControl.Application.UseCases.CreateUser.Commands;
 
-public sealed class CreateUserValidator : AbstractValidator<CreateUserRequest>
+public sealed class CreateUserValidator : AbstractValidator<CreateUserCommand>
 {
     public CreateUserValidator()
     {
