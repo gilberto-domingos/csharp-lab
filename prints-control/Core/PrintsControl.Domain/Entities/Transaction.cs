@@ -6,7 +6,7 @@ public class Transaction : BaseEntity
     private double _amount = 0;
     private string _category;
     
-    public Guid? UserId { get; }
+    public Guid? UserId { get; set; }
     public User User { get; set; } = null!;
 
     public string Type
