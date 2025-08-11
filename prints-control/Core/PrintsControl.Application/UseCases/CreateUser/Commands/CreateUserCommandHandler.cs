@@ -21,7 +21,7 @@ public sealed class CreateUserCommandHandler : IRequestHandler<CreateUserCommand
     public async Task<CreateUserResponse> Handle(CreateUserCommand request, CancellationToken cancellationToken)
     {
         var user = _mapper.Map<User>(request);
-        _userRepository.CreateAsync(user, cancellationToken);
+        await _userRepository.CreateAsync(user, cancellationToken);
 
         await _unitOfWork.CommitAsync(cancellationToken);
         return _mapper.Map<CreateUserResponse>(user);
