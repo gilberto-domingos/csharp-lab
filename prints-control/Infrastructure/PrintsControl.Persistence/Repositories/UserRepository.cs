@@ -12,8 +12,12 @@ public class UserRepository : BaseRepository<User>, IUserRepository
     {
     }
 
-    public async Task<User?> GetByEmailAsync(string email, CancellationToken cancellationToken)
+    public async Task<User> GetByEmailAsync(string email, CancellationToken cancellationToken)
     {
-        return await Context.Users.FirstOrDefaultAsync(x => x.Email == email, cancellationToken);
+        var user =  await Context.Users.FirstOrDefaultAsync(x => x.Email == email, cancellationToken);
+        if (user == null)
+            throw new ArgumentException("Usuario não encontrado.");
+
+        return user;
     }
 }
