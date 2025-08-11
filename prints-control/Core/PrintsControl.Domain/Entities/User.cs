@@ -1,5 +1,4 @@
 namespace PrintsControl.Domain.Entities;
-
 public sealed class User : BaseEntity
 {
     private string _email;
@@ -29,6 +28,7 @@ public sealed class User : BaseEntity
         
         _email = email;
         _password = password;
+        Transactions = new List<Transaction>();
     }
 
     public override string ToString()
