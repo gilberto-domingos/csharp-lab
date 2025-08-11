@@ -15,9 +15,14 @@ public class TransactionRepository : BaseRepository<Transaction>, ITransactionRe
     
     public async Task<Transaction> GetByUserIdAsync(Guid userId)
     {
-        return await Context.Transactions
+        var transaction = await Context.Transactions
             .Include(t => t.User)
             .FirstOrDefaultAsync(t => t.UserId == userId);
+
+        if (transaction == null)
+            throw new ArgumentException("Transação não encontrada");
+
+        return transaction;
     }
 
     public async Task<List<Transaction>> GetAllAsync(Guid userId, CancellationToken cancellationToken)
