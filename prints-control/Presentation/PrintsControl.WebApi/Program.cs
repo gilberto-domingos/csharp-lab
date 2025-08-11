@@ -1,5 +1,6 @@
 using System.Security.Claims;
 using DotNetEnv;
+using PrintsControl.Application;
 using PrintsControl.Persistence;
 
 
@@ -8,12 +9,12 @@ using PrintsControl.Persistence;
     Env.Load();
 
     builder.Services.ConfigurePersistenceApp(builder.Configuration);
+    builder.Services.ConfigureApplicationApp();
     builder.Services.ConfigureAuthentication();
     builder.Services.ConfigureCors();
     builder.Services.ConfigureSwagger();
 
     builder.Services.AddControllers();
-    builder.Services.ConfigurePersistenceApp(builder.Configuration);
     builder.Services.AddRepositories();
     builder.Services.AddUnitOfWork();
 
@@ -25,22 +26,7 @@ using PrintsControl.Persistence;
         app.UseSwagger();
         app.UseSwaggerUI();
 
-        app.Use(async (context, next) =>
-        {
-            if (!context.User.Identity.IsAuthenticated)
-            {
-                var claims = new List<Claim>
-                {
-                    new Claim(ClaimTypes.NameIdentifier, "1"),
-                    new Claim(ClaimTypes.Email, "devuser@example.com")
-                };
-                var identity = new ClaimsIdentity(claims, "Development");
-                context.User = new ClaimsPrincipal(identity);
-            }
-
-            await next();
-        });
-    }
+    }       
 
     app.UseCors("AllowAll");
 
