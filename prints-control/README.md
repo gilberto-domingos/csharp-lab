@@ -1,5 +1,5 @@
 # Projeto Integrador
-###### apesar de não ter sido exigido :
+###### apesar do cenário e de não ter sido exigido :
 ##### Para este desafio de acordo com as convenções da Microsoft, boas práticas, e com o mercado de trabalho nível Sênior utilizei para continuar com práticas avançadas :
 
 - Back-end: ASP.NET Core
@@ -12,8 +12,8 @@
 - Migrations
 - Front-end: Angular CLI
 - Containers: Docker 
-- Banco de dados: Microsoft SQL Server 2022-latest
-- Servidor: Microsoft cloud Azure
+- Banco de dados: Microsoft SQL Server
+- Servidor: Cloud computing - Microsoft Cloud Azure
 - Documentação: Swagger (Swashbuckle.AspNetCore)
 
 <img src="assets/logo.png" width="200" alt="logo">
