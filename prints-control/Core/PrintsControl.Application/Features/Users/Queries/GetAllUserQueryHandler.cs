@@ -8,6 +8,12 @@ public sealed class GetAllUserQueryHandler : IRequestHandler<GetAllUserQuery,Lis
 {
     private readonly IUserRepository _userRepository;
     private readonly IMapper _mapper;
+
+    public GetAllUserQueryHandler(IUserRepository userRepository, IMapper mapper)
+    {
+        _userRepository = userRepository ?? throw new ArgumentNullException(nameof(userRepository));
+        _mapper = mapper ?? throw new ArgumentNullException(nameof(mapper));
+    }
     
     public async Task<List<GetAllUserResponse>> Handle(GetAllUserQuery request, CancellationToken cancellationToken)
     {
