@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Mvc;
 using PrintsControl.Application.Features.Users;
 using PrintsControl.Application.Features.Users.Commands;
+using PrintsControl.Application.Features.Users.Queries;
 
 namespace PrintsControl.WebApi.Controllers;
 
@@ -19,10 +20,18 @@ public class UserController : ControllerBase
         _mediator = mediator;
     }
 
-    [HttpPost]
-    public async Task<ActionResult<CreateUserResponse>> Create(CreateUserCommand request,CancellationToken cancellationToken)
+    [HttpGet]
+    public async Task<ActionResult<List<GetAllUserResponse>>> GetAllAsync(CancellationToken cancellationToken)
     {
-       var response = await _mediator.Send(request, cancellationToken);
+        var response = await _mediator.Send(new GetAllUserQuery(), cancellationToken);
         return Ok(response);
     }
+    
+    [HttpPost]
+    public async Task<ActionResult<CreateUserResponse>> CreateAsync(CreateUserCommand request)
+    {
+       var userId = await _mediator.Send(request);
+        return Ok(userId);
+    }
+    
 }
