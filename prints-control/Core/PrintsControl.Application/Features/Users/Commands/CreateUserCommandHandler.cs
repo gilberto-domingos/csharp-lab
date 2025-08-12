@@ -1,9 +1,11 @@
 using AutoMapper;
 using MediatR;
+
+
 using PrintsControl.Domain.Entities;
 using PrintsControl.Domain.Interfaces;
 
-namespace PrintsControl.Application.UseCases.CreateUser.Commands.Handlers;
+namespace PrintsControl.Application.Features.Users.Commands;
 
 public sealed class CreateUserCommandHandler : IRequestHandler<CreateUserCommand,CreateUserResponse>
 {

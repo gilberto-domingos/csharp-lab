@@ -1,10 +1,9 @@
 using FluentValidation;
+namespace PrintsControl.Application.Features.Users.Commands;
 
-namespace PrintsControl.Application.UseCases.CreateUser;
-
-public sealed class CreateUserValidator : AbstractValidator<CreateUserCommand>
+public sealed class CreateUserCommandValidator : AbstractValidator<CreateUserCommand>
 {
-    public CreateUserValidator()
+    public CreateUserCommandValidator()
     {
         RuleFor(x => x.Email).NotEmpty().MaximumLength(50).EmailAddress();
         RuleFor(x => x.Password).NotEmpty().MinimumLength(3).MaximumLength(50);
