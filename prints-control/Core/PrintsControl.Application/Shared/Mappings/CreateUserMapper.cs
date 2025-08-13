@@ -1,6 +1,5 @@
 using AutoMapper;
-using PrintsControl.Application.Features.Users;
-using PrintsControl.Application.Features.Users.Commands;
+using PrintsControl.Application.Features.Users.Commands.CreateUser;
 using PrintsControl.Domain.Entities;
 
 namespace PrintsControl.Application.Shared.Mappings;

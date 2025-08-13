@@ -1,9 +1,8 @@
 using MediatR;
 using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Mvc;
-using PrintsControl.Application.Features.Users;
-using PrintsControl.Application.Features.Users.Commands;
-using PrintsControl.Application.Features.Users.Queries;
+using PrintsControl.Application.Features.Users.Commands.CreateUser;
+using PrintsControl.Application.Features.Users.Queries.GetAllUsers;
 
 namespace PrintsControl.WebApi.Controllers;
 

@@ -1,8 +1,9 @@
 using AutoMapper;
 using MediatR;
+using PrintsControl.Application.Dtos.Users;
 using PrintsControl.Domain.Interfaces;
 
-namespace PrintsControl.Application.Features.Users.Queries;
+namespace PrintsControl.Application.Features.Users.Queries.GetAllUsers;
 
 public sealed class GetAllUserQueryHandler : IRequestHandler<GetAllUserQuery,List<GetAllUserResponse>>
 {

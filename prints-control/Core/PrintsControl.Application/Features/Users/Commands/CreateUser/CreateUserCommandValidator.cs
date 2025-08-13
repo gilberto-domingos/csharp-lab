@@ -1,5 +1,5 @@
 using FluentValidation;
-namespace PrintsControl.Application.Features.Users.Commands;
+namespace PrintsControl.Application.Features.Users.Commands.CreateUser;
 
 public sealed class CreateUserCommandValidator : AbstractValidator<CreateUserCommand>
 {
