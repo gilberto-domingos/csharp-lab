@@ -1,8 +1,9 @@
 using AutoMapper;
+using PrintsControl.Application.Dtos.Users;
 using PrintsControl.Application.Features.Users.Commands.CreateUser;
 using PrintsControl.Domain.Entities;
 
-namespace PrintsControl.Application.Shared.Mappings;
+namespace PrintsControl.Application.Shared.Mappings.Users;
 
 public sealed class CreateUserMapper : Profile
 {
