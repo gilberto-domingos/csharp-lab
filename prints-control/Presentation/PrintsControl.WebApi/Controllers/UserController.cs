@@ -1,7 +1,9 @@
 using MediatR;
 using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Mvc;
+using PrintsControl.Application.Dtos.Users;
 using PrintsControl.Application.Features.Users.Commands.CreateUser;
+using PrintsControl.Application.Features.Users.Commands.UpdateUser;
 using PrintsControl.Application.Features.Users.Queries.GetAllUsers;
 
 namespace PrintsControl.WebApi.Controllers;
@@ -31,6 +33,16 @@ public class UserController : ControllerBase
     {
        var userId = await _mediator.Send(request);
         return Ok(userId);
+    }
+
+    [HttpPut("{id}")]
+    public async Task<ActionResult<UpdateUserResponse>> UpdateAsync(Guid id, UpdateUserCommand request, CancellationToken cancellationToken)
+    {
+        if (id != request.Id)
+            return BadRequest();
+
+        var response = await _mediator.Send(request, cancellationToken);
+        return Ok(response);
     }
     
 }
