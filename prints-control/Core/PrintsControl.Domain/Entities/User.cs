@@ -3,8 +3,7 @@ public sealed class User : BaseEntity
 {
     private string _email;
     private string _password;
-    
-    public List<Transaction> Transactions { get; set; }
+        public List<Transaction> Transactions { get; private set; }
 
     public string Email
     {
@@ -20,15 +19,25 @@ public sealed class User : BaseEntity
 
     public User(string email, string password)
     {
+        SetEmail(email);
+        SetPassword(password);
+        Transactions = new List<Transaction>();
+    }
+    public void SetEmail(string email)
+    {
         if (string.IsNullOrWhiteSpace(email))
             throw new ArgumentException("O email é obrigatório.", nameof(email));
+        
+        _email = email;
+    }
 
+    public void SetPassword(string password)
+    {
         if (string.IsNullOrWhiteSpace(password))
             throw new ArgumentException("A senha é obrigatorio.", nameof(password));
         
-        _email = email;
+        
         _password = password;
-        Transactions = new List<Transaction>();
     }
 
     public override string ToString()
