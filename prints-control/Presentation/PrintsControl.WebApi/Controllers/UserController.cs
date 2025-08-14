@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Mvc;
 using PrintsControl.Application.Dtos.Users;
 using PrintsControl.Application.Features.Users.Commands.CreateUser;
+using PrintsControl.Application.Features.Users.Commands.DeleteUser;
 using PrintsControl.Application.Features.Users.Commands.UpdateUser;
 using PrintsControl.Application.Features.Users.Queries.GetAllUsers;
 
@@ -42,6 +43,15 @@ public class UserController : ControllerBase
             return BadRequest();
 
         var response = await _mediator.Send(request, cancellationToken);
+        return Ok(response);
+    }
+
+    [HttpDelete("{id}")]
+    public async Task<ActionResult> Delete(Guid? id, CancellationToken cancellationToken)
+    {
+        var deleteUserRequest = new DeleteUserCommand(id.Value);
+
+        var response = await _mediator.Send(deleteUserRequest, cancellationToken);
         return Ok(response);
     }
     
