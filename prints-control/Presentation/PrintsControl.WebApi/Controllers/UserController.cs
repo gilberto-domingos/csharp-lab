@@ -6,6 +6,7 @@ using PrintsControl.Application.Features.Users.Commands.CreateUser;
 using PrintsControl.Application.Features.Users.Commands.DeleteUser;
 using PrintsControl.Application.Features.Users.Commands.UpdateUser;
 using PrintsControl.Application.Features.Users.Queries.GetAllUsers;
+using PrintsControl.Application.Features.Users.Queries.GetByIdUser;
 
 namespace PrintsControl.WebApi.Controllers;
 
@@ -26,6 +27,15 @@ public class UserController : ControllerBase
     public async Task<ActionResult<List<GetAllUserResponse>>> GetAllAsync(CancellationToken cancellationToken)
     {
         var response = await _mediator.Send(new GetAllUserQuery(), cancellationToken);
+        return Ok(response);
+    }
+    
+    [HttpGet("{id}")]
+    public async Task<ActionResult<GetByIdUserResponse>> GetIdAsync(Guid? id, CancellationToken cancellationToken)
+    {
+        var getIdrequest = new GetByIdUserQuery(id.Value);
+
+        var response = await _mediator.Send(getIdrequest, cancellationToken);
         return Ok(response);
     }
     
@@ -54,5 +64,4 @@ public class UserController : ControllerBase
         var response = await _mediator.Send(deleteUserRequest, cancellationToken);
         return Ok(response);
     }
-    
 }
