@@ -1,5 +1,4 @@
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Identity.Client;
 using PrintsControl.Domain.Entities;
 using PrintsControl.Domain.Interfaces;
 using PrintsControl.Persistence.Context;
