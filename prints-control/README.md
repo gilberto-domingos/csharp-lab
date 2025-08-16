@@ -1,10 +1,11 @@
 # Projeto Integrador
 ###### apesar do cenário e de não ter sido exigido :
-##### Para este desafio de acordo com as convenções da Microsoft, boas práticas, e com o mercado de trabalho nível Sênior utilizei para continuar com práticas avançadas :
+##### Para este desafio de acordo com as convenções da Microsoft, boas práticas, e com o mercado de trabalho nível sênior utilizei para continuar com práticas avançadas :
 
 - Back-end: ASP.NET Core
 - Modelo design DDD alinhado com os padrões (POO, SOLID)
 - Clean Architecture
+- UnitOfWork
 - Fluent API
 - Fluent Validation
 - MediatR
