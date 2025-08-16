@@ -29,7 +29,6 @@ public class FluentStudentConfiguration : IEntityTypeConfiguration<Student>
             .WithOne(x => x.Student)
             .HasForeignKey(x => x.StudentId);
 
-        // Soft delete
         builder.HasQueryFilter(x => x.DeletedAt == null);
     }
 }
