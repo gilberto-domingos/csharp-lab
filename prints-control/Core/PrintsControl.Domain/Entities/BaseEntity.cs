@@ -14,6 +14,12 @@ namespace PrintsControl.Domain.Entities
             Id = Guid.NewGuid();
             CreatedAt = DateTimeOffset.UtcNow;
             UpdatedAt = DateTimeOffset.UtcNow;
+            DeletedAt = DateTimeOffset.UtcNow;
+        }
+
+        public void MarkAsCreated()
+        {
+            CreatedAt = DateTimeOffset.UtcNow;
         }
 
         public void MarkAsUpdated()

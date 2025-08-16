@@ -16,7 +16,7 @@ public class BaseRepository<T> : IBaseRepository<T> where T : BaseEntity {
 
     public Task CreateAsync(T entity, CancellationToken cancellationToken)
     {
-        entity.CreatedAt = DateTimeOffset.UtcNow;
+        entity.MarkAsCreated();
         Context.Add(entity);
         return Task.CompletedTask;
     }
@@ -34,17 +34,15 @@ public class BaseRepository<T> : IBaseRepository<T> where T : BaseEntity {
 
     public Task UpdateAsync(T entity, CancellationToken cancellationToken)
     {
-        entity.UpdatedAt = DateTimeOffset.UtcNow;
+        entity.MarkAsUpdated();
         Context.Update(entity);
         return Task.CompletedTask;
     }
 
     public Task DeleteAsync(T entity, CancellationToken cancellationToken)
     {
-        entity.DeletedAt = DateTimeOffset.UtcNow;
+        entity.MarkAsDeleted();
         Context.Remove(entity);
         return Task.CompletedTask;
     }
-
-
 }
