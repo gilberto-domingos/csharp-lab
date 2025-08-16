@@ -18,6 +18,7 @@ namespace PrintsControl.Persistence
         {
             services.AddScoped<IUserRepository, UserRepository>();
             services.AddScoped<ITransactionRepository, TransactionRepository>();
+            services.AddScoped<IStudentRepository, StudentRepository>();
             return services;
         }
 
