@@ -5,7 +5,7 @@ using PrintsControl.Domain.Entities;
 
 namespace PrintsControl.Application.Shared.Mappings.Users;
 
-public class UpdateUserMapper : Profile
+public sealed class UpdateUserMapper : Profile
 {
     public UpdateUserMapper()
     {

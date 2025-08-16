@@ -4,7 +4,7 @@ using PrintsControl.Domain.Entities;
 
 namespace PrintsControl.Application.Shared.Mappings.Users;
 
-public class GetByIdUserMapper : Profile
+public sealed class GetByIdUserMapper : Profile
 {
     public GetByIdUserMapper()
     {
