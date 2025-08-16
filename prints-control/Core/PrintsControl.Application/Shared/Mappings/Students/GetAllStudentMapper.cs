@@ -1,15 +1,13 @@
 using AutoMapper;
 using PrintsControl.Application.Dtos.Students;
-using PrintsControl.Application.Features.Students.Commands.CreateStudent;
 using PrintsControl.Domain.Entities;
 
 namespace PrintsControl.Application.Shared.Mappings.Students;
 
-public sealed class CreateStudentMapper : Profile
+public sealed class GetAllStudentMapper : Profile
 {
-    public CreateStudentMapper()
+    public GetAllStudentMapper()
     {
-        CreateMap<CreateStudentCommand, Student>();
         CreateMap<Student, CreateStudentResponse>();
     }
 }
