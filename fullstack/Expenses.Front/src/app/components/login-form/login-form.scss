@@ -9,7 +9,7 @@ mat-card {
   width: 100%;
   max-width: 420px;
   padding: 24px;
-  background-color: #6e00b3; // azul principal
+  background-color: #104fb9;
   border-radius: 16px;
   box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
   color: #ffc107;
@@ -40,23 +40,12 @@ input {
 
 .button-group {
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   margin-top: 16px;
-
-  button {
-    min-width: 48%;
-    text-shadow: 1px 1px 1px #000000;
-  }
 }
 
-.example-panel-red.mat-mdc-select-panel {
-  background: rgba(255, 0, 0, 0.5);
-}
-
-.example-panel-green.mat-mdc-select-panel {
-  background: rgba(0, 255, 0, 0.5);
-}
-
-.example-panel-blue.mat-mdc-select-panel {
-  background: rgba(0, 0, 255, 0.5);
+.button-group button {
+  background-color: #b75f00;
+  min-width: 48%;
+  text-shadow: 1px 1px 1px #000000;
 }

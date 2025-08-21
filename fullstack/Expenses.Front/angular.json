@@ -17,25 +17,19 @@
         "build": {
           "builder": "@angular/build:application",
           "options": {
-            "browser": "src/main.ts",
+            "outputPath": "dist/Expenses.Front",
+            "index": "src/index.html",
             "polyfills": ["zone.js"],
             "tsConfig": "tsconfig.app.json",
             "inlineStyleLanguage": "scss",
-            "assets": [
-              {
-                "glob": "**/*",
-                "input": "public"
-              }
-            ],
-            "styles": ["src/styles.scss"],
-            "server": "src/main.server.ts",
-            "outputMode": "server",
-            "ssr": {
-              "entry": "src/server.ts"
-            }
+            "assets": ["src/assets", "src/favicon.ico"],
+            "styles": ["src/styles.scss"]
           },
           "configurations": {
             "production": {
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
               "budgets": [
                 {
                   "type": "initial",
@@ -47,12 +41,10 @@
                   "maximumWarning": "4kB",
                   "maximumError": "8kB"
                 }
-              ],
-              "outputHashing": "all"
+              ]
             },
             "development": {
               "optimization": false,
-              "extractLicenses": false,
               "sourceMap": true
             }
           },
@@ -79,12 +71,7 @@
             "polyfills": ["zone.js", "zone.js/testing"],
             "tsConfig": "tsconfig.spec.json",
             "inlineStyleLanguage": "scss",
-            "assets": [
-              {
-                "glob": "**/*",
-                "input": "public"
-              }
-            ],
+            "assets": ["src/assets", "src/favicon.ico"],
             "styles": ["src/styles.scss"]
           }
         }

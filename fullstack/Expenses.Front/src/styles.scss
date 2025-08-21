@@ -54,11 +54,24 @@ $mat-purple-custom-colors: (
   A700: #8a00e6,
 );
 
+$mat-brown-custom-colors: (
+  50: #f5ebe0,
+  100: #e6d2b8,
+  200: #d6b890,
+  300: #c69f68,
+  400: #b78540,
+  500: #b75f00,
+  600: #a35600,
+  700: #914c00,
+  800: #7e4200,
+  900: #6b3800,
+);
+
 // //////
 
 :root {
   //   // ////-------- filled --------------
-  @each $key, $value in $mat-purple-custom-colors {
+  @each $key, $value in $mat-brown-custom-colors {
     --md-sys-color-secondary-#{$key}: #{$value};
   }
   --md-sys-color-secondary: var(--md-sys-color-secondary-500);

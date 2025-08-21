@@ -1,3 +1,12 @@
+table {
+  width: 100%;
+}
+
+mat-card {
+  margin: 1rem;
+  padding: 1rem;
+}
+
 .card-container {
   display: flex;
   gap: 16px;
@@ -13,29 +22,9 @@
   border-radius: 8px;
 }
 
-.income {
-  background-color: #4caf50;
-}
-
-.expenses {
-  background-color: #ef5350;
-}
-
-.balance {
-  background-color: #2e7d32;
-}
-
-.negative-balance {
-  background-color: #c62828; // vermelho escuro
-  color: white;
-}
-
-.income-row {
-  background-color: #2e7d32;
-}
-
-.expense-row {
-  background-color: #ef5350;
+#ctr {
+  color: #104fb9;
+  text-align: center;
 }
 
 .card h3 {
@@ -57,7 +46,7 @@ table.mat-elevation-z1 {
   border-spacing: 0;
   border: 1px solid #636262;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  background-color: rgb(110, 0, 179);
+  background-color: #104fb9;
 
   th.mat-header-cell,
   td.mat-cell {
@@ -73,14 +62,6 @@ table.mat-elevation-z1 {
 
   tr.mat-header-row {
     border-bottom: 2px solid #5b5b5b;
-  }
-
-  .mat-row.income-row {
-    background-color: #4caf50 !important;
-  }
-
-  .mat-row.expense-row {
-    background-color: #ef5350 !important;
   }
 
   .mat-mdc-cell,
