@@ -2,6 +2,7 @@
   "name": "expenses.front",
   "version": "0.0.0",
   "scripts": {
+    "build:prod": "ng build --configuration production && sed -i \"s|%NG_APP_API_URL%|$NG_APP_API_URL|g\" ./dist/Expenses.Front/index.html",
     "ng": "ng",
     "start": "ng serve",
     "build": "ng build",
