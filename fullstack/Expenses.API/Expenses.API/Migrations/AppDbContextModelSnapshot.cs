@@ -22,6 +22,74 @@ namespace Expenses.API.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
+            modelBuilder.Entity("Expenses.API.Models.PrintJob", b =>
+                {
+                    b.Property<int>("PrintJobId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("PrintJobId"));
+
+                    b.Property<DateTime>("PrintDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("Quantity")
+                        .HasColumnType("int");
+
+                    b.Property<int>("StudentId")
+                        .HasColumnType("int");
+
+                    b.HasKey("PrintJobId");
+
+                    b.HasIndex("StudentId");
+
+                    b.ToTable("PrintJobs");
+                });
+
+            modelBuilder.Entity("Expenses.API.Models.Purchase", b =>
+                {
+                    b.Property<int>("PurchaseId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("PurchaseId"));
+
+                    b.Property<DateTime>("PurchaseDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("Quantity")
+                        .HasColumnType("int");
+
+                    b.Property<int>("StudentId")
+                        .HasColumnType("int");
+
+                    b.HasKey("PurchaseId");
+
+                    b.HasIndex("StudentId");
+
+                    b.ToTable("Purchases");
+                });
+
+            modelBuilder.Entity("Expenses.API.Models.Student", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<int>("Balance")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Students");
+                });
+
             modelBuilder.Entity("Expenses.API.Models.Transaction", b =>
                 {
                     b.Property<int>("Id")
@@ -84,6 +152,28 @@ namespace Expenses.API.Migrations
                     b.ToTable("Users");
                 });
 
+            modelBuilder.Entity("Expenses.API.Models.PrintJob", b =>
+                {
+                    b.HasOne("Expenses.API.Models.Student", "Student")
+                        .WithMany("PrintJobs")
+                        .HasForeignKey("StudentId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Student");
+                });
+
+            modelBuilder.Entity("Expenses.API.Models.Purchase", b =>
+                {
+                    b.HasOne("Expenses.API.Models.Student", "Student")
+                        .WithMany("Purchases")
+                        .HasForeignKey("StudentId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Student");
+                });
+
             modelBuilder.Entity("Expenses.API.Models.Transaction", b =>
                 {
                     b.HasOne("Expenses.API.Models.User", "User")
@@ -91,6 +181,13 @@ namespace Expenses.API.Migrations
                         .HasForeignKey("UserId");
 
                     b.Navigation("User");
+                });
+
+            modelBuilder.Entity("Expenses.API.Models.Student", b =>
+                {
+                    b.Navigation("PrintJobs");
+
+                    b.Navigation("Purchases");
                 });
 
             modelBuilder.Entity("Expenses.API.Models.User", b =>
