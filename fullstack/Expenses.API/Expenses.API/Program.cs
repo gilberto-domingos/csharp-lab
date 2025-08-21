@@ -1,6 +1,7 @@
 using System.Security.Claims;
 using Expenses.API.Data;
 using Expenses.API.Data.Services;
+using Expenses.API.Middleware;
 using Expenses.API.Models;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Identity;
@@ -8,6 +9,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
 using DotNetEnv; 
+
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -59,12 +61,21 @@ builder.Services.AddDbContext<AppDbContext>(opt => opt.UseSqlServer(
 ));
 
 builder.Services.AddScoped<ITransactionsService, TransactionsService>();
+builder.Services.AddScoped<IStudentService, StudentService>();
 
-builder.Services.AddControllers();
+
+
+builder.Services.AddControllers()
+    .AddJsonOptions(x =>
+        x.JsonSerializerOptions.ReferenceHandler = System.Text.Json.Serialization.ReferenceHandler.IgnoreCycles
+    );
+
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 var app = builder.Build();
+
+app.UseMiddleware<GlobalExceptionMiddleware>();
 
 if (app.Environment.IsDevelopment())
 {
