@@ -46,7 +46,7 @@ export class Header {
   }
 
   addPurchase() {
-    this.router.navigate(['/purchases/add']);
+    this.router.navigate(['/students/add/purchases']);
   }
 
   printJob() {
