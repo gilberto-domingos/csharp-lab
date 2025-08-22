@@ -1,4 +1,3 @@
-import { History } from './History';
 import { PrintJob } from './PrintJob';
 import { Purchase } from './Purchase';
 
