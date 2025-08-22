@@ -1,0 +1,39 @@
+footer {
+  background: linear-gradient(90deg, #d4812a 0%, #104fb9 50%, #104fb9 100%);
+  background-size: 200% 200%;
+  text-shadow: 1px 1px 1px #000;
+  padding: 1px 0;
+  text-align: center;
+  position: relative;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  color: #fff;
+  font-size: 14px;
+}
+
+@keyframes gradient-background {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+footer p {
+  margin-bottom: 0;
+}
+
+@media (max-width: 768px) {
+  .whats {
+    width: 35px;
+    height: auto;
+    margin: 0 0 6% 90%;
+    position: fixed;
+    bottom: 0;
+  }
+}
