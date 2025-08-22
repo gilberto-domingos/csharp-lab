@@ -8,29 +8,13 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
-using DotNetEnv; 
-
+using DotNetEnv;
 
 var builder = WebApplication.CreateBuilder(args);
 
 Env.Load();
 
-var dbServer = Environment.GetEnvironmentVariable("DB_SERVER");
-var dbName = Environment.GetEnvironmentVariable("DB_NAME");
-var saPassword = Environment.GetEnvironmentVariable("SA_PASSWORD");
-
-Console.WriteLine($"[DEBUG] DB_SERVER: {dbServer}");
-Console.WriteLine($"[DEBUG] DB_NAME: {dbName}");
-Console.WriteLine($"[DEBUG] SA_PASSWORD: {saPassword}");
-
-
-
-var connectionString =
-    $"Server={dbServer};Database={dbName};User Id=sa;Password={saPassword};TrustServerCertificate=True";
-
-builder.Configuration["ConnectionStrings:DefaultConnection"] = connectionString;
-
-Console.WriteLine($"[DEBUG] Connection String: {connectionString}");
+builder.Configuration["ConnectionStrings:DefaultConnection"] = "Data Source=database.db";
 
 builder.Services.AddCors(opt => opt.AddPolicy("AllowAll",
     opt => opt.AllowAnyHeader()
@@ -56,14 +40,12 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
 
 builder.Services.AddScoped<PasswordHasher<User>>();
 
-builder.Services.AddDbContext<AppDbContext>(opt => opt.UseSqlServer(
+builder.Services.AddDbContext<AppDbContext>(opt => opt.UseSqlite(
     builder.Configuration.GetConnectionString("DefaultConnection")
 ));
 
 builder.Services.AddScoped<ITransactionsService, TransactionsService>();
 builder.Services.AddScoped<IStudentService, StudentService>();
-
-
 
 builder.Services.AddControllers()
     .AddJsonOptions(x =>
@@ -81,10 +63,8 @@ if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
     app.UseSwaggerUI();
-}
 
-if (app.Environment.IsDevelopment())
-{
+    // Usuário fake em desenvolvimento
     app.Use(async (context, next) =>
     {
         if (!context.User.Identity.IsAuthenticated)
@@ -101,11 +81,16 @@ if (app.Environment.IsDevelopment())
     });
 }
 
-
 app.UseCors("AllowAll");
 app.UseHttpsRedirection();
 // app.UseAuthentication();
 // app.UseAuthorization();
 app.MapControllers();
+
+using (var scope = app.Services.CreateScope())
+{
+    var db = scope.ServiceProvider.GetRequiredService<AppDbContext>();
+    db.Database.Migrate();
+}
 
 app.Run();
