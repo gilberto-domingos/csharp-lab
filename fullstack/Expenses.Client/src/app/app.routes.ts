@@ -6,26 +6,19 @@ import { StudentForm } from './components/student-form/student-form';
 import { StudentList } from './components/student-list/student-list';
 
 export const routes: Routes = [
-  {
-    path: 'login',
-    component: LoginForm,
-  },
+  { path: 'login', component: LoginForm },
+
   {
     path: 'students',
     children: [
       { path: '', component: StudentList },
       { path: 'add', component: StudentForm },
-      {
-        path: 'edit/:id',
-        component: StudentForm,
-      },
-      {
-        path: 'add/:print',
-        component: PrintJobForm,
-      },
+      { path: 'edit/:id', component: StudentForm },
+      { path: 'add/:print', component: PrintJobForm },
       { path: 'history', component: HistoryList },
     ],
   },
+
   { path: '', redirectTo: '/login', pathMatch: 'full' },
   { path: '**', redirectTo: '/login' },
 ];

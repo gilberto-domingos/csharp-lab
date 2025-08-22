@@ -8,7 +8,7 @@ import { MatInputModule } from '@angular/material/input';
 import { ActivatedRoute, Router } from '@angular/router';
 import { PrintJob } from '../../models/PrintJob';
 import { Student } from '../../models/Student';
-import { StudentService } from '../../services/student';
+import { StudentService } from './../../services/student';
 
 @Component({
   selector: 'app-print-job-form',
