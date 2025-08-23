@@ -119,10 +119,8 @@ docs/
 # Docker / Deploy
 #################
 
-.dockerignore
-Dockerfile*
-docker-compose.override.yml
-**/docker-compose*.yml
+
+
 
 ####################
 # Ambiente / Segredos

@@ -14,19 +14,14 @@ var builder = WebApplication.CreateBuilder(args);
 
 Env.Load();
 
-// Caminho do SQLite dentro do container
-builder.Configuration["ConnectionStrings:DefaultConnection"] = 
-    builder.Configuration.GetValue<string>("ConnectionStrings:DefaultConnection") 
-    ?? "Data Source=/app/data/database.db";
+builder.Configuration["ConnectionStrings:DefaultConnection"] = "Data Source=/app/data/database.db";
 
-// CORS
 builder.Services.AddCors(opt => opt.AddPolicy("AllowAll",
     opt => opt.AllowAnyHeader()
-            .AllowAnyMethod()
-            .AllowAnyOrigin())
+              .AllowAnyMethod()
+              .AllowAnyOrigin())
 );
 
-// JWT Authentication (estruturado, mas ainda comentado se quiser)
 builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
     .AddJwtBearer(options =>
     {
@@ -43,7 +38,6 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
         };
     });
 
-// Services
 builder.Services.AddScoped<PasswordHasher<User>>();
 builder.Services.AddDbContext<AppDbContext>(opt => 
     opt.UseSqlite(builder.Configuration.GetConnectionString("DefaultConnection"))
@@ -61,14 +55,11 @@ builder.Services.AddSwaggerGen();
 
 var app = builder.Build();
 
-// Middleware
 app.UseMiddleware<GlobalExceptionMiddleware>();
 
-// Swagger em qualquer ambiente
 app.UseSwagger();
 app.UseSwaggerUI();
 
-// Fake user para Dev
 if (app.Environment.IsDevelopment())
 {
     app.Use(async (context, next) =>
@@ -88,19 +79,17 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseCors("AllowAll");
-// app.UseHttpsRedirection(); // opcional dentro do container
-// app.UseAuthentication();
-// app.UseAuthorization();
+
 app.MapControllers();
 
-// Garantir migrations SQLite
+Directory.CreateDirectory("/app/data");
+
 using (var scope = app.Services.CreateScope())
 {
     var db = scope.ServiceProvider.GetRequiredService<AppDbContext>();
     db.Database.Migrate();
 }
 
-// Kestrel escutando todas interfaces
 app.Urls.Add("http://0.0.0.0:5000");
 
 app.Run();
