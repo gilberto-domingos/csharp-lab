@@ -1,0 +1,19 @@
+services:
+  - type: web
+    name: expenses-api
+    env: docker
+    plan: free
+    dockerfilePath: Expenses.API/Dockerfile
+    branch: main
+    autoDeploy: true
+    routes:
+      - type: web
+        source: /
+        target: /
+    envVars:
+      - key: ASPNETCORE_ENVIRONMENT
+        value: Production
+    mounts:
+      - type: volume
+        name: sqlite-data
+        path: /app/data
