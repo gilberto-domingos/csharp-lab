@@ -93,6 +93,13 @@ using (var scope = app.Services.CreateScope())
     db.Database.Migrate();
 }
 
+using (var scope = app.Services.CreateScope())
+{
+    var db = scope.ServiceProvider.GetRequiredService<AppDbContext>();
+    db.Database.Migrate(); 
+}
+
+
 app.Urls.Add("http://0.0.0.0:5000");
 
 app.Run();
