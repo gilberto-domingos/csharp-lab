@@ -14,7 +14,9 @@ var builder = WebApplication.CreateBuilder(args);
 
 Env.Load();
 
-builder.Configuration["ConnectionStrings:DefaultConnection"] = "Data Source=/app/database.db";
+var dbPath = Environment.GetEnvironmentVariable("DATABASE_PATH") ?? "database.db";
+builder.Configuration["ConnectionStrings:DefaultConnection"] = $"Data Source={dbPath}";
+
 
 
 builder.Services.AddCors(opt => opt.AddPolicy("AllowAll",
