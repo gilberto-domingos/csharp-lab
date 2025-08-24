@@ -47,7 +47,10 @@ export class StudentList implements OnInit {
   }
 
   onDelete(student: Student): void {
-    if (!student.id) return;
+    if (!student.id) {
+      this.loadStudents();
+      return;
+    }
 
     if (student.balance > 0) {
       alert(`O aluno "${student.name}" não pode ser deletado pois possui saldo.`);
@@ -55,7 +58,10 @@ export class StudentList implements OnInit {
     }
 
     const confirmDelete = confirm(`Tem certeza que deseja apagar o aluno "${student.name}"?`);
-    if (!confirmDelete) return;
+    if (!confirmDelete) {
+      this.loadStudents();
+      return;
+    }
 
     this.studentService.delete(student.id).subscribe({
       next: () => this.loadStudents(),

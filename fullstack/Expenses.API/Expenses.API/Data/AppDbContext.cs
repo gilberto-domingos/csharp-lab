@@ -1,4 +1,5 @@
-﻿using Expenses.API.Models;
+﻿/*
+using Expenses.API.Models;
 using Microsoft.EntityFrameworkCore;
 
 namespace Expenses.API.Data
@@ -45,3 +46,4 @@ namespace Expenses.API.Data
     }
     
 }
+*/

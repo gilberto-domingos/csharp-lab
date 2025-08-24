@@ -1,23 +1,19 @@
 using System.Security.Claims;
-using Expenses.API.Data;
-using Expenses.API.Data.Services;
 using Expenses.API.Middleware;
 using Expenses.API.Models;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Identity;
-using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
 using DotNetEnv;
 
+using Expenses.API.Data.Services;
+
+
+
 var builder = WebApplication.CreateBuilder(args);
 
 Env.Load();
-
-var dbPath = Environment.GetEnvironmentVariable("DATABASE_PATH") ?? "database.db";
-builder.Configuration["ConnectionStrings:DefaultConnection"] = $"Data Source={dbPath}";
-
-
 
 builder.Services.AddCors(opt => opt.AddPolicy("AllowAll",
     opt => opt.AllowAnyHeader()
@@ -41,12 +37,12 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
         };
     });
 
+
+
 builder.Services.AddScoped<PasswordHasher<User>>();
-builder.Services.AddDbContext<AppDbContext>(opt => 
-    opt.UseSqlite(builder.Configuration.GetConnectionString("DefaultConnection"))
-);
-builder.Services.AddScoped<ITransactionsService, TransactionsService>();
+builder.Services.AddSingleton<FileDataService>();
 builder.Services.AddScoped<IStudentService, StudentService>();
+//builder.Services.AddScoped<ITransactionsService, TransactionsService>();
 
 builder.Services.AddControllers()
     .AddJsonOptions(x =>
@@ -85,20 +81,8 @@ app.UseCors("AllowAll");
 
 app.MapControllers();
 
-Directory.CreateDirectory("/app/data");
-
-using (var scope = app.Services.CreateScope())
-{
-    var db = scope.ServiceProvider.GetRequiredService<AppDbContext>();
-    db.Database.Migrate();
-}
-
-using (var scope = app.Services.CreateScope())
-{
-    var db = scope.ServiceProvider.GetRequiredService<AppDbContext>();
-    db.Database.Migrate(); 
-}
-
+var dataDir = Path.Combine(AppContext.BaseDirectory, "data");
+Directory.CreateDirectory(dataDir);
 
 app.Urls.Add("http://0.0.0.0:5000");
 
