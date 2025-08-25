@@ -1,22 +1,52 @@
+using System.ComponentModel.DataAnnotations;
+using System.Text.Json.Serialization;
+
 namespace PrintsControl.Domain.Entities;
 
-public class Purchase : BaseEntity
+public class Purchase
 {
-    public Guid StudentId { get; private set; }
-    public int QuantityPurchased { get; private set; }
-
-    public Student Student { get; private set; }
+    [Key] 
+    private int _purchaseId;
+   
+    private int _quantity;
     
-    private Purchase() { }
+    private DateTime _purchaseDate = DateTime.UtcNow;
 
-    public Purchase(Guid studentId, int quantityPurchased)
+    private int _studentId;
+    
+    [JsonIgnore]
+    public Student? Student { get; set; } = null!;
+
+    public int PurchaseId
     {
-        if (quantityPurchased != 25 && quantityPurchased != 50)
-            throw new ArgumentException("Somente pacotes de 25 ou 50 impressões são permitidas", nameof(quantityPurchased));
-
-        StudentId = studentId;
-        QuantityPurchased = quantityPurchased;
+        get => _purchaseId;
+        set => _purchaseId = value;
     }
-    
-    
+
+    public int Quantity
+    {
+        get => _quantity;
+        set => _quantity = value;
+    }
+
+    public DateTime PurchaseDate
+    {
+        get => _purchaseDate;
+        set => _purchaseDate = value;
+    }
+
+    public int StudentId
+    {
+        get => _studentId;
+        set => _studentId = value;
+    }
+
+    public Purchase(int studentId, int quantity)
+    {
+        if (quantity != 25 && quantity!= 50)
+            throw new ArgumentException("Somente pacotes de 25 ou 50 impressões são permitidas", nameof(quantity));
+
+        _studentId = studentId;
+        _quantity = quantity;
+    }
 }
