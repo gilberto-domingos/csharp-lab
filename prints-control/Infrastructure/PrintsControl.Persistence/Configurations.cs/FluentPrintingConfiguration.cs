@@ -4,17 +4,17 @@ using PrintsControl.Domain.Entities;
 
 namespace PrintsControl.Persistence.Configurations.cs;
 
-public class FluentPrintingConfiguration : IEntityTypeConfiguration<Printing>
+public class FluentPrintingConfiguration : IEntityTypeConfiguration<PrintJob>
 {
-    public void Configure(EntityTypeBuilder<Printing> builder)
+    public void Configure(EntityTypeBuilder<PrintJob> builder)
     {
         builder.HasKey(x => x.Id);
 
-        builder.Property(x => x.QuantityPrinted)
+        builder.Property(x => x.Quantity)
             .IsRequired();
 
         builder.HasOne(x => x.Student)
-            .WithMany(s => s.Printings)
+            .WithMany(s => s.PrintJob)
             .HasForeignKey(x => x.StudentId);
 
         builder.HasQueryFilter(x => x.DeletedAt == null);

@@ -1,6 +1,6 @@
 namespace PrintsControl.Domain.Entities;
 
-public class Student 
+public class Student : BaseEntity
 {
     public int _studentId { get; set; }
     private string _name;

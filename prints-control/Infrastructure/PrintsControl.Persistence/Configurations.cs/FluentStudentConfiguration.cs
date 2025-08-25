@@ -8,20 +8,20 @@ public class FluentStudentConfiguration : IEntityTypeConfiguration<Student>
 {
     public void Configure(EntityTypeBuilder<Student> builder)
     {
-        builder.HasKey(x => x.Id);
+        builder.HasKey(x => x.StudentId);
 
         builder.Property(x => x.Name)
             .IsRequired()
             .HasMaxLength(150);
 
-        builder.Property(x => x.PrintBalance)
+        builder.Property(x => x.Balance)
             .IsRequired();
 
         builder.HasMany(x => x.Purchases)
             .WithOne(x => x.Student)
             .HasForeignKey(x => x.StudentId);
 
-        builder.HasMany(x => x.Printings)
+        builder.HasMany(x => x.PrintJobs)
             .WithOne(x => x.Student)
             .HasForeignKey(x => x.StudentId);
 

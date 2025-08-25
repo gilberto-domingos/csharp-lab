@@ -1,10 +1,10 @@
-using Expenses.API.Models;
+using System;
 
-namespace Expenses.API.Dtos;
+namespace PrintsControl.Application.Dtos.Purchases;
 
 public class PostPurchaseDto
 {
     public int StudentId { get; set; }
-    public int Quantity { get; set; } // só pode 25 ou 50
+    public int Quantity { get; set; } 
     public DateTime PurchaseDate { get; set; }
 }

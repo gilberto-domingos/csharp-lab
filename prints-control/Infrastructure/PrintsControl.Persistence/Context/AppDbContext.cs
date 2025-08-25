@@ -28,7 +28,7 @@ public class AppDbContext : DbContext
     }
     private static void SetSoftDeleteFilter<TEntity>(ModelBuilder builder) where TEntity : BaseEntity
     {
-        builder.Entity<TEntity>().HasQueryFilter(e => e.DeletedAt == null);
+       // builder.Entity<TEntity>().HasQueryFilter(e => e.DeletedAt == null);
     }
 
     
