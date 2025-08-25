@@ -21,20 +21,22 @@ public sealed class StudentRepository : IStudentRepository, IBaseRepository<Stud
     }
 
     public async Task<Student?> GetByIdAsync(Guid id, CancellationToken cancellationToken)
-    { 
+    {
         return await _context.Students
             .AsNoTracking()
-            .FirstOrDefaultAsync(s => s.Id == id && s.DeletedAt == null, cancellationToken);
+            .IgnoreQueryFilters()
+            .FirstOrDefaultAsync(s => s.Id == id, cancellationToken);
     }
 
     public async Task<List<Student>> GetAllAsync(CancellationToken cancellationToken)
     {
         return await _context.Students
             .AsNoTracking()
-            .Where(s => s.DeletedAt == null)
+            .IgnoreQueryFilters()   
             .OrderBy(s => s.Name)
             .ToListAsync(cancellationToken);
     }
+
 
     public async Task UpdateAsync(Student entity, CancellationToken cancellationToken)
     {
@@ -45,7 +47,7 @@ public sealed class StudentRepository : IStudentRepository, IBaseRepository<Stud
 
     public async Task DeleteAsync(Student entity, CancellationToken cancellationToken)
     {
-        entity.MarkAsDeleted();
+        //entity.MarkAsDeleted();
         _context.Students.Update(entity);
         await _context.SaveChangesAsync(cancellationToken);
     }
@@ -54,14 +56,13 @@ public sealed class StudentRepository : IStudentRepository, IBaseRepository<Stud
     {
         return await _context.Students
             .AsNoTracking()
-            .FirstOrDefaultAsync(s => s.Name == name && s.DeletedAt == null, cancellationToken);
+            .FirstOrDefaultAsync(s => s.Name == name, cancellationToken);
     }
 
     public async Task<List<Student>> GetActiveStudentAsync(CancellationToken cancellationToken)
     {
         return await _context.Students
             .AsNoTracking()
-            .Where(s => s.DeletedAt == null)
             .OrderBy(s => s.Name)
             .ToListAsync(cancellationToken);
     }

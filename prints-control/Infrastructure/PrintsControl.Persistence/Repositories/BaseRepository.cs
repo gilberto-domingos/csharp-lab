@@ -39,10 +39,12 @@ public class BaseRepository<T> : IBaseRepository<T> where T : BaseEntity {
         return Task.CompletedTask;
     }
 
-    public Task DeleteAsync(T entity, CancellationToken cancellationToken)
+    public async Task DeleteAsync(T entity, CancellationToken cancellationToken)
     {
-        entity.MarkAsDeleted();
+        //entity.MarkAsDeleted();
         Context.Remove(entity);
-        return Task.CompletedTask;
+       // return Task.CompletedTask;
+       
+       await Context.SaveChangesAsync(cancellationToken);
     }
 }
