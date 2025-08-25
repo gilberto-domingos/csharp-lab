@@ -14,9 +14,13 @@
 - Front-end: Angular CLI
 - Containers: Docker 
 - Banco de dados: Microsoft SQL Server
-- Servidor: Cloud computing - Microsoft Cloud Azure
 - Documentação: Swagger (Swashbuckle.AspNetCore)
 
+###### O projeto já se encontra hospedado rodando no servidor :
+Obs: O projeto está hospedado em uma parte gratuita do servidor que dorme quando não acessado aguarde 20 a 50 segundos para carregar.
+https://fullstack.b1010code.com.br/
+
+<br/><br/>
 <img src="assets/logo.png" width="200" alt="logo">
 
 #### Tema gerador : Controle de Impressões 

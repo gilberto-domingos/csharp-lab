@@ -1,0 +1,40 @@
+mat-toolbar {
+  display: flex;
+  align-items: center;
+
+  background: linear-gradient(90deg, #d4812a 0%, #104fb9 50%, #104fb9 100%);
+  background-size: 200% 200%;
+  color: white;
+  text-shadow: 1px 1px 1px #000;
+}
+
+@keyframes gradient-background {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+.fntsm {
+  text-shadow: 1px 1px 1px #000;
+}
+
+.bxs {
+  box-shadow: 1px 1px 1px #000;
+}
+
+.spacer {
+  flex: 1 1 auto;
+}
+
+.adsmll-btn mat-icon {
+  font-size: 1.5rem; // aqui você controla o tamanho do ícone
+  width: 1.5rem;
+  height: 1.5rem;
+  margin: 0 -6px;
+}

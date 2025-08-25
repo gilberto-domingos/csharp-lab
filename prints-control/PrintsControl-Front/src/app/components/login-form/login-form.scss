@@ -1,0 +1,51 @@
+:host {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 32px;
+}
+
+mat-card {
+  width: 100%;
+  max-width: 420px;
+  padding: 24px;
+  background-color: #104fb9;
+  border-radius: 16px;
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+  color: #ffc107;
+  text-shadow: 1px 1px 1px #00114d;
+
+  h2 {
+    margin-bottom: 16px;
+    font-size: 22px;
+    text-align: center;
+    color: #ffffff;
+  }
+}
+
+mat-form-field.full-width {
+  width: 100%;
+  margin-bottom: 16px;
+}
+
+mat-form-field .mat-input-element,
+mat-form-field .mat-datepicker-input {
+  padding-left: 12px !important;
+}
+
+select,
+input {
+  padding-left: 12px !important;
+}
+
+.button-group {
+  display: flex;
+  justify-content: center;
+  margin-top: 16px;
+}
+
+.button-group button {
+  background-color: #b75f00;
+  min-width: 48%;
+  text-shadow: 1px 1px 1px #000000;
+}

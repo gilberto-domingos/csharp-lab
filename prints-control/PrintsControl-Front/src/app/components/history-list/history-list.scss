@@ -1,0 +1,81 @@
+table {
+  width: 100%;
+}
+
+mat-card {
+  margin: 1rem;
+  padding: 1rem;
+}
+
+.card-container {
+  display: flex;
+  gap: 16px;
+  margin-bottom: 24px;
+  flex-wrap: wrap;
+}
+
+.card {
+  flex: 1;
+  min-width: 250px;
+  padding: 16px;
+  color: white;
+  border-radius: 8px;
+}
+
+#ctr {
+  color: #104fb9;
+  text-align: center;
+}
+
+.card h3 {
+  margin: 0;
+  font-size: 1.1rem;
+  font-weight: 500;
+}
+
+.card h2 {
+  margin: 8px 0 0;
+  font-size: 1.8rem;
+  font-weight: bold;
+}
+
+/***********************************************************/
+table.mat-elevation-z1 {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+  border: 1px solid #636262;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  background-color: #104fb9;
+
+  th.mat-header-cell,
+  td.mat-cell {
+    padding: 8px 12px;
+    text-align: center;
+    vertical-align: middle;
+  }
+
+  tr.mat-header-row th.mat-header-cell:last-child,
+  tr.mat-row td.mat-cell:last-child {
+    border: 1px solid #636262;
+  }
+
+  tr.mat-header-row {
+    border-bottom: 2px solid #5b5b5b;
+  }
+
+  .mat-mdc-cell,
+  .mat-mdc-header-cell {
+    text-align: center !important;
+    vertical-align: middle !important;
+    color: white !important;
+  }
+
+  .mat-mdc-row:nth-of-type(even):not(.income-row):not(.expense-row) {
+    background-color: rgba(0, 0, 0, 0.04);
+  }
+
+  .mat-mdc-row:nth-of-type(odd):not(.income-row):not(.expense-row) {
+    background-color: rgba(255, 255, 255, 0.1);
+  }
+}

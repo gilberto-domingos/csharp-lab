@@ -1,0 +1,19 @@
+services:
+  - type: web
+    name: printsControl-api
+    env: docker
+    plan: free
+    dockerfilePath: PrintsControl.API/Dockerfile
+    branch: main
+    autoDeploy: true
+    routes:
+      - type: web
+        source: /
+        target: /
+    envVars:
+      - key: ASPNETCORE_ENVIRONMENT
+        value: Production
+    mounts:
+      - type: volume
+        name: sqlServerData
+        path: /app/data
