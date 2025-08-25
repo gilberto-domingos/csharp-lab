@@ -5,7 +5,7 @@ using PrintsControl.Domain.Interfaces;
 
 namespace PrintsControl.Application.Features.Students.Queries.GetAllStudents;
 
-public class GetAllStudentsQueryHandler : IRequestHandler<GetAllStudentsQuery, List<CreateStudentResponse>>
+public class GetAllStudentsQueryHandler : IRequestHandler<GetAllStudentsQuery, List<GetAllStudentResponse>>
 {
     private readonly IStudentRepository _studentRepository;
     private readonly IMapper _mapper;
@@ -16,9 +16,9 @@ public class GetAllStudentsQueryHandler : IRequestHandler<GetAllStudentsQuery, L
         _mapper = mapper ?? throw new ArgumentNullException(nameof(mapper));
     }
 
-    public async Task<List<CreateStudentResponse>> Handle(GetAllStudentsQuery request, CancellationToken cancellationToken)
+    public async Task<List<GetAllStudentResponse>> Handle(GetAllStudentsQuery request, CancellationToken cancellationToken)
     {
         var students = await _studentRepository.GetAllAsync(cancellationToken);
-        return _mapper.Map<List<CreateStudentResponse>>(students);
+        return _mapper.Map<List<GetAllStudentResponse>>(students);
     }
 }
