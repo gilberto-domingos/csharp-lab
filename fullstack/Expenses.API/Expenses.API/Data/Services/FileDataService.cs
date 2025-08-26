@@ -20,8 +20,8 @@ public class FileDataService
         {
             HasHeaderRecord = true,
             Encoding = Encoding.UTF8,
-            HeaderValidated = null, // ignora validação de header
-            MissingFieldFound = null // ignora campos faltantes
+            HeaderValidated = null, 
+            MissingFieldFound = null 
         };
 
         CreateInitialFiles();
@@ -31,7 +31,7 @@ public class FileDataService
 
     private void CreateInitialFiles()
     {
-        // ---------- STUDENTS ----------
+        
         var studentsFile = GetFilePath("students.csv");
         if (!File.Exists(studentsFile))
         {
@@ -43,10 +43,10 @@ public class FileDataService
                 "4,João Silva,25\n" +
                 "5,Susan Pereira,50\n" +
                 "6,Roberto Shimdth,50\n" +
-                "7,Oliver Junior,50\n");
+                "7,Anderson Puller,75\n" +
+                "8,Oliver Junior,25\n");
         }
 
-        // ---------- PURCHASES ----------
         var purchasesFile = GetFilePath("purchases.csv");
         if (!File.Exists(purchasesFile))
         {
@@ -54,22 +54,30 @@ public class FileDataService
                 "PurchaseId,Quantity,PurchaseDate,StudentId\n" +
                 $"1,25,{DateTime.UtcNow.AddDays(-5):O},1\n" +
                 $"2,50,{DateTime.UtcNow.AddDays(-4):O},2\n" +
-                $"3,25,{DateTime.UtcNow.AddDays(-3):O},3\n");
+                $"3,25,{DateTime.UtcNow.AddDays(-5):O},3\n" +
+                $"4,50,{DateTime.UtcNow.AddDays(-4):O},4\n" +
+                $"5,25,{DateTime.UtcNow.AddDays(-5):O},5\n" +
+                $"6,50,{DateTime.UtcNow.AddDays(-4):O},6\n" +
+                $"7,50,{DateTime.UtcNow.AddDays(-4):O},7\n" +
+                $"8,25,{DateTime.UtcNow.AddDays(-3):O},8\n");
         }
 
-        // ---------- PRINT JOBS ----------
         var printJobsFile = GetFilePath("printjobs.csv");
         if (!File.Exists(printJobsFile))
         {
             File.WriteAllText(printJobsFile,
                 "PrintJobId,Quantity,PrintDate,StudentId\n" +
-                $"1,10,{DateTime.UtcNow.AddDays(-2):O},1\n" +
-                $"2,5,{DateTime.UtcNow.AddDays(-1):O},2\n" +
-                $"3,20,{DateTime.UtcNow:O},3\n");
+                $"1,25,{DateTime.UtcNow.AddDays(-5):O},1\n" +
+                $"2,50,{DateTime.UtcNow.AddDays(-4):O},2\n" +
+                $"3,25,{DateTime.UtcNow.AddDays(-5):O},3\n" +
+                $"4,50,{DateTime.UtcNow.AddDays(-4):O},4\n" +
+                $"5,25,{DateTime.UtcNow.AddDays(-5):O},5\n" +
+                $"6,50,{DateTime.UtcNow.AddDays(-4):O},6\n" +
+                $"7,50,{DateTime.UtcNow.AddDays(-4):O},7\n" +
+                $"8,25,{DateTime.UtcNow.AddDays(-3):O},8\n");
         }
     }
 
-    // ---------- STUDENTS ----------
     public List<Student> LoadStudents()
     {
         var filePath = GetFilePath("students.csv");
@@ -91,7 +99,6 @@ public class FileDataService
         csv.WriteRecords(students);
     }
 
-    // ---------- PURCHASES ----------
     public List<Purchase> LoadPurchases()
     {
         var filePath = GetFilePath("purchases.csv");
