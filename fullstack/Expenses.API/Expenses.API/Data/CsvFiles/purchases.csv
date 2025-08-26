@@ -1,2 +1,9 @@
 ﻿PurchaseId,Quantity,PurchaseDate,StudentId,Id,Name,Balance
-3,25,08/03/2025 09:10:00,3,0,,0
+1,10,08/01/2025 10:00:00,1,1,Roberto Pires,50
+2,5,08/02/2025 11:30:00,2,2,Alan Vemuth,25
+3,25,08/03/2025 09:10:00,3,3,Mariana Lima,75
+4,15,08/04/2025 14:45:00,4,4,Joao Silva,50
+5,20,08/05/2025 13:20:00,5,5,Dilara Domingos,25
+6,30,08/06/2025 15:10:00,6,6,Roberto Shimdth,75
+7,12,08/07/2025 16:00:00,7,7,Susan Pereira,25
+8,8,08/08/2025 09:50:00,8,8,Eleonor Silva,50

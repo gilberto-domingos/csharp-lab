@@ -1,2 +1,9 @@
 ﻿PrintJobId,Quantity,PrintDate,StudentId,Id,Name,Balance
-3,20,08/07/2025 16:45:00,3,0,,0
+1,15,08/05/2025 15:20:00,1,1,Roberto Pires,50
+2,10,08/06/2025 09:40:00,2,2,Alan Vemuth,25
+3,20,08/07/2025 16:45:00,3,3,Mariana Lima,75
+4,12,08/08/2025 10:30:00,4,4,Joao Silva,50
+5,18,08/09/2025 11:00:00,5,5,Dilara Domingos,25
+6,25,08/10/2025 14:15:00,6,6,Roberto Shimdth,75
+7,10,08/11/2025 13:50:00,7,7,Susan Pereira,25
+8,16,08/12/2025 08:20:00,8,8,Eleonor Silva,50
