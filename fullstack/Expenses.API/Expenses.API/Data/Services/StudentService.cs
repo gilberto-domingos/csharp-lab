@@ -304,11 +304,9 @@ public class StudentService( FileDataService _fileDataService ) : IStudentServic
       if (student == null)
           return false;
 
-      // Remove o estudante da lista
       students.Remove(student);
       _fileDataService.SaveStudents(students);
 
-      // Remove compras e impressões relacionadas
       var purchases = _fileDataService.LoadPurchases()
           .Where(p => p.StudentId != id)
           .ToList();
@@ -319,6 +317,7 @@ public class StudentService( FileDataService _fileDataService ) : IStudentServic
           .ToList();
       _fileDataService.SavePrintJobs(printJobs);
 
+      GetAllStudents();
       return true;
   }
 
