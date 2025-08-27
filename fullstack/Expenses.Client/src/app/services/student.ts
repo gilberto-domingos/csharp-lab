@@ -53,6 +53,6 @@ export class StudentService {
   }
 
   delete(id: number): Observable<any> {
-    return this.http.delete(this.apiUrl + '/Delete/' + id, { observe: 'response' });
+    return this.http.delete<any>(this.apiUrl + '/Delete/' + id);
   }
 }

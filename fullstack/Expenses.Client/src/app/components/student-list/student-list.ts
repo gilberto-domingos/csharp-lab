@@ -64,13 +64,12 @@ export class StudentList implements OnInit {
       return;
     }
 
-    // const confirmDelete = confirm(`Tem certeza que deseja apagar o aluno "${student.name}"?`);
-    // if (!confirmDelete) return;
+    const confirmDelete = confirm(`Tem certeza que deseja apagar o aluno "${student.name}"?`);
+    if (!confirmDelete) return;
 
     this.studentService.delete(student.id).subscribe({
       next: (res) => {
         console.log('DELETE executado, status:', res.status);
-        alert('Delete foi executado!');
         window.location.reload();
       },
       error: (err) => {
