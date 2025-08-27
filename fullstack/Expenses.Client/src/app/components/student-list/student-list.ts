@@ -6,32 +6,28 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatTableModule } from '@angular/material/table';
 import { Router } from '@angular/router';
 import { BehaviorSubject, Observable } from 'rxjs';
-
 import { PrintJob } from '../../models/PrintJob';
 import { Student } from '../../models/Student';
 import { StudentService } from '../../services/student';
 
 @Component({
   selector: 'app-student-list',
-  standalone: true,
   imports: [CommonModule, MatCardModule, MatTableModule, MatIconModule, MatButtonModule],
   templateUrl: './student-list.html',
   styleUrl: './student-list.scss',
+  standalone: true,
 })
 export class StudentList implements OnInit {
-  // Usamos BehaviorSubject internamente para poder emitir novas listas
+  // BehaviorSubject permite emitir novos valores e ter o valor atual
   private studentsSubject = new BehaviorSubject<Student[]>([]);
   students$: Observable<Student[]> = this.studentsSubject.asObservable();
 
-  printJobs$: Observable<PrintJob[]> = new BehaviorSubject<PrintJob[]>([]).asObservable();
+  private printJobsSubject = new BehaviorSubject<PrintJob[]>([]);
+  printJobs$: Observable<PrintJob[]> = this.printJobsSubject.asObservable();
+
   displayedColumns: string[] = ['code', 'name', 'balance', 'purchases', 'printJobs', 'actions'];
 
   constructor(private studentService: StudentService, private router: Router) {}
-
-  ngOnInit(): void {
-    this.loadStudents();
-    this.loadPrints();
-  }
 
   loadStudents(): void {
     this.studentService.getAll().subscribe({
@@ -41,7 +37,10 @@ export class StudentList implements OnInit {
   }
 
   loadPrints(): void {
-    this.printJobs$ = this.studentService.getPrintDocuments();
+    this.studentService.getPrintDocuments().subscribe({
+      next: (prints) => this.printJobsSubject.next(prints),
+      error: (err) => console.error('Erro ao carregar impressões:', err),
+    });
   }
 
   getTotalPrints(printJobs: PrintJob[] | undefined): number {
@@ -68,11 +67,19 @@ export class StudentList implements OnInit {
 
     this.studentService.delete(student.id).subscribe({
       next: () => {
+        // Pega a lista atual
         const current = this.studentsSubject.getValue();
+        // Remove o aluno deletado
         const updated = current.filter((s) => s.id !== student.id);
+        // Emite a nova lista para o template atualizar automaticamente
         this.studentsSubject.next(updated);
       },
       error: (error) => console.error('Erro ao deletar aluno:', error),
     });
+  }
+
+  ngOnInit() {
+    this.loadStudents();
+    this.loadPrints();
   }
 }
