@@ -52,7 +52,7 @@ export class StudentService {
     return this.http.put<Student>(this.apiUrl + '/Update/' + id, student);
   }
 
-  delete(id: number): Observable<void> {
-    return this.http.delete<void>(this.apiUrl + '/Delete/' + id);
+  delete(id: number): Observable<any> {
+    return this.http.delete(this.apiUrl + '/Delete/' + id, { observe: 'response' });
   }
 }
