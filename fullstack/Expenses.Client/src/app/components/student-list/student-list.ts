@@ -57,23 +57,33 @@ export class StudentList implements OnInit {
   }
 
   onDelete(student: Student): void {
-  if (!student.id) return;
-  if (student.balance > 0) { alert(...); return; }
-  if (!confirm(...)) return;
+    if (!student.id) return;
 
-  this.studentService.delete(student.id).subscribe({
-    next: () => {
-      const current = this.studentsSubject.getValue();
-      const updated = current.filter(s => s.id !== student.id);
-      this.studentsSubject.next(updated); // atualiza tabela automaticamente
-    },
-    error: (err) => console.error(err),
-  });
-}
+    if (student.balance > 0) {
+      alert(`O aluno "${student.name}" não pode ser deletado pois possui saldo.`);
+      return;
+    }
 
+    const confirmDelete = confirm(`Tem certeza que deseja apagar o aluno "${student.name}"?`);
+    if (!confirmDelete) return;
+
+    this.studentService.delete(student.id).subscribe({
+      next: () => {
+        // Pega a lista atual
+        const current = this.studentsSubject.getValue();
+        // Remove o aluno deletado
+        const updated = current.filter((s) => s.id !== student.id);
+        // Emite a nova lista para o template atualizar automaticamente
+        this.studentsSubject.next(updated);
+
+        window.location.reload();
+      },
+      error: (error) => console.error('Erro ao deletar aluno:', error),
+    });
+  }
 
   ngOnInit() {
     this.loadStudents();
-    //this.loadPrints();
+    this.loadPrints();
   }
 }
