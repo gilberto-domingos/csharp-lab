@@ -69,14 +69,14 @@ export class StudentList implements OnInit {
 
     this.studentService.delete(student.id).subscribe({
       next: () => {
-        // Pega a lista atual
         const current = this.studentsSubject.getValue();
-        // Remove o aluno deletado
+
         const updated = current.filter((s) => s.id !== student.id);
-        // Emite a nova lista para o template atualizar automaticamente
+
         this.studentsSubject.next(updated);
 
         window.location.reload();
+        alert('Agora aperte a tecla F5');
       },
       error: (error) => console.error('Erro ao deletar aluno:', error),
     });
