@@ -68,17 +68,15 @@ export class StudentList implements OnInit {
     if (!confirmDelete) return;
 
     this.studentService.delete(student.id).subscribe({
-      next: () => {
-        const current = this.studentsSubject.getValue();
-
-        const updated = current.filter((s) => s.id !== student.id);
-
-        this.studentsSubject.next(updated);
-
+      next: (res) => {
+        console.log('DELETE retornou next:', res);
+        alert('Delete foi executado!');
         window.location.reload();
-        alert('Agora aperte a tecla F5');
       },
-      error: (error) => console.error('Erro ao deletar aluno:', error),
+      error: (err) => {
+        console.error('Erro ao deletar aluno:', err);
+        alert('Erro no delete!');
+      },
     });
   }
 
