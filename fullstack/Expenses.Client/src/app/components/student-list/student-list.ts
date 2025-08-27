@@ -69,7 +69,6 @@ export class StudentList implements OnInit {
 
     this.studentService.delete(student.id).subscribe({
       next: (res) => {
-        console.log('DELETE executado, status:', res.status);
         window.location.reload();
       },
       error: (err) => {
