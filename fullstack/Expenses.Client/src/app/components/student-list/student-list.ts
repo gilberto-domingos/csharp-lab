@@ -18,9 +18,11 @@ import { StudentService } from '../../services/student';
   standalone: true,
 })
 export class StudentList implements OnInit {
-  // BehaviorSubject permite emitir novos valores e ter o valor atual
+  // private studentsSubject = new BehaviorSubject<Student[]>([]);
+  //students$: Observable<Student[]> = this.studentsSubject.asObservable();
+
   private studentsSubject = new BehaviorSubject<Student[]>([]);
-  students$: Observable<Student[]> = this.studentsSubject.asObservable();
+  students$ = this.studentsSubject.asObservable();
 
   private printJobsSubject = new BehaviorSubject<PrintJob[]>([]);
   printJobs$: Observable<PrintJob[]> = this.printJobsSubject.asObservable();
