@@ -24,11 +24,15 @@ export class StudentList implements OnInit {
 
   displayedColumns: string[] = ['code', 'name', 'balance', 'purchases', 'printJobs', 'actions'];
   dataSource: any;
+  students: Student[] = [];
 
   constructor(private studentService: StudentService, private router: Router) {}
 
   loadStudents(): void {
-    this.students$ = this.studentService.getAll();
+    this.studentService.getAll().subscribe((data) => {
+      this.students = data;
+    });
+    //this.students$ = this.studentService.getAll();
   }
 
   loadPrints(): void {
@@ -59,12 +63,13 @@ export class StudentList implements OnInit {
 
     const confirmDelete = confirm(`Tem certeza que deseja apagar o aluno "${student.name}"?`);
     if (!confirmDelete) {
-      this.loadStudents();
       return;
     }
 
     this.studentService.delete(student.id).subscribe({
       next: () => {
+        this.students = this.students.filter((s) => s.id !== student.id);
+
         this.loadStudents();
       },
       error: (error) => console.error('Erro ao deletar aluno:', error),
@@ -76,3 +81,5 @@ export class StudentList implements OnInit {
     this.loadPrints();
   }
 }
+
+// window.location.reload();
