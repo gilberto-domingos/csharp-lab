@@ -23,9 +23,9 @@ public class FluentTransactionHistoryConfiguration : IEntityTypeConfiguration<Tr
         builder.Property(x => x.BalanceAfter)
             .IsRequired();
 
-        builder.HasOne(x => x.Student)
+       /* builder.HasOne(x => x.Student)
             .WithMany(s => s.Transactions)
-            .HasForeignKey(x => x.StudentId);
+            .HasForeignKey(x => x.StudentId); */
 
         builder.HasQueryFilter(x => x.DeletedAt == null);
     }

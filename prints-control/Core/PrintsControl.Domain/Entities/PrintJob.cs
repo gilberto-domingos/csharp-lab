@@ -2,10 +2,8 @@ using System.ComponentModel.DataAnnotations;
 
 namespace PrintsControl.Domain.Entities;
 
-public class PrintJob
+public class PrintJob : BaseEntity
 {
-    [Key]
-    private int _printJobId;
 
     private int _quantity; 
     
@@ -14,12 +12,6 @@ public class PrintJob
     private int _studentId;
     
     public Student? Student { get; set; } = null!;
-
-    public int PrintJobId
-    {
-        get => _printJobId;
-        set => _printJobId = value;
-    }
 
     public int Quantity
     {
@@ -37,6 +29,6 @@ public class PrintJob
 
     public override string ToString()
     {
-        return $"Código da impressão:{_printJobId}, Quantidade{_quantity}, Data{_printDate}, Codigo do aluno:{_studentId}";
+        return $"Código da impressão:{Id}, Quantidade{_quantity}, Data{_printDate}, Codigo do aluno:{Id}";
     }
 }

@@ -2,7 +2,6 @@ namespace PrintsControl.Domain.Entities;
 
 public class Student : BaseEntity
 {
-    public int _studentId { get; set; }
     private string _name;
     private int _balance = 0; 
     public ICollection<Purchase> Purchases { get; private set; } = new List<Purchase>();

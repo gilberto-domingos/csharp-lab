@@ -5,7 +5,8 @@ using PrintsControl.Persistence.Context;
 
 namespace PrintsControl.Persistence.Repositories;
 
-public class BaseRepository<T> : IBaseRepository<T> where T : BaseEntity {
+public class BaseRepository<T> : IBaseRepository<T> where T : BaseEntity 
+{
     
     protected readonly AppDbContext Context;
 

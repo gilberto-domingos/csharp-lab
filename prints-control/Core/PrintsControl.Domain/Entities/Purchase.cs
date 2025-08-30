@@ -3,10 +3,8 @@ using System.Text.Json.Serialization;
 
 namespace PrintsControl.Domain.Entities;
 
-public class Purchase
+public class Purchase : BaseEntity
 {
-    [Key] 
-    private int _purchaseId;
    
     private int _quantity;
     
@@ -17,11 +15,6 @@ public class Purchase
     [JsonIgnore]
     public Student? Student { get; set; } = null!;
 
-    public int PurchaseId
-    {
-        get => _purchaseId;
-        set => _purchaseId = value;
-    }
 
     public int Quantity
     {

@@ -8,7 +8,7 @@ public class FluentStudentConfiguration : IEntityTypeConfiguration<Student>
 {
     public void Configure(EntityTypeBuilder<Student> builder)
     {
-        builder.HasKey(x => x.StudentId);
+        builder.HasKey(x => x.Id);
 
         builder.Property(x => x.Name)
             .IsRequired()
@@ -23,11 +23,8 @@ public class FluentStudentConfiguration : IEntityTypeConfiguration<Student>
 
         builder.HasMany(x => x.PrintJobs)
             .WithOne(x => x.Student)
-            .HasForeignKey(x => x.StudentId);
+            .HasForeignKey(x => x.Id);
 
-        builder.HasMany(x => x.Transactions)
-            .WithOne(x => x.Student)
-            .HasForeignKey(x => x.StudentId);
 
         builder.HasQueryFilter(x => x.DeletedAt == null);
     }
