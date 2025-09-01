@@ -30,7 +30,7 @@ public class StudentsController : ControllerBase
         return Ok(students);
     }
     
-    [HttpGet("Print")]
+    [HttpGet("PrintJob")]
     public IActionResult GetPrintDocuments()
     {
         var prints = _studentService.GetAllPrintDocuments();
@@ -56,18 +56,18 @@ public class StudentsController : ControllerBase
     }
 
 
-    [HttpPost("Print")]
+    [HttpPost("PrintJob")]
     public IActionResult PrintDocuments([FromBody] PostPrintJobDto dto)
     {
         var print = _studentService.PrintDocuments(dto);
         
         if (print == null)
-            return BadRequest("Houve problema ao tentar salvar impressão");
+            return BadRequest("Quebra de protocolo");
         return Ok(print);
     }
     
     
-    [HttpGet("Details/{id}")]
+    [HttpGet("History/{id}")]
     public IActionResult GetStudent(int id)
     {
         var student = _studentService.GetStudentWithDetails(id);

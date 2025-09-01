@@ -103,6 +103,12 @@ public class StudentService( FileDataService _fileDataService ) : IStudentServic
         context.SaveChanges();
         return student; */
        
+       if (string.IsNullOrWhiteSpace(dto.Name))
+           throw new ArgumentException("O nome é obrigatório", nameof(dto.Name));
+
+       if (dto.Name.Length < 3)
+           throw new ArgumentException("O nome deve ter mais do que 3 caracteres", nameof(dto.Name));
+       
        var students = _fileDataService.LoadStudents();
 
        int newId = students.Any() ? students.Max(s => s.Id) + 1 : 1;
@@ -164,7 +170,9 @@ public class StudentService( FileDataService _fileDataService ) : IStudentServic
     public Purchase? PurchasePrints(PostPurchaseDto dto)
     {
         if (dto.Quantity != 25 && dto.Quantity != 50)
-            return null; // validação
+            throw new ArgumentException("Somente pacotes de 25 ou 50 impressões são permitidas");
+            
+           // return null; // validação
 
         var students = _fileDataService.LoadStudents();
         var student = students.FirstOrDefault(s => s.Id == dto.StudentId);
@@ -258,7 +266,9 @@ public class StudentService( FileDataService _fileDataService ) : IStudentServic
         if (student == null) return null;
 
         if (student.Balance < dto.Quantity)
-            return null; // saldo insuficiente
+            throw new ArgumentException("Saldo insuficiente!");
+            
+            //  return null; // saldo insuficiente
 
         var print = new PrintJob
         {
@@ -304,9 +314,11 @@ public class StudentService( FileDataService _fileDataService ) : IStudentServic
       if (student == null)
           return false;
 
+      // Remove o estudante da lista
       students.Remove(student);
       _fileDataService.SaveStudents(students);
 
+      // Remove compras e impressões relacionadas
       var purchases = _fileDataService.LoadPurchases()
           .Where(p => p.StudentId != id)
           .ToList();
@@ -317,10 +329,6 @@ public class StudentService( FileDataService _fileDataService ) : IStudentServic
           .ToList();
       _fileDataService.SavePrintJobs(printJobs);
 
-      GetAllStudents();
       return true;
   }
-
-
-
 }       
