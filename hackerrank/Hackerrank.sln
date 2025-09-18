@@ -17,6 +17,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BinaryNumberBase2", "Binary
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ArrayOtherDimension", "ArrayOtherDimension\ArrayOtherDimension.csproj", "{117B42B8-DD82-4A5E-A0BA-12E4CDF81496}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MinMaxDifference", "MinMaxDifference\MinMaxDifference.csproj", "{39171115-9626-4F81-9D48-FE08DBCAF23E}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -111,6 +113,18 @@ Global
 		{117B42B8-DD82-4A5E-A0BA-12E4CDF81496}.Release|x64.Build.0 = Release|Any CPU
 		{117B42B8-DD82-4A5E-A0BA-12E4CDF81496}.Release|x86.ActiveCfg = Release|Any CPU
 		{117B42B8-DD82-4A5E-A0BA-12E4CDF81496}.Release|x86.Build.0 = Release|Any CPU
+		{39171115-9626-4F81-9D48-FE08DBCAF23E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{39171115-9626-4F81-9D48-FE08DBCAF23E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{39171115-9626-4F81-9D48-FE08DBCAF23E}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{39171115-9626-4F81-9D48-FE08DBCAF23E}.Debug|x64.Build.0 = Debug|Any CPU
+		{39171115-9626-4F81-9D48-FE08DBCAF23E}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{39171115-9626-4F81-9D48-FE08DBCAF23E}.Debug|x86.Build.0 = Debug|Any CPU
+		{39171115-9626-4F81-9D48-FE08DBCAF23E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{39171115-9626-4F81-9D48-FE08DBCAF23E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{39171115-9626-4F81-9D48-FE08DBCAF23E}.Release|x64.ActiveCfg = Release|Any CPU
+		{39171115-9626-4F81-9D48-FE08DBCAF23E}.Release|x64.Build.0 = Release|Any CPU
+		{39171115-9626-4F81-9D48-FE08DBCAF23E}.Release|x86.ActiveCfg = Release|Any CPU
+		{39171115-9626-4F81-9D48-FE08DBCAF23E}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
