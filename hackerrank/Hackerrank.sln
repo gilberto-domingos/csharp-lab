@@ -19,6 +19,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ArrayOtherDimension", "Arra
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MinMaxDifference", "MinMaxDifference\MinMaxDifference.csproj", "{39171115-9626-4F81-9D48-FE08DBCAF23E}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LinkedListNodeHeadNext", "LinkedListNodeHeadNext\LinkedListNodeHeadNext.csproj", "{30D8ABC1-7C39-4421-88CE-A0FC01FA6A3C}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -125,6 +127,18 @@ Global
 		{39171115-9626-4F81-9D48-FE08DBCAF23E}.Release|x64.Build.0 = Release|Any CPU
 		{39171115-9626-4F81-9D48-FE08DBCAF23E}.Release|x86.ActiveCfg = Release|Any CPU
 		{39171115-9626-4F81-9D48-FE08DBCAF23E}.Release|x86.Build.0 = Release|Any CPU
+		{30D8ABC1-7C39-4421-88CE-A0FC01FA6A3C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{30D8ABC1-7C39-4421-88CE-A0FC01FA6A3C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{30D8ABC1-7C39-4421-88CE-A0FC01FA6A3C}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{30D8ABC1-7C39-4421-88CE-A0FC01FA6A3C}.Debug|x64.Build.0 = Debug|Any CPU
+		{30D8ABC1-7C39-4421-88CE-A0FC01FA6A3C}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{30D8ABC1-7C39-4421-88CE-A0FC01FA6A3C}.Debug|x86.Build.0 = Debug|Any CPU
+		{30D8ABC1-7C39-4421-88CE-A0FC01FA6A3C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{30D8ABC1-7C39-4421-88CE-A0FC01FA6A3C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{30D8ABC1-7C39-4421-88CE-A0FC01FA6A3C}.Release|x64.ActiveCfg = Release|Any CPU
+		{30D8ABC1-7C39-4421-88CE-A0FC01FA6A3C}.Release|x64.Build.0 = Release|Any CPU
+		{30D8ABC1-7C39-4421-88CE-A0FC01FA6A3C}.Release|x86.ActiveCfg = Release|Any CPU
+		{30D8ABC1-7C39-4421-88CE-A0FC01FA6A3C}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
