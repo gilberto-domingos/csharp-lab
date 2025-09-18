@@ -1,46 +1,65 @@
 ﻿using System;
 
-abstract class Book
+namespace HackerRank.AbstractClasses
 {
-    protected string title;
-    protected string author;
-
-    public Book(string t, string a)
+    public abstract class Book
     {
-        title = t;
-        author = a;
+        protected string Title { get; }
+        protected string Author { get; }
+
+        protected Book(string title, string author)
+        {
+            Title = title ?? throw new ArgumentNullException(nameof(title));
+            Author = author ?? throw new ArgumentNullException(nameof(author));
+        }
+
+        public abstract void Display();
     }
 
-    public abstract void display();
-}
-
-class MyBook : Book
-{
-    private int price;
-
-    public MyBook(string title, string author, int price) 
-        : base(title, author)
+    public class MyBook : Book
     {
-        this.price = price;
+        private int Price { get; }
+
+        public MyBook(string title, string author, int price)
+            : base(title, author)
+        {
+            if (price < 0)
+            {
+                throw new ArgumentOutOfRangeException(nameof(price), "O preço não pode ser negativo.");
+            }
+
+            Price = price;
+        }
+
+        public override void Display()
+        {
+            Console.WriteLine($"Title: {Title}");
+            Console.WriteLine($"Author: {Author}");
+            Console.WriteLine($"Price: {Price}");
+        }
     }
 
-    public override void display()
+    internal class Program
     {
-        Console.WriteLine("Title: " + title);
-        Console.WriteLine("Author: " + author);
-        Console.WriteLine("Price: " + price);
-    }
-}
+        private static void Main()
+        {
+            Console.WriteLine("Digite o título do livro:");
+            string? title = Console.ReadLine();
 
-class Solution
-{
-    static void Main(string[] args)
-    {
-        string title = Console.ReadLine();
-        string author = Console.ReadLine();
-        int price = Int32.Parse(Console.ReadLine());
+            Console.WriteLine("Digite o autor do livro:");
+            string? author = Console.ReadLine();
 
-        Book new_novel = new MyBook(title, author, price);
-        new_novel.display();
+            Console.WriteLine("Digite o preço do livro:");
+            if (!int.TryParse(Console.ReadLine(), out int price))
+            {
+                Console.WriteLine("Preço inválido. Digite um número inteiro.");
+                return;
+            }
+
+            Book newBook = new MyBook(title!, author!, price);
+
+            Console.WriteLine("\nInformações do livro:");
+            newBook.Display();
+        }
     }
 }
