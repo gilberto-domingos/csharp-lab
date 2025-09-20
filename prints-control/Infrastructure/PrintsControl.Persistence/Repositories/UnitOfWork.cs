@@ -9,18 +9,15 @@ public sealed class UnitOfWork : IUnitOfWork,  IDisposable
     
     public IStudentRepository Students { get; }
     public IUserRepository Users { get; }
-    public ITransactionRepository Transactions { get; }
 
     public UnitOfWork(
         AppDbContext context,
         IStudentRepository studentRepository,
-        IUserRepository userRepository,
-        ITransactionRepository transactionRepository)
+        IUserRepository userRepository)
     {
         _context = context;
         Students = studentRepository;
         Users = userRepository;
-        Transactions = transactionRepository;
     }
 
     public async Task CommitAsync(CancellationToken cancellationToken)

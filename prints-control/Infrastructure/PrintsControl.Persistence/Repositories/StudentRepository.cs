@@ -5,7 +5,7 @@ using PrintsControl.Persistence.Context;
 
 namespace PrintsControl.Persistence.Repositories;
 
-public sealed class StudentRepository : IStudentRepository, IBaseRepository<Student>
+public class StudentRepository : IBaseRepository<Student>, IStudentRepository
 {
     private readonly AppDbContext _context;
 
@@ -47,8 +47,8 @@ public sealed class StudentRepository : IStudentRepository, IBaseRepository<Stud
 
     public async Task DeleteAsync(Student entity, CancellationToken cancellationToken)
     {
-        //entity.MarkAsDeleted();
-        _context.Students.Update(entity);
+         entity.MarkAsDeleted();
+         _context.Students.Remove(entity);
         await _context.SaveChangesAsync(cancellationToken);
     }
 

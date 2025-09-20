@@ -8,44 +8,41 @@ namespace PrintsControl.Persistence.Repositories;
 public class BaseRepository<T> : IBaseRepository<T> where T : BaseEntity 
 {
     
-    protected readonly AppDbContext Context;
+    protected readonly AppDbContext _context;
 
     public BaseRepository(AppDbContext context)
     {
-        Context = context;
+        _context = context;
     }
 
-    public Task CreateAsync(T entity, CancellationToken cancellationToken)
+    public async Task CreateAsync(T entity, CancellationToken cancellationToken)
     {
-        entity.MarkAsCreated();
-        Context.Add(entity);
-        return Task.CompletedTask;
+        await _context.Set<T>().AddAsync(entity, cancellationToken);
+        await _context.SaveChangesAsync(cancellationToken);
     }
 
     public async Task<T?> GetByIdAsync(Guid id, CancellationToken cancellationToken)
     {
-        return await Context.Set<T>()
+        return await _context.Set<T>()
             .FirstOrDefaultAsync(x => x.Id == id, cancellationToken);
     }
     
     public async Task<List<T>> GetAllAsync(CancellationToken cancellationToken)
     {
-        return await Context.Set<T>().ToListAsync(cancellationToken);
+        return await _context.Set<T>().ToListAsync(cancellationToken);
     }
 
-    public Task UpdateAsync(T entity, CancellationToken cancellationToken)
+    public async Task UpdateAsync(T entity, CancellationToken cancellationToken)
     {
         entity.MarkAsUpdated();
-        Context.Update(entity);
-        return Task.CompletedTask;
+        _context.Update(entity);
+        await _context.SaveChangesAsync(cancellationToken);
     }
 
     public async Task DeleteAsync(T entity, CancellationToken cancellationToken)
     {
-        //entity.MarkAsDeleted();
-        Context.Remove(entity);
-       // return Task.CompletedTask;
-       
-       await Context.SaveChangesAsync(cancellationToken);
+        entity.MarkAsDeleted();
+        _context.Remove(entity);
+        await _context.SaveChangesAsync(cancellationToken);
     }
 }
