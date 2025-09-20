@@ -8,28 +8,25 @@ namespace PrintsControl.Domain.Entities
         public DateTimeOffset CreatedAt { get; protected set; }
         public DateTimeOffset UpdatedAt { get; protected set; }
         public DateTimeOffset? DeletedAt { get; protected set; }
-
+        
         protected BaseEntity()
         {
             Id = Guid.NewGuid();
             CreatedAt = DateTimeOffset.UtcNow;
-            UpdatedAt = DateTimeOffset.UtcNow;
-            DeletedAt = DateTimeOffset.UtcNow;
+            UpdatedAt = CreatedAt;
+            DeletedAt = null;
         }
 
-        public void MarkAsCreated()
+        protected BaseEntity(Guid id, DateTimeOffset createdAt, DateTimeOffset updatedAt, DateTimeOffset deletedAt)
         {
-            CreatedAt = DateTimeOffset.UtcNow;
+            Id = id;
+            CreatedAt = createdAt;
+            UpdatedAt = updatedAt;
+            DeletedAt = deletedAt;
         }
 
-        public void MarkAsUpdated()
-        {
-            UpdatedAt = DateTimeOffset.UtcNow;
-        }
+        public void MarkAsUpdated() => UpdatedAt = DateTimeOffset.UtcNow;
+        public void MarkAsDeleted() => DeletedAt = DateTimeOffset.UtcNow;
 
-        public void MarkAsDeleted()
-        {
-            DeletedAt = DateTimeOffset.UtcNow;
-        }
     }
 }

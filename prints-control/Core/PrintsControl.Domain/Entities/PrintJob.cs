@@ -4,31 +4,45 @@ namespace PrintsControl.Domain.Entities;
 
 public class PrintJob : BaseEntity
 {
+    public Guid Id { get; private set; }
+    public Guid StudentId { get; private set; }
 
-    private int _quantity; 
+    public Student? Student { get; private set; }
+
+    public int Quantity { get; private set; }
     
-    private DateTime _printDate = DateTime.UtcNow;
+   public DateTimeOffset PrintDate { get; private set; }
 
-    private int _studentId;
+    private PrintJob(){}
     
-    public Student? Student { get; set; } = null!;
-
-    public int Quantity
+    public static PrintJob Create(Guid studentId, int quantity, DateTimeOffset printDate )
     {
-        get => _quantity;
-        private set => SetQuantity(value);
+        ValidateQuantity(quantity);
+
+        return new PrintJob
+        {
+            StudentId = studentId,
+            Quantity = quantity,
+            PrintDate = printDate
+        };
     }
 
-    public void SetQuantity(int quantity)
+    public void UpdateQuantity(int quantity)
     {
-        if (quantity < 0)
-            throw new ArgumentException("A quantidade impressa deve ser maior que zero.");
-        
-        _quantity = quantity;
+       ValidateQuantity(quantity);
+
+        Quantity = quantity;
+        MarkAsUpdated();
+    }
+
+    private static void ValidateQuantity(int quantity)
+    {
+        if (quantity <= 0)
+            throw new ArgumentException("A quantidade impressa deve ser maior que zero");
     }
 
     public override string ToString()
     {
-        return $"Código da impressão:{Id}, Quantidade{_quantity}, Data{_printDate}, Codigo do aluno:{Id}";
+        return $"PrintJob [Id={Id}, StudentId={StudentId}, Quantity={Quantity}, Date={PrintDate}]";
     }
 }
