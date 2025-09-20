@@ -21,7 +21,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MinMaxDifference", "MinMaxD
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LinkedListNodeHeadNext", "LinkedListNodeHeadNext\LinkedListNodeHeadNext.csproj", "{30D8ABC1-7C39-4421-88CE-A0FC01FA6A3C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SimpleException", "SimpleException\SimpleException.csproj", "{4E00BDD6-2F24-435E-BC7D-D1E492589649}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ExceptionSimple", "ExceptionSimple\ExceptionSimple.csproj", "{4E00BDD6-2F24-435E-BC7D-D1E492589649}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
