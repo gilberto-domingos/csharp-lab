@@ -1,8 +1,3 @@
-namespace Expenses.API.Dtos;
+namespace PrintsControl.Application.Dtos.Students;
 
-public class StudentDto
-{
-    public int Id { get; set; }
-    public string Name { get; set; }
-    public int Balance { get; set; }
-}
+public sealed record StudentDto(Guid Id, string Name, int Balance, DateTimeOffset CreatedAt);
