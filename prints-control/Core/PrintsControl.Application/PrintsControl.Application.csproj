@@ -11,6 +11,7 @@
     </ItemGroup>
 
     <ItemGroup>
+      <Folder Include="Features\Commands\Purchase\" />
       <Folder Include="Shared\Exceptions\" />
     </ItemGroup>
 
