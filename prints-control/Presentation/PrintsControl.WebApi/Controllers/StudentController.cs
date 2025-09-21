@@ -1,12 +1,10 @@
 using MediatR;
-using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Mvc;
 using PrintsControl.Application.Dtos.Students;
-using PrintsControl.Application.Features.Students.Commands.CreateStudent;
-using PrintsControl.Application.Features.Students.Commands.UpdateStudent;
+using PrintsControl.Application.Features.Commands.Students;
+using PrintsControl.Application.Features.Queries.Student;
 using PrintsControl.Application.Features.Students.Queries.GetAllStudents;
 using PrintsControl.Application.Features.Students.Queries.GetByIdStudent;
-using PrintsControl.Application.Features.Users.Commands.DeleteUser;
 
 namespace PrintsControl.WebApi.Controllers;
 
@@ -22,30 +20,39 @@ public class StudentController : ControllerBase
     }
     
     [HttpGet]
-    public async Task<ActionResult<List<GetAllStudentResponse>>> GetAllAsync(CancellationToken cancellationToken)
+    public async Task<ActionResult<List<StudentDto>>> GetAllAsync(GetAllStudentsQuery request ,CancellationToken cancellationToken)
     {
-        var response = await _mediator.Send(new GetAllStudentsQuery(), cancellationToken);
+        var response = await _mediator.Send(request, cancellationToken);
         return Ok(response);
     }
     
-    [HttpGet("{id}")]
-    public async Task<ActionResult<GetByIdStudentResponse>> GetIdAsync(Guid? id, CancellationToken cancellationToken)
+    [HttpGet("{name}")]
+    public async Task<ActionResult<StudentDto>> GetByNameAsync(string name, CancellationToken cancellationToken)
     {
-        var request = new GetByIdStudentQuery(id.Value);
+        var request = new GetByNameStudentQuery(name);
+        var response = await _mediator.Send(request, cancellationToken);
+        return Ok(response);
+    }
+    
+    [HttpGet("{id:guid}")]
+    public async Task<ActionResult<StudentDto>> GetIdAsync(Guid id, CancellationToken cancellationToken)
+    {
+        var request = new GetByIdStudentQuery(id);
 
         var response = await _mediator.Send(request, cancellationToken);
         return Ok(response);
     }
     
+    
     [HttpPost]
-    public async Task<ActionResult<CreateStudentResponse>> CreateAsync(CreateStudentCommand request)
+    public async Task<ActionResult<StudentDto>> CreateAsync(CreateStudentCommand request)
     {
         var studentId = await _mediator.Send(request);
         return Ok(studentId);
     }
 
     [HttpPut("{id}")]
-    public async Task<ActionResult<UpdateStudentResponse>> UpdateAsync(Guid id, UpdateStudentCommand request, CancellationToken cancellationToken)
+    public async Task<ActionResult<StudentDto>> UpdateAsync(Guid id, UpdateStudentCommand request, CancellationToken cancellationToken)
     {
         if (id != request.Id)
             return BadRequest();
@@ -55,11 +62,12 @@ public class StudentController : ControllerBase
     }
 
     [HttpDelete("{id}")]
-    public async Task<ActionResult> Delete(Guid? id, CancellationToken cancellationToken)
+    public async Task<ActionResult> Delete(Guid id, CancellationToken cancellationToken)
     {
-        var deleteUserRequest = new DeleteUserCommand(id.Value);
+        var command = new DeleteStudentCommand(id);
 
-        var response = await _mediator.Send(deleteUserRequest, cancellationToken);
+        var response = await _mediator.Send(command, cancellationToken);
+        
         return Ok(response);
     }
 }
