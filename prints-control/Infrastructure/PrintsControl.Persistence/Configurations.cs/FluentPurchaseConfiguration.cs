@@ -13,9 +13,9 @@ public class FluentPurchaseConfiguration : IEntityTypeConfiguration<Purchase>
         builder.Property(x => x.Quantity)
             .IsRequired();
 
-        builder.HasOne(x => x.Student)
+        /*builder.HasOne(x => x.Student)
             .WithMany(s => s.Purchases)
-            .HasForeignKey(x => x.StudentId);
+            .HasForeignKey(x => x.StudentId);*/
 
         builder.HasQueryFilter(x => x.DeletedAt == null);
     }

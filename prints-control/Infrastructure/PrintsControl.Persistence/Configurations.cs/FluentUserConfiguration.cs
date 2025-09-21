@@ -17,11 +17,7 @@ public class FluentUserConfiguration : IEntityTypeConfiguration<User>
         builder.Property(u => u.Password)
             .IsRequired()
             .HasMaxLength(100);
-
-        builder.HasMany(u => u.Transactions)
-            .WithOne(t => t.User)
-            .HasForeignKey(t => t.UserId)
-            .IsRequired(false);
+       
 
         builder.HasQueryFilter(u => u.DeletedAt == null);
     }

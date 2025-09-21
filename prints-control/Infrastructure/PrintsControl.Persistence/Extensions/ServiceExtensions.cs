@@ -17,8 +17,9 @@ namespace PrintsControl.Persistence
         public static IServiceCollection AddRepositories(this IServiceCollection services)
         {
             services.AddScoped<IUserRepository, UserRepository>();
-            services.AddScoped<ITransactionRepository, TransactionRepository>();
             services.AddScoped<IStudentRepository, StudentRepository>();
+            services.AddScoped<IPurchaseRepository,PurchaseRepository>();
+            services.AddScoped<IPrintJobRepository, PrintJobRepository>();
             return services;
         }
 
