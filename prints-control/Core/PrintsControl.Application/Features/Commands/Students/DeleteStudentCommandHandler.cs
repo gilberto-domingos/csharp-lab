@@ -3,9 +3,9 @@ using MediatR;
 using PrintsControl.Application.Dtos.Students;
 using PrintsControl.Domain.Interfaces;
 
-namespace PrintsControl.Application.Features.Students.Commands.DeleteStudent;
+namespace PrintsControl.Application.Features.Commands.Students;
 
-public sealed class DeleteStudentCommandHandler : IRequestHandler<DeleteStudentCommand,DeleteStudentResponse>
+public sealed class DeleteStudentCommandHandler : IRequestHandler<DeleteStudentCommand,StudentDto>
 {
     private readonly IUnitOfWork _unitOfWork;
     private readonly IStudentRepository _studentRepository;
@@ -19,16 +19,17 @@ public sealed class DeleteStudentCommandHandler : IRequestHandler<DeleteStudentC
     }
 
 
-    public async Task<DeleteStudentResponse> Handle(DeleteStudentCommand request, CancellationToken cancellationToken)
+    public async Task<StudentDto> Handle(DeleteStudentCommand request, CancellationToken cancellationToken)
     {
         var student = await _studentRepository.GetByIdAsync(request.Id, cancellationToken);
 
-        if (student is null) return default;
+        if (student is null)
+            throw new ArgumentException("Estudando não encontrado");
 
         await _studentRepository.DeleteAsync(student, cancellationToken);
         await _unitOfWork.CommitAsync(cancellationToken);
 
-        return _mapper.Map<DeleteStudentResponse>(student);
+        return _mapper.Map<StudentDto>(student);
 
     }
 }

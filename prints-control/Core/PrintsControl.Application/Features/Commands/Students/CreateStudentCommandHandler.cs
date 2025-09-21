@@ -1,14 +1,13 @@
 using AutoMapper;
 using MediatR;
-using PrintsControl.Application.Dtos.Students;
 using PrintsControl.Domain.Entities;
+using PrintsControl.Application.Dtos.Students;
 using PrintsControl.Domain.Interfaces;
 
-namespace PrintsControl.Application.Features.Students.Commands.CreateStudent;
+namespace PrintsControl.Application.Features.Commands.Students;
 
-public class CreateStudentCommandHandler : IRequestHandler<CreateStudentCommand, CreateStudentResponse>
+public class CreateStudentCommandHandler : IRequestHandler<CreateStudentCommand, StudentDto>
 {
-
     private readonly IUnitOfWork _unitOfWork;
     private readonly IStudentRepository _studentRepository;
     private readonly IMapper _mapper;
@@ -20,12 +19,13 @@ public class CreateStudentCommandHandler : IRequestHandler<CreateStudentCommand,
         _mapper = mapper;
     }
     
-    public async Task<CreateStudentResponse> Handle(CreateStudentCommand request, CancellationToken cancellationToken)
+    public async Task<StudentDto> Handle(CreateStudentCommand request, CancellationToken cancellationToken)
     {
-        var student = _mapper.Map<Student>(request);
+        var student = _mapper.Map<Student>(request); 
+        
         await _studentRepository.CreateAsync(student, cancellationToken);
-
         await _unitOfWork.CommitAsync(cancellationToken);
-        return _mapper.Map<CreateStudentResponse>(student);
+
+        return _mapper.Map<StudentDto>(student);
     }
 }

@@ -1,13 +1,11 @@
 using AutoMapper;
 using MediatR;
 using PrintsControl.Application.Dtos.Students;
-using PrintsControl.Application.Features.Users.Commands.UpdateUser;
-using PrintsControl.Domain.Entities;
 using PrintsControl.Domain.Interfaces;
 
-namespace PrintsControl.Application.Features.Students.Commands.UpdateStudent;
+namespace PrintsControl.Application.Features.Commands.Students;
 
-public class UpdateStudentCommandHandler : IRequestHandler<UpdateStudentCommand, UpdateStudentResponse>
+public class UpdateStudentCommandHandler : IRequestHandler<UpdateStudentCommand, StudentDto>
 {
 
     private readonly IUnitOfWork _unitOfWork;
@@ -21,19 +19,17 @@ public class UpdateStudentCommandHandler : IRequestHandler<UpdateStudentCommand,
         _mapper = mapper;
     }
     
-    public async Task<UpdateStudentResponse> Handle(UpdateStudentCommand command, CancellationToken cancellationToken)
+    public async Task<StudentDto> Handle(UpdateStudentCommand command, CancellationToken cancellationToken)
     {
         var student = await _studentRepository.GetByIdAsync(command.Id, cancellationToken);
 
-        if (student is null) return default;
-        
-        if (!string.IsNullOrWhiteSpace(command.Name))
-            student.SetName(command.Name);
+        if (student is null)
+            throw new ArgumentException("Estudante não encontrado");
 
         await _studentRepository.UpdateAsync(student, cancellationToken);
 
         await _unitOfWork.CommitAsync(cancellationToken);
 
-        return _mapper.Map<UpdateStudentResponse>(student);
+        return _mapper.Map<StudentDto>(student);
     }
 }
