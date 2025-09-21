@@ -8,6 +8,6 @@ public sealed class GetByIdStudentMapper : Profile
 {
     public GetByIdStudentMapper()
     {
-        CreateMap<Student, GetByIdStudentResponse>();
+        CreateMap<Student, StudentDto>();
     }
 }
