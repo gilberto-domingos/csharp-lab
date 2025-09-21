@@ -4,7 +4,6 @@ namespace PrintsControl.Domain.Entities;
 
 public class PrintJob : BaseEntity
 {
-    public Guid Id { get; private set; }
     public Guid StudentId { get; private set; }
 
     public Student? Student { get; private set; }

@@ -10,6 +10,9 @@ public sealed class User : BaseEntity
     {
         SetEmail(email);
         SetPassword(password);
+
+        Email = email;
+        Password = password;
     }
     public void SetEmail(string email)
     {
