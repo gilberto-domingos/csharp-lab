@@ -27,6 +27,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ExceptionPowerCalculate", "
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "QueueStack", "QueueStack\QueueStack.csproj", "{70F269AF-43E6-4ABC-AF72-D66E3985318B}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InterfaceSumDivisors", "InterfaceSumDivisors\InterfaceSumDivisors.csproj", "{0DB3F2C7-5284-4109-AD3D-82DB7005D6B5}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -181,6 +183,18 @@ Global
 		{70F269AF-43E6-4ABC-AF72-D66E3985318B}.Release|x64.Build.0 = Release|Any CPU
 		{70F269AF-43E6-4ABC-AF72-D66E3985318B}.Release|x86.ActiveCfg = Release|Any CPU
 		{70F269AF-43E6-4ABC-AF72-D66E3985318B}.Release|x86.Build.0 = Release|Any CPU
+		{0DB3F2C7-5284-4109-AD3D-82DB7005D6B5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0DB3F2C7-5284-4109-AD3D-82DB7005D6B5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0DB3F2C7-5284-4109-AD3D-82DB7005D6B5}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{0DB3F2C7-5284-4109-AD3D-82DB7005D6B5}.Debug|x64.Build.0 = Debug|Any CPU
+		{0DB3F2C7-5284-4109-AD3D-82DB7005D6B5}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{0DB3F2C7-5284-4109-AD3D-82DB7005D6B5}.Debug|x86.Build.0 = Debug|Any CPU
+		{0DB3F2C7-5284-4109-AD3D-82DB7005D6B5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0DB3F2C7-5284-4109-AD3D-82DB7005D6B5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0DB3F2C7-5284-4109-AD3D-82DB7005D6B5}.Release|x64.ActiveCfg = Release|Any CPU
+		{0DB3F2C7-5284-4109-AD3D-82DB7005D6B5}.Release|x64.Build.0 = Release|Any CPU
+		{0DB3F2C7-5284-4109-AD3D-82DB7005D6B5}.Release|x86.ActiveCfg = Release|Any CPU
+		{0DB3F2C7-5284-4109-AD3D-82DB7005D6B5}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
