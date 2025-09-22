@@ -19,9 +19,9 @@ public class UpdateStudentCommandHandler : IRequestHandler<UpdateStudentCommand,
         _mapper = mapper;
     }
     
-    public async Task<StudentDto> Handle(UpdateStudentCommand command, CancellationToken cancellationToken)
+    public async Task<StudentDto> Handle(UpdateStudentCommand request, CancellationToken cancellationToken)
     {
-        var student = await _studentRepository.GetByIdAsync(command.Id, cancellationToken);
+        var student = await _studentRepository.GetByIdAsync(request.Id, cancellationToken);
 
         if (student is null)
             throw new ArgumentException("Estudante não encontrado");

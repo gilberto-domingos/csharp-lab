@@ -1,0 +1,6 @@
+using MediatR;
+using PrintsControl.Application.Dtos.PrintJobs;
+
+namespace PrintsControl.Application.Features.Commands.PrintJobs;
+
+public record DeletePrintJobCommand(Guid StudentId):IRequest<PrintJobDto>;
