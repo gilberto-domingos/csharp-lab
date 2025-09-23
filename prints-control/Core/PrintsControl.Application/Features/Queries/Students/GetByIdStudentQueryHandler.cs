@@ -3,8 +3,7 @@ using MediatR;
 using PrintsControl.Application.Dtos.Students;
 using PrintsControl.Domain.Interfaces;
 
-namespace PrintsControl.Application.Features.Students.Queries.GetByIdStudent;
-
+namespace PrintsControl.Application.Features.Queries.Students;
 public class GetByIdStudentQueryHandler : IRequestHandler<GetByIdStudentQuery,StudentDto>
 {
     private readonly IStudentRepository _studentRepository;

@@ -3,7 +3,7 @@ using MediatR;
 using PrintsControl.Application.Dtos.Students;
 using PrintsControl.Domain.Interfaces;
 
-namespace PrintsControl.Application.Features.Students.Queries.GetAllStudents;
+namespace PrintsControl.Application.Features.Queries.Students;
 
 public class GetAllStudentsQueryHandler : IRequestHandler<GetAllStudentsQuery, List<StudentDto>>
 {
@@ -12,7 +12,7 @@ public class GetAllStudentsQueryHandler : IRequestHandler<GetAllStudentsQuery, L
 
     public GetAllStudentsQueryHandler(IStudentRepository studentRepository, IMapper mapper)
     {
-        _studentRepository = studentRepository ?? throw new ArgumentNullException(nameof(studentRepository));;
+        _studentRepository = studentRepository ?? throw new ArgumentNullException(nameof(studentRepository));
         _mapper = mapper ?? throw new ArgumentNullException(nameof(mapper));
     }
 

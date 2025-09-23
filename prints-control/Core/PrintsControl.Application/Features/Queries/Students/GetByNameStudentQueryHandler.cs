@@ -3,7 +3,7 @@ using MediatR;
 using PrintsControl.Application.Dtos.Students;
 using PrintsControl.Domain.Interfaces;
 
-namespace PrintsControl.Application.Features.Queries.Student;
+namespace PrintsControl.Application.Features.Queries.Students;
 
 public class GetByNameStudentQueryHandler : IRequestHandler<GetByNameStudentQuery, StudentDto>
 {
