@@ -2,4 +2,4 @@ using System;
 
 namespace PrintsControl.Application.Dtos.PrintJobs;
 
-public sealed record PrintJobDto(Guid StudentId, int Quantity, DateTimeOffset PrintDate);
+public sealed record PrintJobDto(Guid Id, int Quantity, DateTimeOffset PrintDate);
