@@ -20,7 +20,7 @@ public class DeletePrintJobCommandHandler : IRequestHandler<DeletePrintJobComman
     
     public async Task<PrintJobDto> Handle(DeletePrintJobCommand request, CancellationToken cancellationToken)
     {
-        var printJob = await _printJobRepository.GetByIdAsync(request.StudentId, cancellationToken);
+        var printJob = await _printJobRepository.GetByIdAsync(request.Id, cancellationToken);
 
         if (printJob is null)
             throw new ArgumentException("Impressão do aluno não encontrada");

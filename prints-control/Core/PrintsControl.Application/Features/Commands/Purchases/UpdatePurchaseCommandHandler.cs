@@ -20,7 +20,7 @@ public class UpdatePurchaseCommandHandler : IRequestHandler<UpdatePurchaseComman
     
     public async Task<PurchaseDto> Handle(UpdatePurchaseCommand request, CancellationToken cancellationToken)
     {
-        var purchase = await _purchaseRepository.GetByIdAsync(request.StudentId, cancellationToken);
+        var purchase = await _purchaseRepository.GetByIdAsync(request.Id, cancellationToken);
 
         if (purchase is null)
             throw new ArgumentException("Compra do estudante não encontrada");
