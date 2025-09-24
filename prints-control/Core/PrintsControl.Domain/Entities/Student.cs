@@ -11,6 +11,8 @@ public class Student : BaseEntity
     private readonly List<PrintJob> _printJobs = new();
     public IReadOnlyCollection<PrintJob> PrintJobs => _printJobs.AsReadOnly();
 
+    protected Student(){}
+
     public Student(string name, int balance)
     {
         if (string.IsNullOrWhiteSpace(name))
@@ -26,13 +28,13 @@ public class Student : BaseEntity
         Balance = balance;
     }
 
-    public void BuyPackage(int quantity)
+    public void BuyPackage(int quantity, DateTimeOffset purchaseDate)
     {
         if (quantity != 25 && quantity != 50)
             throw new ArgumentException("Permitido compras somente pacote de 25 ou 50");
 
         Balance += quantity;
-        _purchases.Add(new Purchase(Id, quantity));
+        _purchases.Add(new Purchase(Id, quantity, purchaseDate));
     }
 
     public override string ToString() =>

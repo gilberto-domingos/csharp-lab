@@ -12,7 +12,14 @@ public class PrintJob : BaseEntity
     
    public DateTimeOffset PrintDate { get; private set; }
 
-    private PrintJob(){}
+    protected PrintJob(){}
+
+    public PrintJob(Guid studentId, int quantity, DateTimeOffset printDate)
+    {
+        StudentId = studentId;
+        Quantity = quantity;
+        PrintDate = printDate;
+    }
     
     public static PrintJob Create(Guid studentId, int quantity, DateTimeOffset printDate )
     {

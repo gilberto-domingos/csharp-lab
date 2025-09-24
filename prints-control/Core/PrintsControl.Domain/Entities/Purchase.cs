@@ -12,14 +12,15 @@ public class Purchase : BaseEntity
      
     public int Quantity { get; private set; }
     
-    public DateTime PurchaseDate { get; private set; } = DateTime.UtcNow;
-    
-    public Purchase(){}
+    public DateTimeOffset PurchaseDate { get; private set; } = DateTimeOffset.UtcNow;
 
-    public Purchase(Guid studentId, int quantity)
+    
+    protected Purchase(){}
+
+    public Purchase(Guid studentId, int quantity, DateTimeOffset purchaseDate)
     {
         StudentId = studentId;
         Quantity = quantity;
+        PurchaseDate = purchaseDate;
     }
-    
 }
