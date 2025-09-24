@@ -1,3 +1,4 @@
+using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Design;
 using DotNetEnv;
@@ -9,15 +10,17 @@ namespace PrintsControl.Persistence.Context
     {
         public AppDbContext CreateDbContext(string[] args)
         {
-            Env.Load(); 
+            Env.Load();
 
-            var connectionString = Env.GetString("CONNECTION_STRING"); 
+            var databaseFile = Env.GetString("File.Env") ?? "default.db";
 
-            if (string.IsNullOrEmpty(connectionString))
-                throw new InvalidOperationException("A variável de ambiente CONNECTION_STRING não foi encontrada ou está vazia.");
+            if (string.IsNullOrEmpty(databaseFile))
+                throw new InvalidOperationException("A variável de ambiente File.Env não foi encontrada ou está vazia.");
 
             var optionsBuilder = new DbContextOptionsBuilder<AppDbContext>();
-            optionsBuilder.UseSqlServer(connectionString);
+            optionsBuilder.UseSqlite($"Data Source={databaseFile}");
+
+            Console.WriteLine($"[AppDbContextFactory] Banco conectado: {databaseFile}");
 
             return new AppDbContext(optionsBuilder.Options);
         }

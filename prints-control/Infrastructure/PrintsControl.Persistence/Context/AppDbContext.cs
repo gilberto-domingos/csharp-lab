@@ -1,7 +1,6 @@
 using Microsoft.EntityFrameworkCore;
 using PrintsControl.Domain.Entities;
 using PrintsControl.Persistence.Configurations;
-using PrintsControl.Persistence.Configurations.cs;
 
 namespace PrintsControl.Persistence.Context;
 
