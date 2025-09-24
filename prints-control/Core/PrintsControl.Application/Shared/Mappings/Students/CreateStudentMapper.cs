@@ -9,7 +9,7 @@ public sealed class CreateStudentMapper : Profile
 {
     public CreateStudentMapper()
     {
-        CreateMap<CreateStudentCommand, Student>();
         CreateMap<Student, StudentDto>();
+        CreateMap<CreateStudentCommand, Student>();
     }
 }

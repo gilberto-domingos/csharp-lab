@@ -9,7 +9,7 @@ public sealed class DeleteStudentMapper : Profile
 {
     public DeleteStudentMapper()
     {
-        CreateMap<DeleteStudentCommand, Student>();
         CreateMap<Student, StudentDto>();
+        CreateMap<DeleteStudentCommand, Student>();
     }
 }
