@@ -1,6 +1,0 @@
-@PrintsControl.WebApli_HostAddress = http://localhost:5118
-
-GET {{PrintsControl.WebApli_HostAddress}}/weatherforecast/
-Accept: application/json
-
-###

@@ -1,15 +1,18 @@
 namespace PrintsControl.WebApi.Extensions;
 
+using Microsoft.Extensions.DependencyInjection;
+
 public static class CorsPolicyExtension
 {
-    public static void ConfigureCorsPolicy(this ServiceCollection service)
+    public static void ConfigureCorsPolicy(this IServiceCollection services)
     {
-        service.AddCors(opt =>
+        services.AddCors(options =>
         {
-            opt.AddDefaultPolicy(builder => builder
-                .AllowAnyOrigin()
-                .AllowAnyMethod()
-                .AllowAnyHeader());
+            options.AddDefaultPolicy(builder =>
+                builder
+                    .AllowAnyOrigin()
+                    .AllowAnyMethod()
+                    .AllowAnyHeader());
         });
     }
 }
