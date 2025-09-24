@@ -1,10 +1,9 @@
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
+using PrintsControl.Application.Dtos;
 using PrintsControl.Application.Dtos.Students;
 using PrintsControl.Application.Features.Commands.Students;
-using PrintsControl.Application.Features.Queries.Student;
-using PrintsControl.Application.Features.Students.Queries.GetAllStudents;
-using PrintsControl.Application.Features.Students.Queries.GetByIdStudent;
+using PrintsControl.Application.Features.Queries.Students;
 
 namespace PrintsControl.WebApi.Controllers;
 
@@ -20,7 +19,16 @@ public class StudentController : ControllerBase
     }
     
     [HttpGet]
-    public async Task<ActionResult<List<StudentDto>>> GetAllAsync(GetAllStudentsQuery request ,CancellationToken cancellationToken)
+    public async Task<ActionResult<List<StudentDto>>> GetAllAsync(CancellationToken cancellationToken)
+    {
+        var request = new GetAllStudentsQuery();
+        var response = await _mediator.Send(request, cancellationToken);
+        return Ok(response);
+    }
+
+    [HttpGet("history")]
+    public async Task<ActionResult<List<StudentHistoryDto>>> GetAllHistoryAsync(GetAllStudentHistoryQuery request,
+        CancellationToken cancellationToken)
     {
         var response = await _mediator.Send(request, cancellationToken);
         return Ok(response);
@@ -45,10 +53,10 @@ public class StudentController : ControllerBase
     
     
     [HttpPost]
-    public async Task<ActionResult<StudentDto>> CreateAsync(CreateStudentCommand request)
+    public async Task<ActionResult<StudentDto>> CreateAsync(CreateStudentCommand request, CancellationToken cancellationToken)
     {
-        var studentId = await _mediator.Send(request);
-        return Ok(studentId);
+        var student = await _mediator.Send(request, cancellationToken);
+        return Ok(student);
     }
 
     [HttpPut("{id}")]
