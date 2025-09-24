@@ -18,7 +18,7 @@ public class GetByIdPurchaseQueryHandler : IRequestHandler<GetByIdPurchaseQuery,
     
     public async Task<PurchaseDto> Handle(GetByIdPurchaseQuery request, CancellationToken cancellationToken)
     {
-        var purchaseId = await _repositoty.GetByIdAsync(request.Id, cancellationToken);
+        var purchaseId = await _repositoty.GetByIdAsync(request.StudentId, cancellationToken);
         return _mapper.Map<PurchaseDto>(purchaseId);
     }
 }
