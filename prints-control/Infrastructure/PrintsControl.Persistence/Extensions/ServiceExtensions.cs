@@ -8,17 +8,17 @@ using Microsoft.IdentityModel.Tokens;
 using PrintsControl.Domain.Interfaces;
 using PrintsControl.Persistence.Context;
 using PrintsControl.Persistence.Repositories;
+using DotNetEnv;
 
 namespace PrintsControl.Persistence
-    {
+{
     public static class ServiceExtensions
     {
-        
         public static IServiceCollection AddRepositories(this IServiceCollection services)
         {
             services.AddScoped<IUserRepository, UserRepository>();
             services.AddScoped<IStudentRepository, StudentRepository>();
-            services.AddScoped<IPurchaseRepository,PurchaseRepository>();
+            services.AddScoped<IPurchaseRepository, PurchaseRepository>();
             services.AddScoped<IPrintJobRepository, PrintJobRepository>();
             return services;
         }
@@ -29,24 +29,22 @@ namespace PrintsControl.Persistence
             return services;
         }
 
-        
         public static void ConfigurePersistenceApp(this IServiceCollection services, IConfiguration configuration)
         {
-            var dbServer = Environment.GetEnvironmentVariable("DB_SERVER");
-            var dbName = Environment.GetEnvironmentVariable("DB_NAME");
-            var saPassword = Environment.GetEnvironmentVariable("SA_PASSWORD");
+            Env.Load();
 
-            var connectionString =
-                $"Server={dbServer};Database={dbName};User Id=sa;Password={saPassword};TrustServerCertificate=True";
-
-            configuration["ConnectionStrings:DefaultConnection"] = connectionString;
+            var databaseFile = Environment.GetEnvironmentVariable("File.Env") ?? "default.db";
 
             services.AddDbContext<AppDbContext>(opt =>
-                opt.UseSqlServer(configuration.GetConnectionString("DefaultConnection")));
+                opt.UseSqlite($"Data Source={databaseFile}"));
 
-             services.AddScoped<IUserRepository, UserRepository>();
-             services.AddScoped<IUnitOfWork, UnitOfWork>();
+            Console.WriteLine($"As variáveis estão carregadas e o banco conectado: {databaseFile}!");
 
+            services.AddScoped<IUserRepository, UserRepository>();
+            services.AddScoped<IStudentRepository, StudentRepository>();
+            services.AddScoped<IPurchaseRepository, PurchaseRepository>();
+            services.AddScoped<IPrintJobRepository, PrintJobRepository>();
+            services.AddScoped<IUnitOfWork, UnitOfWork>();
         }
 
         public static void ConfigureAuthentication(this IServiceCollection services)
