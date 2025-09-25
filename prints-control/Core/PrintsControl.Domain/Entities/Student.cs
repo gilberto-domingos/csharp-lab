@@ -28,15 +28,31 @@ public class Student : BaseEntity
         Balance = balance;
     }
 
-    public void BuyPackage(int quantity, DateTimeOffset purchaseDate)
+    public Purchase BuyPackage(int quantity, DateTimeOffset purchaseDate)
     {
         if (quantity != 25 && quantity != 50)
             throw new ArgumentException("Permitido compras somente pacote de 25 ou 50");
 
         Balance += quantity;
-        _purchases.Add(new Purchase(Id, quantity, purchaseDate));
+        var purchase = new Purchase(Id, quantity, purchaseDate);
+        return purchase;
     }
 
+
+    public PrintJob PrintWork(int quantity, DateTimeOffset printDate)
+    {
+        if (Balance < quantity)
+            throw new InvalidOperationException("Saldo insuficiente para realizar impressões");
+
+        Balance -= quantity;
+
+        var printJob = new PrintJob(Id, quantity, printDate);
+        _printJobs.Add(printJob);
+
+        return printJob;
+    }
+
+    
     public override string ToString() =>
         $"Código: {Id} |  Estudante: {Name} | Saldo de impressões: {Balance}";
 }
