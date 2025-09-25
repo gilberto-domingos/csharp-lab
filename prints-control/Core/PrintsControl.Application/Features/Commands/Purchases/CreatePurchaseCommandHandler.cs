@@ -10,22 +10,31 @@ public class CreatePurchaseCommandHandler : IRequestHandler<CreatePurchaseComman
 {
     private readonly IUnitOfWork _unitOfWork;
     private readonly IPurchaseRepository _purchaseRepository;
+    private readonly IStudentRepository _studentRepository;
     private readonly IMapper _mapper;
 
-    public CreatePurchaseCommandHandler(IUnitOfWork unitOfWork, IPurchaseRepository purchaseRepository, IMapper mapper)
+    public CreatePurchaseCommandHandler(IUnitOfWork unitOfWork, IPurchaseRepository purchaseRepository, IStudentRepository studentRepository, IMapper mapper)
     {
         _unitOfWork = unitOfWork;
         _purchaseRepository = purchaseRepository;
+        _studentRepository = studentRepository;
         _mapper = mapper;
     }
     
     public async Task<PurchaseDto> Handle(CreatePurchaseCommand request, CancellationToken cancellationToken)
     {
-        var purchase = _mapper.Map<Purchase>(request);
+        var student = await _studentRepository.GetByIdAsync(request.StudentId, cancellationToken);
+        if (student == null)
+            throw new Exception($"Estudante com ID {request.StudentId} não encontrado.");
+
+        var purchase = student.BuyPackage(request.Quantity, request.PurchaseDate);
 
         await _purchaseRepository.CreateAsync(purchase, cancellationToken);
+
         await _unitOfWork.CommitAsync(cancellationToken);
 
         return _mapper.Map<PurchaseDto>(purchase);
     }
+
+
 }
