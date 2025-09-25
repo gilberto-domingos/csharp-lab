@@ -12,14 +12,12 @@ public class StudentRepository : BaseRepository<Student>, IStudentRepository
     public async Task<Student> GetByNameAsync(string name, CancellationToken cancellationToken)
     {
         return await _context.Students
-            .AsNoTracking()
             .FirstAsync(s => s.Name == name, cancellationToken);
     }
 
     public async Task<List<Student>> GetActiveStudentAsync(CancellationToken cancellationToken)
     {
         return await _context.Students
-            .AsNoTracking()
             .OrderBy(s => s.Name)
             .ToListAsync(cancellationToken);
     }
