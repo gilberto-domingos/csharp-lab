@@ -13,9 +13,9 @@ public class FluentPrintingConfiguration : IEntityTypeConfiguration<PrintJob>
         builder.Property(x => x.Quantity)
             .IsRequired();
 
-       /* builder.HasOne(x => x.Student)
-            .WithMany(s => s.PrintJob)
-            .HasForeignKey(x => x.Id); */
+        builder.HasOne(x => x.Student)
+            .WithMany(s => s.PrintJobs)
+            .HasForeignKey(x => x.Id); 
 
         builder.HasQueryFilter(x => x.DeletedAt == null);
     }
