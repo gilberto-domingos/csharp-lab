@@ -40,8 +40,6 @@ Como melhorar a experiência dos usuários que
 desejam realizar a impressão de documentos? </br>
 Referências : </br>
 
-- https://setecnet.com.br/home/lean-office-conheca-os-beneficios-dessa-metodologia/
-- https://www.lean.org.br/artigos/57/escritorio-enxuto-(lean-office).aspx
 - Definição do modelo entidade x relacionamento; </br>
 - Criação das tabelas do banco de dados; </br>
 - Uso de programação orientada a objetos na construção do código em c#. </br>
