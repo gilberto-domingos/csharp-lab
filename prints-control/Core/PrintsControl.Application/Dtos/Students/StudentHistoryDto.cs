@@ -5,6 +5,6 @@ public sealed record StudentHistoryDto(
     int Balance,
     int TotalPurchase,
     int TotalPrints,
-    IReadOnlyList<DateTimeOffset> PurchaseDates,
-    IReadOnlyList<DateTimeOffset> PrintsDates
+    ICollection<DateTimeOffset> PurchaseDates,
+    ICollection<DateTimeOffset> PrintsDates
 );

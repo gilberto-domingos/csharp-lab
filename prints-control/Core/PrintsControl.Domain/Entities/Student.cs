@@ -4,13 +4,9 @@ public class Student : BaseEntity
 {
     public string Name { get; private set;}
     public int Balance { get; private set; } = 0;
-
-    private readonly List<Purchase> _purchases = new();
-    public IReadOnlyCollection<Purchase> Purchases => _purchases.AsReadOnly();
-
-    private readonly List<PrintJob> _printJobs = new();
-    public IReadOnlyCollection<PrintJob> PrintJobs => _printJobs.AsReadOnly();
-
+    public ICollection<Purchase> Purchases { get; set; } = new List<Purchase>();
+    public ICollection<PrintJob> PrintJobs { get; set; } = new List<PrintJob>();
+    
     protected Student(){}
 
     public Student(string name, int balance)
@@ -47,7 +43,7 @@ public class Student : BaseEntity
         Balance -= quantity;
 
         var printJob = new PrintJob(Id, quantity, printDate);
-        _printJobs.Add(printJob);
+        PrintJobs.Add(printJob);
 
         return printJob;
     }

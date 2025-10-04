@@ -15,7 +15,8 @@ public class FluentPrintingConfiguration : IEntityTypeConfiguration<PrintJob>
 
         builder.HasOne(x => x.Student)
             .WithMany(s => s.PrintJobs)
-            .HasForeignKey(x => x.Id); 
+            .HasForeignKey(x => x.StudentId)
+            .OnDelete(DeleteBehavior.Cascade); 
 
         builder.HasQueryFilter(x => x.DeletedAt == null);
     }

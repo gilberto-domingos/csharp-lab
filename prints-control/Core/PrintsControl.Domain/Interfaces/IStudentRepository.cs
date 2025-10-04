@@ -7,4 +7,6 @@ public interface IStudentRepository : IBaseRepository<Student>
     Task<Student> GetByNameAsync(string name, CancellationToken cancellationToken);
 
     Task<List<Student>> GetActiveStudentAsync(CancellationToken cancellationToken);
+
+    Task<List<Student>> GetAllAsync(CancellationToken cancellationToken);
 }

@@ -14,6 +14,15 @@ public class StudentRepository : BaseRepository<Student>, IStudentRepository
         return await _context.Students
             .FirstAsync(s => s.Name == name, cancellationToken);
     }
+    
+    public async Task<List<Student>> GetAllAsync(CancellationToken cancellationToken)
+    {
+        return await _context.Students
+            .Where(s => s.DeletedAt == null)
+            .Include(s => s.Purchases)
+            .Include(s => s.PrintJobs)
+            .ToListAsync(cancellationToken);
+    }
 
     public async Task<List<Student>> GetActiveStudentAsync(CancellationToken cancellationToken)
     {

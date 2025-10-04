@@ -27,7 +27,7 @@ public class StudentController : ControllerBase
     }
 
     [HttpGet("history")]
-    public async Task<ActionResult<List<StudentHistoryDto>>> GetAllHistoryAsync(GetAllStudentHistoryQuery request,
+    public async Task<ActionResult<List<StudentHistoryDto>>> GetAllHistoryAsync([FromQuery]   GetAllStudentHistoryQuery request,
         CancellationToken cancellationToken)
     {
         var response = await _mediator.Send(request, cancellationToken);
