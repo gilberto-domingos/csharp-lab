@@ -45,6 +45,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PrimeOrNotPrimeNumber", "Pr
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LibraryDevolutionBookDate", "LibraryDevolutionBookDate\LibraryDevolutionBookDate.csproj", "{E1674209-F702-44BF-BA7B-E143DFB76104}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CheckNumberIsMultiple", "CheckNumberIsMultiple\CheckNumberIsMultiple.csproj", "{ED7AE4B3-E1D3-4722-B10B-173A15421F21}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -307,6 +309,18 @@ Global
 		{E1674209-F702-44BF-BA7B-E143DFB76104}.Release|x64.Build.0 = Release|Any CPU
 		{E1674209-F702-44BF-BA7B-E143DFB76104}.Release|x86.ActiveCfg = Release|Any CPU
 		{E1674209-F702-44BF-BA7B-E143DFB76104}.Release|x86.Build.0 = Release|Any CPU
+		{ED7AE4B3-E1D3-4722-B10B-173A15421F21}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{ED7AE4B3-E1D3-4722-B10B-173A15421F21}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{ED7AE4B3-E1D3-4722-B10B-173A15421F21}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{ED7AE4B3-E1D3-4722-B10B-173A15421F21}.Debug|x64.Build.0 = Debug|Any CPU
+		{ED7AE4B3-E1D3-4722-B10B-173A15421F21}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{ED7AE4B3-E1D3-4722-B10B-173A15421F21}.Debug|x86.Build.0 = Debug|Any CPU
+		{ED7AE4B3-E1D3-4722-B10B-173A15421F21}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{ED7AE4B3-E1D3-4722-B10B-173A15421F21}.Release|Any CPU.Build.0 = Release|Any CPU
+		{ED7AE4B3-E1D3-4722-B10B-173A15421F21}.Release|x64.ActiveCfg = Release|Any CPU
+		{ED7AE4B3-E1D3-4722-B10B-173A15421F21}.Release|x64.Build.0 = Release|Any CPU
+		{ED7AE4B3-E1D3-4722-B10B-173A15421F21}.Release|x86.ActiveCfg = Release|Any CPU
+		{ED7AE4B3-E1D3-4722-B10B-173A15421F21}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
