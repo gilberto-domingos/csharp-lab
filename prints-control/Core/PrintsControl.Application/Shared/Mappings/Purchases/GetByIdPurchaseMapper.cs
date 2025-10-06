@@ -10,6 +10,7 @@ public class GetByIdPurchaseMapper : Profile
     public GetByIdPurchaseMapper()
     {
         CreateMap<Purchase, PurchaseDto>();
+        CreateMap<Purchase, PurchaseWidthStudentDto>();
         CreateMap<GetByIdPurchaseQuery, Purchase>();
     }
 }

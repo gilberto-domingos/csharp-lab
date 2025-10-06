@@ -10,6 +10,8 @@ public sealed class GetByIdPrintJobMapper : Profile
     public GetByIdPrintJobMapper()
     {
         CreateMap<PrintJob, PrintJobDto>();
+        CreateMap<PrintJob, PrintJobWidthStudentDto>();
+        CreateMap<GetByIdPrintJobQuery, PrintJob>();
         CreateMap<GetByIdPrintJobQuery, PrintJob>();
     }
 }
