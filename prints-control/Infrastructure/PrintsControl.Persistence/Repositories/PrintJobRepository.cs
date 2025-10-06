@@ -9,6 +9,13 @@ public class PrintJobRepository : BaseRepository<PrintJob>, IPrintJobRepository
 {
     public PrintJobRepository(AppDbContext context) : base(context) { }
 
+    public async Task<PrintJob?> GetByIdWidthStudent(Guid id, CancellationToken cancellationToken)  
+    {
+        return await _context.PrintJobs
+            .Include(p => p.Student)
+            .FirstOrDefaultAsync(p => p.Id == id, cancellationToken);
+    }
+
     public async Task<List<PrintJob>> GetPrintJobStudentIdAsync(Guid studentId, CancellationToken cancellationToken)
     {
         return await _context.PrintJobs

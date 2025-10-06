@@ -10,6 +10,13 @@ public class PurchaseRepository : BaseRepository<Purchase>, IPurchaseRepository
     public PurchaseRepository(AppDbContext context) : base(context) { }
 
 
+    public async Task<Purchase?> GetByIdWidthStudent(Guid id, CancellationToken cancellationToken)
+    {
+        return await _context.Purchases
+            .Include(p => p.Student)
+            .FirstOrDefaultAsync(p => p.Id == id, cancellationToken);
+    }
+
     public async Task<List<Purchase>> GetPurchaseByStudentIdAsync(Guid studentId, CancellationToken cancellationToken)
     {
         return await _context.Purchases
@@ -18,16 +25,5 @@ public class PurchaseRepository : BaseRepository<Purchase>, IPurchaseRepository
             .IgnoreQueryFilters()
             .Where(p => p.StudentId == studentId)
             .ToListAsync(cancellationToken);
-    }
-
-    public async Task<Purchase?> GelLastPurchaseByStudentIdAsync(Guid studentId, CancellationToken cancellationToken)
-    {
-        return await _context.Purchases
-            .Include(p => p.Student)
-            .AsNoTracking()
-            .IgnoreQueryFilters()
-            .Where(p => p.StudentId == studentId)
-            .OrderByDescending(p => p.PurchaseDate)
-            .FirstOrDefaultAsync(cancellationToken);
     }
 }

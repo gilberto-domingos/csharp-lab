@@ -29,7 +29,8 @@ public class BaseRepository<T> : IBaseRepository<T> where T : BaseEntity
     
     public async Task<List<T>> GetAllAsync(CancellationToken cancellationToken)
     {
-        return await _context.Set<T>().ToListAsync(cancellationToken);
+        return await _context.Set<T>()
+            .ToListAsync(cancellationToken);
     }
 
     public async Task UpdateAsync(T entity, CancellationToken cancellationToken)

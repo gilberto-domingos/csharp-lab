@@ -15,19 +15,14 @@ public class StudentRepository : BaseRepository<Student>, IStudentRepository
             .FirstAsync(s => s.Name == name, cancellationToken);
     }
     
-    public async Task<List<Student>> GetAllAsync(CancellationToken cancellationToken)
+    public async Task<IEnumerable<Student>> GetAllWithHistoryAsync(CancellationToken cancellationToken)
     {
         return await _context.Students
-            .Where(s => s.DeletedAt == null)
             .Include(s => s.Purchases)
             .Include(s => s.PrintJobs)
+            .AsNoTracking()
             .ToListAsync(cancellationToken);
     }
 
-    public async Task<List<Student>> GetActiveStudentAsync(CancellationToken cancellationToken)
-    {
-        return await _context.Students
-            .OrderBy(s => s.Name)
-            .ToListAsync(cancellationToken);
-    }
+    
 }
