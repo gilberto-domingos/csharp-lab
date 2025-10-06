@@ -12,7 +12,7 @@ namespace PrintsControl.Persistence.Context
         {
             Env.Load();
 
-            var databaseFile = Env.GetString("File.Env") ?? "default.db";
+            var databaseFile = Env.GetString("File.Env") ?? "printscontrol.db";
 
             if (string.IsNullOrEmpty(databaseFile))
                 throw new InvalidOperationException("A variável de ambiente File.Env não foi encontrada ou está vazia.");
