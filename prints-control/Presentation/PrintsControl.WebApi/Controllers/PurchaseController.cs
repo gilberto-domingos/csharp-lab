@@ -20,13 +20,6 @@ public class PurchaseController : ControllerBase
         _mediator = mediator;
     }
     
-    /*[HttpGet("debug")]
-    public async Task<IActionResult> DebugAsync([FromServices] AppDbContext db)
-    {
-        var purchases = await db.Purchases.ToListAsync();
-        return Ok(purchases);
-    }*/
-    
     [HttpGet]
     public async Task<ActionResult<List<PurchaseDto>>> GetAllAsync(CancellationToken cancellationToken)
     {
@@ -36,7 +29,7 @@ public class PurchaseController : ControllerBase
     }
 
     [HttpGet("{id:guid}")]
-    public async Task<ActionResult<PurchaseDto>> GetById(Guid id,
+    public async Task<ActionResult<PurchaseWidthStudentDto>> GetById(Guid id,
         CancellationToken cancellationToken)
     {
         var request = new GetByIdPurchaseQuery(id);

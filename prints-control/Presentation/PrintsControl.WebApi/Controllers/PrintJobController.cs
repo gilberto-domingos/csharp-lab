@@ -18,7 +18,7 @@ public class PrintJobController : ControllerBase
     }
 
     [HttpGet]
-    public async Task<ActionResult<List<PrintJobDto>>> GetAllAsync(GetAllPrintJobsQuery request,
+    public async Task<ActionResult<List<PrintJobDto>>> GetAllAsync([FromQuery]GetAllPrintJobsQuery request,
         CancellationToken cancellationToken)
     {
         var response = await _mediator.Send(request, cancellationToken);
@@ -26,7 +26,7 @@ public class PrintJobController : ControllerBase
     }
 
     [HttpGet("{id:guid}")]
-    public async Task<ActionResult<PrintJobDto>> GetByIdAsync(Guid id, CancellationToken cancellationToken)
+    public async Task<ActionResult<PrintJobWidthStudentDto>> GetByIdAsync(Guid id, CancellationToken cancellationToken)
     {
         var request = new GetByIdPrintJobQuery(id);
         var response = await _mediator.Send(request, cancellationToken);

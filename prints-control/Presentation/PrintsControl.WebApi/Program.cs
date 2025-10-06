@@ -1,9 +1,12 @@
 using DotNetEnv;
+using Microsoft.EntityFrameworkCore;
 using PrintsControl.Application;
 using PrintsControl.Persistence;
+using PrintsControl.Persistence.Context;
+using PrintsControl.Persistence.Infrastructure.Seeds;
 
 
-    var builder = WebApplication.CreateBuilder(args);
+var builder = WebApplication.CreateBuilder(args);
 
     Env.Load();
     
@@ -28,6 +31,13 @@ using PrintsControl.Persistence;
 
 
     var app = builder.Build();
+    
+    using (var scope = app.Services.CreateScope())
+    {
+        var context = scope.ServiceProvider.GetRequiredService<AppDbContext>();
+        context.Database.Migrate();
+        DbSeeder.Seed(context);           
+    }
 
     if (app.Environment.IsDevelopment())
     {
