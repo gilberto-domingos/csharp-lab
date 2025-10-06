@@ -1,4 +1,5 @@
 using System.ComponentModel.DataAnnotations;
+using System.Text.Json.Serialization;
 
 namespace PrintsControl.Domain.Entities;
 
@@ -6,7 +7,8 @@ public class PrintJob : BaseEntity
 {
     public Guid StudentId { get; private set; }
 
-    public Student? Student { get; private set; }
+    [JsonIgnore]
+    public Student? Student { get; private set; } = null;
 
     public int Quantity { get; private set; }
     

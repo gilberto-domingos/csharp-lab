@@ -1,9 +1,11 @@
 using System;
+using System.ComponentModel.DataAnnotations;
 
 namespace PrintsControl.Domain.Entities
 {
     public abstract class BaseEntity
     {
+        [Key]
         public Guid Id { get; protected set; }
         public DateTimeOffset CreatedAt { get; protected set; }
         public DateTimeOffset UpdatedAt { get; protected set; }

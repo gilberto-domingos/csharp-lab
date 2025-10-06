@@ -8,7 +8,7 @@ public class Purchase : BaseEntity
     public Guid StudentId { get; private set; }
     
     [JsonIgnore]
-    public Student? Student { get; set; } = null!;
+    public Student? Student { get; private set; } = null!;
      
     public int Quantity { get; private set; }
     
