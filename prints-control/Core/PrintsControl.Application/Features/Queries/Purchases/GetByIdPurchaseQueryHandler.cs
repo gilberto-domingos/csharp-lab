@@ -5,20 +5,24 @@ using PrintsControl.Domain.Interfaces;
 
 namespace PrintsControl.Application.Features.Queries.Purchases;
 
-public class GetByIdPurchaseQueryHandler : IRequestHandler<GetByIdPurchaseQuery,PurchaseDto>
+public class GetByIdPurchaseQueryHandler : IRequestHandler<GetByIdPurchaseQuery,PurchaseWidthStudentDto>
 {
-    private readonly IPurchaseRepository _repositoty;
+    private readonly IPurchaseRepository _purchaseRepository;
     private readonly IMapper _mapper;
 
-    public GetByIdPurchaseQueryHandler(IPurchaseRepository repository, IMapper mapper)
+    public GetByIdPurchaseQueryHandler(IPurchaseRepository purchaseRepository, IMapper mapper)
     {
-        _repositoty = repository;
+        _purchaseRepository = purchaseRepository;
         _mapper = mapper;
     }
     
-    public async Task<PurchaseDto> Handle(GetByIdPurchaseQuery request, CancellationToken cancellationToken)
+    public async Task<PurchaseWidthStudentDto> Handle(GetByIdPurchaseQuery request, CancellationToken cancellationToken)
     {
-        var purchaseId = await _repositoty.GetByIdAsync(request.StudentId, cancellationToken);
-        return _mapper.Map<PurchaseDto>(purchaseId);
+        var purchase = await _purchaseRepository.GetByIdWidthStudent(request.Id, cancellationToken);
+        
+        if(purchase == null)
+            throw new ArgumentException($"A impressão com o código {request.Id} não foi encontrada"); 
+        
+        return _mapper.Map<PurchaseWidthStudentDto>(purchase);
     }
 }

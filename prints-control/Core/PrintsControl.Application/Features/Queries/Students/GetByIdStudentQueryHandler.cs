@@ -18,6 +18,10 @@ public class GetByIdStudentQueryHandler : IRequestHandler<GetByIdStudentQuery,St
     public async Task<StudentDto> Handle(GetByIdStudentQuery request, CancellationToken cancellationToken)
     {
         var student = await _studentRepository.GetByIdAsync(request.Id, cancellationToken);
+        
+        if (student == null)
+            throw new ArgumentException($"A impressão com o código {request.Id} não foi encontrada"); 
+        
         return _mapper.Map<StudentDto>(student);
     }
 }

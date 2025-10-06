@@ -3,4 +3,4 @@ using PrintsControl.Application.Dtos.Purchases;
 
 namespace PrintsControl.Application.Features.Queries.Purchases;
 
-public record GetByIdPurchaseQuery(Guid StudentId) : IRequest<PurchaseDto>;
+public sealed record GetByIdPurchaseQuery(Guid Id): IRequest<PurchaseWidthStudentDto>;

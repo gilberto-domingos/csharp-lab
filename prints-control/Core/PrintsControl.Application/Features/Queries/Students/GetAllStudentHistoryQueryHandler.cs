@@ -7,31 +7,20 @@ namespace PrintsControl.Application.Features.Queries.Students;
 
 public class GetAllStudentHistoryQueryHandler:IRequestHandler<GetAllStudentHistoryQuery, List<StudentHistoryDto>>
 {
-    private readonly IStudentRepository _repository;
+    private readonly IStudentRepository _studentRepository;
     private readonly IMapper _mapper;
 
-    public GetAllStudentHistoryQueryHandler(IStudentRepository repository, IMapper mapper)
+    public GetAllStudentHistoryQueryHandler(IStudentRepository studentRepository, IMapper mapper)
     {
-        _repository = repository;
+        _studentRepository = studentRepository;
         _mapper = mapper;
     }
     
     public async Task<List<StudentHistoryDto>> Handle(GetAllStudentHistoryQuery request, CancellationToken cancellationToken)
     {
-        var students = await _repository.GetAllAsync(cancellationToken);
+        var studentsHistory = await _studentRepository.GetAllWithHistoryAsync(cancellationToken);
 
-        var historyList = students.Select(student => new StudentHistoryDto(
-            student.Id,
-            student.Name,
-            student.Balance,
-            student.Purchases.Sum(p => p.Quantity),              
-            student.PrintJobs.Sum(p => p.Quantity),              
-            student.Purchases.Select(p => p.PurchaseDate).ToList(), 
-            student.PrintJobs.Select(p => p.PrintDate).ToList()     
-        )).ToList();
-
-
-        return historyList;
+        return _mapper.Map<List<StudentHistoryDto>>(studentsHistory);
 
     }
 }
