@@ -115,15 +115,6 @@ StyleCopReport.xml
 *.docfx/
 docs/
 
-#################
-# Docker / Deploy
-#################
-
-.dockerignore
-Dockerfile*
-docker-compose.override.yml
-**/docker-compose*.yml
-
 ####################
 # Ambiente / Segredos
 ####################
@@ -1406,3 +1397,4 @@ MigrationBackup/
 node_modules
 .tmp
 npm-debug.log
+Infrastructure/PrintsControl.Persistence/*.db-*
