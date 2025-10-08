@@ -12,15 +12,29 @@ public sealed class GetAllStudentMapper : Profile
     {
         CreateMap<Student, StudentDto>();
         CreateMap<Student, StudentHistoryDto>()
-            .ConstructUsing(s => new StudentHistoryDto(
-                s.Id,
-                s.Name,
-                s.Balance,
-                s.Purchases.Sum(p => p.Quantity),
-                s.PrintJobs.Sum(p => p.Quantity),
-                s.Purchases.Select(p => p.PurchaseDate).ToList(),
-                s.PrintJobs.Select(p => p.PrintDate).ToList()
+            .ConstructUsing(student => new StudentHistoryDto(
+                student.Id,
+                student.Name,
+                student.Balance,
+
+                student.Purchases.Sum(p => p.Quantity),
+                student.PrintJobs.Sum(pj => pj.Quantity),
+
+                student.Purchases.Select(p => p.PurchaseDate).ToList(),
+                student.Purchases.Select(p => p.CreatedAt).ToList(),
+                student.Purchases.Select(p => p.UpdatedAt).ToList(),
+                student.Purchases.Select(p => p.DeletedAt ?? DateTimeOffset.MinValue)
+                    .Where(d => d != DateTimeOffset.MinValue).ToList(),
+
+                student.PrintJobs.Select(pj => pj.PrintDate).ToList(),
+                student.PrintJobs.Select(pj => pj.CreatedAt).ToList(),
+                student.PrintJobs.Select(pj => pj.UpdatedAt).ToList(),
+                student.PrintJobs.Select(pj => pj.DeletedAt ?? DateTimeOffset.MinValue)
+                    .Where(d => d != DateTimeOffset.MinValue).ToList()
             ));
+
+
+
         CreateMap<GetAllStudentsQuery, Student>();
     }
 }
