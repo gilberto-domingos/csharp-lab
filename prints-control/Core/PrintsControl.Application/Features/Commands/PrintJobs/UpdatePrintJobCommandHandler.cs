@@ -21,15 +21,17 @@ public class UpdatePrintJobCommandHandler : IRequestHandler<UpdatePrintJobComman
     public async Task<PrintJobDto> Handle(UpdatePrintJobCommand request, CancellationToken cancellationToken)
     {
         var printJob = await _printJobRepository.GetByIdAsync(request.Id, cancellationToken);
-
+        
         if (printJob is null)
             throw new ArgumentException($"Impressão com o código {request.Id} não encontrado");
+
+        printJob.UpdateQuantity(request.Quantity);
+        printJob.UpdatePrintDate(request.PrintDate);
         
         await _printJobRepository.UpdateAsync(printJob, cancellationToken);
         await _unitOfWork.CommitAsync(cancellationToken);
         
         return _mapper.Map<PrintJobDto>(printJob);
-        
     }
 }
 

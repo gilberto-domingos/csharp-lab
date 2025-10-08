@@ -7,7 +7,8 @@ using PrintsControl.Application.Features.Queries.PrintJobs;
 namespace PrintsControl.WebApi.Controllers;
 
 [ApiController]
-[Route("/api/[controller]")]
+[Route("api/[controller]")]
+
 public class PrintJobController : ControllerBase
 {
     private readonly IMediator _mediator;
@@ -41,18 +42,22 @@ public class PrintJobController : ControllerBase
         return Ok(printJob);
     }
 
-    [HttpPut]
-    public async Task<ActionResult<PrintJobDto>> UpdateAsync(Guid id, UpdatePrintJobCommand request,
+    [HttpPut("{id:guid}")]
+    public async Task<ActionResult<PrintJobDto>> UpdateAsync(
+        Guid id,
+        [FromBody] UpdatePrintJobCommand request,
         CancellationToken cancellationToken)
     {
         if (id != request.Id)
-            return BadRequest();
+            return BadRequest("O ID da URL não corresponde ao ID no body.");
 
         var response = await _mediator.Send(request, cancellationToken);
         return Ok(response);
     }
 
-    [HttpDelete("{id}")]
+
+
+    [HttpDelete("{id:guid}")]
     public async Task<ActionResult<PrintJobDto>> DeleteAsync(Guid id, CancellationToken cancellationToken)
     {
         var command = new DeletePrintJobCommand(id);

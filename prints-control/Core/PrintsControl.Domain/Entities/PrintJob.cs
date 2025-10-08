@@ -43,6 +43,12 @@ public class PrintJob : BaseEntity
         MarkAsUpdated();
     }
 
+    public void UpdatePrintDate(DateTimeOffset printDate)
+    {
+        PrintDate = printDate;
+        MarkAsUpdated();
+    }
+
     private static void ValidateQuantity(int quantity)
     {
         if (quantity <= 0)
