@@ -12,7 +12,7 @@ public class PrintJob : BaseEntity
 
     public int Quantity { get; private set; }
     
-   public DateTimeOffset PrintDate { get; private set; }
+   public DateTimeOffset PrintDate { get; private set; } = DateTimeOffset.UtcNow;
 
     protected PrintJob(){}
 
@@ -43,10 +43,14 @@ public class PrintJob : BaseEntity
         MarkAsUpdated();
     }
 
-    public void UpdatePrintDate(DateTimeOffset printDate)
+    public void UpdatePrintDate()
     {
-        PrintDate = printDate;
         MarkAsUpdated();
+    }
+
+    public void DeletePrintDate()
+    {
+        MarkAsDeleted();
     }
 
     private static void ValidateQuantity(int quantity)

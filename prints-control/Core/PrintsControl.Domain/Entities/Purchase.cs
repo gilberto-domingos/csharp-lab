@@ -23,4 +23,20 @@ public class Purchase : BaseEntity
         Quantity = quantity;
         PurchaseDate = purchaseDate;
     }
+
+    public void UpdateQuantity(int quantity)
+    {
+        Quantity = quantity;
+        MarkAsUpdated();
+    }
+
+    public void UpdatePrintDate(DateTimeOffset purchaseDate)
+    {
+        MarkAsUpdated();
+    }
+
+    public void DeletePrintDate(DateTimeOffset purchaseDate)
+    {
+        MarkAsDeleted();
+    }
 }
