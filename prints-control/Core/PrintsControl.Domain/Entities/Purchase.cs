@@ -30,12 +30,12 @@ public class Purchase : BaseEntity
         MarkAsUpdated();
     }
 
-    public void UpdatePrintDate(DateTimeOffset purchaseDate)
+    public void UpdatePrintDate()
     {
         MarkAsUpdated();
     }
 
-    public void DeletePrintDate(DateTimeOffset purchaseDate)
+    public void DeletePrintDate()
     {
         MarkAsDeleted();
     }
