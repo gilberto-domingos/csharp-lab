@@ -1,6 +1,8 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
 using PrintsControl.Domain.Entities;
 using PrintsControl.Persistence.Context;
-
 
 namespace PrintsControl.Persistence.Infrastructure.Seeds;
 
@@ -8,38 +10,73 @@ public static class DbSeeder
 {
     public static void Seed(AppDbContext context)
     {
-        if (context.Students.Any()) return; 
-        
-        var students = new List<Student>
+        if (context.Students.Any()) return;
+
+        var studentNames = new List<string>
         {
-            new Student("Roberto Pires", 50),
-            new Student("Alan Vemuth", 25),
-            new Student("Mariana Lima", 75),
-            new Student("Joao Silva", 50),
-            new Student("Dilara Domingos", 25),
-            new Student("Roberto Shimdth", 75),
-            new Student("Susan Pereira", 25),
-            new Student("Eleonor Silva", 0)
+            "Roberto Pires",
+            "Alan Vemuth",
+            "Mariana Lima",
+            "João Silva",
+            "Dilara Domingos",
+            "Roberto Schmidt",
+            "Suzana Pereira",
+            "Elenor Silva",
+            "Carlos Andrade",
+            "Bruna Ferreira",
+            "Fábio Costa",
+            "Ana Beatriz"
         };
+
+        var purchasePattern = new[] { 50, 50, 25, 25, 50 }; 
+        var printPattern = new[] { 10, 10, 10, 10, 10 };     
+
+        var students = new List<Student>();
+
+        foreach (var name in studentNames)
+        {
+            var totalPurchases = purchasePattern.Sum();
+            var totalPrints = printPattern.Sum();
+            var balance = totalPurchases - totalPrints; 
+            var student = new Student(name, balance);
+            students.Add(student);
+        }
 
         context.Students.AddRange(students);
         context.SaveChanges();
 
-        var purchases = new List<Purchase>
+        var purchases = new List<Purchase>();
+        var printJobs = new List<PrintJob>();
+
+        var purchasesBaseDate = new DateTimeOffset(2025, 8, 1, 9, 0, 0, TimeSpan.Zero);
+        var printsBaseDate = new DateTimeOffset(2025, 8, 2, 14, 30, 0, TimeSpan.Zero);
+
+        for (int i = 0; i < students.Count; i++)
         {
-            new Purchase(students[0].Id, 25, new DateTimeOffset(2025, 8, 7, 16, 45, 0, TimeSpan.Zero)),
-            new Purchase(students[1].Id, 25, new DateTimeOffset(2025, 8, 3, 9, 10, 0, TimeSpan.Zero)),
-            new Purchase(students[2].Id, 25, new DateTimeOffset(2025, 8, 3, 9, 10, 0, TimeSpan.Zero)),
-        };
+            var student = students[i];
+
+            for (int j = 0; j < purchasePattern.Length; j++)
+            {
+                var qty = purchasePattern[j];
+                var purchaseDate = purchasesBaseDate.AddDays(i * 7 + j);
+                var purchase = new Purchase(student.Id, qty, purchaseDate);
+
+                purchases.Add(purchase);
+                student.Purchases.Add(purchase);
+            }
+
+            for (int j = 0; j < printPattern.Length; j++)
+            {
+                var qty = printPattern[j];
+                var printDate = printsBaseDate.AddDays(i * 7 + j);
+                var printJob = new PrintJob(student.Id, qty, printDate);
+
+                printJobs.Add(printJob);
+                student.PrintJobs.Add(printJob); 
+            }
+        }
 
         context.Purchases.AddRange(purchases);
-        context.SaveChanges();
-
-        var printJobs = new List<PrintJob>
-        {
-            new PrintJob(students[0].Id, 25, new DateTimeOffset(2025, 9, 1, 17, 3, 10, TimeSpan.Zero))
-        };
-
         context.PrintJobs.AddRange(printJobs);
         context.SaveChanges();
     }
