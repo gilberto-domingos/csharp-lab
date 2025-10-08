@@ -18,11 +18,13 @@ public class StudentRepository : BaseRepository<Student>, IStudentRepository
     public async Task<IEnumerable<Student>> GetAllWithHistoryAsync(CancellationToken cancellationToken)
     {
         return await _context.Students
+            .IgnoreQueryFilters() 
             .Include(s => s.Purchases)
             .Include(s => s.PrintJobs)
             .AsNoTracking()
             .ToListAsync(cancellationToken);
     }
+
 
     
 }
