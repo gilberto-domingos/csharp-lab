@@ -24,6 +24,8 @@ public class DeletePurchaseCommandHandler : IRequestHandler<DeletePurchaseComman
 
         if (purchase is null)
             throw new ArgumentException("Compra do estudante não existe");
+        
+        purchase.DeletePrintDate(request.PrintDate);
 
         await _purchaseRepository.DeleteAsync(purchase, cancellationToken);
         await _unitOfWork.CommitAsync(cancellationToken);

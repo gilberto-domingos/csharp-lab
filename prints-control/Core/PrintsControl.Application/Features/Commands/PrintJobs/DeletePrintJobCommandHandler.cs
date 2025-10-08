@@ -24,6 +24,8 @@ public class DeletePrintJobCommandHandler : IRequestHandler<DeletePrintJobComman
 
         if (printJob is null)
             throw new ArgumentException("Impressão do aluno não encontrada");
+        
+        printJob.DeletePrintDate();
 
         await _printJobRepository.DeleteAsync(printJob, cancellationToken);
         await _unitOfWork.CommitAsync(cancellationToken);
