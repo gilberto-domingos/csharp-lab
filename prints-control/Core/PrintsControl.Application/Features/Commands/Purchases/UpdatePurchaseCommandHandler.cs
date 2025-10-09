@@ -25,7 +25,7 @@ public class UpdatePurchaseCommandHandler : IRequestHandler<UpdatePurchaseComman
         if (purchase is null)
             throw new ArgumentException("Compra do estudante não encontrada");
         
-        purchase.UpdatePrintDate(request.PurchaseDate);
+        purchase.UpdatePrintDate();
 
         await _purchaseRepository.UpdateAsync(purchase, cancellationToken);
         await _unitOfWork.CommitAsync(cancellationToken);
