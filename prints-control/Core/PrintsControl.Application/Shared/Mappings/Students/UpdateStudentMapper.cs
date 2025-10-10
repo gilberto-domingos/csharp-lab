@@ -10,6 +10,6 @@ public sealed class UpdateStudentMapper : Profile
     public UpdateStudentMapper()
     {
         CreateMap<UpdateStudentCommand, Student>();
-        CreateMap<Student, StudentDto>();
+        CreateMap<Student, StudentUpdateNameDto>();
     }
 }

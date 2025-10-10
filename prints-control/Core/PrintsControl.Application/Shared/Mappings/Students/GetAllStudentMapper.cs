@@ -14,12 +14,13 @@ public sealed class GetAllStudentMapper : Profile
         CreateMap<Student, StudentHistoryDto>()
             .ConstructUsing(student => new StudentHistoryDto(
                 student.Id,
+                student.CreatedAt,
                 student.Name,
                 student.Balance,
-
+                
                 student.Purchases.Sum(p => p.Quantity),
                 student.PrintJobs.Sum(pj => pj.Quantity),
-
+                
                 student.Purchases.Select(p => p.PurchaseDate).ToList(),
                 student.Purchases.Select(p => p.CreatedAt).ToList(),
                 student.Purchases.Select(p => p.UpdatedAt).ToList(),
