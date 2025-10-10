@@ -24,6 +24,15 @@ public class Student : BaseEntity
         Balance = balance;
     }
 
+    public void UpdateName(string name)
+    {
+        if (name.Length < 3)
+            throw new ArgumentException("O nome deve ter mais do que 3 caracteres");
+        
+        Name = name;
+        MarkAsUpdated();
+    }
+
     public Purchase BuyPackage(int quantity, DateTimeOffset purchaseDate)
     {
         if (quantity != 25 && quantity != 50)
