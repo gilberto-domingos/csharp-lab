@@ -2,6 +2,7 @@ namespace PrintsControl.Application.Dtos;
 
 public sealed record StudentHistoryDto(
     Guid StudentId,
+    DateTimeOffset CreatedAt,
     string Name,
     int Balance,
     int TotalPurchase,
