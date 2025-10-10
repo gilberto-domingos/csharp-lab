@@ -1,7 +1,6 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using PrintsControl.Domain.Entities;
-using System;
 
 namespace PrintsControl.Persistence.Configurations
 {
@@ -16,28 +15,25 @@ namespace PrintsControl.Persistence.Configurations
 
             builder.Property(x => x.PurchaseDate)
                 .IsRequired()
-                .HasColumnType("datetime2")
-                .HasDefaultValueSql("GETUTCDATE()"); // Para SQL Server, ajusta para UTC
+                .HasColumnType("TEXT");
 
             builder.HasOne(x => x.Student)
                 .WithMany(s => s.Purchases)
                 .HasForeignKey(x => x.StudentId)
-                .OnDelete(DeleteBehavior.Restrict); // Protege integridade referencial
+                .OnDelete(DeleteBehavior.Cascade); 
 
             builder.HasQueryFilter(x => x.DeletedAt == null);
 
             builder.Property(x => x.CreatedAt)
                 .IsRequired()
-                .HasColumnType("datetime2")
-                .HasDefaultValueSql("GETUTCDATE()");
+                .HasColumnType("TEXT");
 
             builder.Property(x => x.UpdatedAt)
                 .IsRequired()
-                .HasColumnType("datetime2")
-                .HasDefaultValueSql("GETUTCDATE()");
+                .HasColumnType("TEXT");
 
             builder.Property(x => x.DeletedAt)
-                .HasColumnType("datetime2")
+                .HasColumnType("TEXT")
                 .IsRequired(false);
         }
     }

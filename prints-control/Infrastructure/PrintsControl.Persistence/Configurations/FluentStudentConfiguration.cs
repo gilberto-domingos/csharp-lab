@@ -8,26 +8,28 @@ namespace PrintsControl.Persistence.Configurations
     {
         public void Configure(EntityTypeBuilder<Student> builder)
         {
-            builder.HasKey(x => x.Id);
+            builder.HasKey(s => s.Id);
 
-            builder.Property(x => x.Name)
+            builder.Property(s => s.Name)
                 .IsRequired()
                 .HasMaxLength(150);
 
-            builder.Property(x => x.Balance)
+            builder.Property(s => s.Balance)
                 .IsRequired();
 
-            builder.HasMany(x => x.Purchases)
-                .WithOne(x => x.Student)
-                .HasForeignKey(x => x.StudentId)
+            builder.HasMany(s => s.Purchases)
+                .WithOne(p => p.Student)
+                .HasForeignKey(p => p.StudentId)
                 .OnDelete(DeleteBehavior.Cascade);
 
-            builder.HasMany(x => x.PrintJobs)
-                .WithOne(x => x.Student)
-                .HasForeignKey(x => x.StudentId) 
+            builder.HasMany(s => s.PrintJobs)
+                .WithOne(p => p.Student)
+                .HasForeignKey(p => p.StudentId)
                 .OnDelete(DeleteBehavior.Cascade);
 
-            builder.HasQueryFilter(x => x.DeletedAt == null);
+            builder.HasQueryFilter(s => s.DeletedAt == null);
+
+            builder.ToTable("Students");
         }
     }
 }
