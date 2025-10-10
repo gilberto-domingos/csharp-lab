@@ -5,7 +5,7 @@ using PrintsControl.Domain.Interfaces;
 
 namespace PrintsControl.Application.Features.Commands.Students;
 
-public class UpdateStudentCommandHandler : IRequestHandler<UpdateStudentCommand, StudentDto>
+public class UpdateStudentCommandHandler : IRequestHandler<UpdateStudentCommand, StudentUpdateNameDto>
 {
 
     private readonly IUnitOfWork _unitOfWork;
@@ -19,17 +19,19 @@ public class UpdateStudentCommandHandler : IRequestHandler<UpdateStudentCommand,
         _mapper = mapper;
     }
     
-    public async Task<StudentDto> Handle(UpdateStudentCommand request, CancellationToken cancellationToken)
+    public async Task<StudentUpdateNameDto> Handle(UpdateStudentCommand request, CancellationToken cancellationToken)
     {
         var student = await _studentRepository.GetByIdAsync(request.Id, cancellationToken);
 
         if (student is null)
             throw new ArgumentException("Estudante não encontrado");
+        
+        student.UpdateName(request.Name);
 
         await _studentRepository.UpdateAsync(student, cancellationToken);
 
         await _unitOfWork.CommitAsync(cancellationToken);
 
-        return _mapper.Map<StudentDto>(student);
+        return _mapper.Map<StudentUpdateNameDto>(student);
     }
 }

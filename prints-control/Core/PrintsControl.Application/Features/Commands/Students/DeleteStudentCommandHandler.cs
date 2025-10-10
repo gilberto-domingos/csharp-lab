@@ -25,11 +25,13 @@ public sealed class DeleteStudentCommandHandler : IRequestHandler<DeleteStudentC
 
         if (student is null)
             throw new ArgumentException("Estudando não encontrado");
+        
+        var studentDto = _mapper.Map<StudentDto>(student);
 
         await _studentRepository.DeleteAsync(student, cancellationToken);
+            
         await _unitOfWork.CommitAsync(cancellationToken);
 
-        return _mapper.Map<StudentDto>(student);
-
+        return studentDto;
     }
 }
