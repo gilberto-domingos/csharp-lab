@@ -43,9 +43,7 @@ public class PrintJobController : ControllerBase
     }
 
     [HttpPut("{id:guid}")]
-    public async Task<ActionResult<PrintJobDto>> UpdateAsync(
-        Guid id,
-        [FromBody] UpdatePrintJobCommand request,
+    public async Task<ActionResult<PrintJobDto>> UpdateAsync(Guid id, [FromBody] UpdatePrintJobCommand request,
         CancellationToken cancellationToken)
     {
         if (id != request.Id)

@@ -59,7 +59,7 @@ public class StudentController : ControllerBase
         return Ok(student);
     }
 
-    [HttpPut("{id}")]
+    [HttpPut("{id:guid}")]
     public async Task<ActionResult<StudentDto>> UpdateAsync(Guid id, UpdateStudentCommand request, CancellationToken cancellationToken)
     {
         if (id != request.Id)
@@ -69,7 +69,7 @@ public class StudentController : ControllerBase
         return Ok(response);
     }
 
-    [HttpDelete("{id}")]
+    [HttpDelete("{id:guid}")]
     public async Task<ActionResult> Delete(Guid id, CancellationToken cancellationToken)
     {
         var command = new DeleteStudentCommand(id);

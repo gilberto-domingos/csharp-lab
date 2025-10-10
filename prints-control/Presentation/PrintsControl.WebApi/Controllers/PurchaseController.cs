@@ -45,19 +45,19 @@ public class PurchaseController : ControllerBase
         return Ok(purchase);
     }
 
-    [HttpPut("{id}")]
-    public async Task<ActionResult<PurchaseDto>> UpdateAsync(Guid id, UpdatePurchaseCommand request,
+    [HttpPut("{id:guid}")]
+    public async Task<ActionResult<PurchaseDto>> UpdateAsync(Guid id,[FromBody] UpdatePurchaseCommand request,
         CancellationToken cancellationToken)
     {
         
         if (id != request.Id)
-            return BadRequest();
+            return BadRequest("O ID da URL não corresponde ao ID no body.");
 
         var response = await _mediator.Send(request, cancellationToken);
         return Ok(response);
     }
 
-    [HttpDelete("{id}")]
+    [HttpDelete("{id:guid}")]
     public async Task<ActionResult<PurchaseDto>> Delete(Guid id, CancellationToken cancellationToken)
     {
         var command = new DeletePurchaseCommand(id);
