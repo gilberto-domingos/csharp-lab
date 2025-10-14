@@ -20,8 +20,8 @@ COPY --from=build /app/publish .
 
 RUN mkdir -p /app/data
 
-ENV ConnectionStrings__DefaultConnection="Data Source=/app/data/printscontrol.db"
+ENV File.Env="/app/data/printscontrol.db"
 
-EXPOSE 5118
+EXPOSE 8080
 
 ENTRYPOINT ["dotnet", "PrintsControl.WebApi.dll"]

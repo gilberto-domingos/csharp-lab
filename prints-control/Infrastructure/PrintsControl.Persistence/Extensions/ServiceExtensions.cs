@@ -33,18 +33,16 @@ namespace PrintsControl.Persistence
         {
             Env.Load();
 
-            var databaseFile = Environment.GetEnvironmentVariable("File.Env") ?? "default.db";
+            var databaseFile = Environment.GetEnvironmentVariable("File.Env") ?? "printscontrol.db";
 
-            services.AddDbContext<AppDbContext>(opt =>
-                opt.UseSqlite($"Data Source={databaseFile}"));
+            services.AddDbContext<AppDbContext>(options =>
+                options.UseSqlite($"Data Source={databaseFile}")
+            );
 
-            Console.WriteLine($"As variáveis estão carregadas e o banco conectado: {databaseFile}!");
+            Console.WriteLine($"[ConfigurePersistenceApp] Banco conectado: {databaseFile}");
 
-            services.AddScoped<IUserRepository, UserRepository>();
-            services.AddScoped<IStudentRepository, StudentRepository>();
-            services.AddScoped<IPurchaseRepository, PurchaseRepository>();
-            services.AddScoped<IPrintJobRepository, PrintJobRepository>();
-            services.AddScoped<IUnitOfWork, UnitOfWork>();
+            services.AddRepositories();
+            services.AddUnitOfWork();
         }
 
         public static void ConfigureAuthentication(this IServiceCollection services)
@@ -58,21 +56,24 @@ namespace PrintsControl.Persistence
                         ValidateAudience = true,
                         ValidateLifetime = true,
                         ValidateIssuerSigningKey = true,
-
                         ValidIssuer = "dotnethow.net",
                         ValidAudience = "dotnethow.net",
-                        IssuerSigningKey =
-                            new SymmetricSecurityKey(Encoding.UTF8.GetBytes("your-very-secure-secret-key-32-chars-long"))
+                        IssuerSigningKey = new SymmetricSecurityKey(
+                            Encoding.UTF8.GetBytes("your-very-secure-secret-key-32-chars-long")
+                        )
                     };
                 });
         }
 
         public static void ConfigureCors(this IServiceCollection services)
         {
-            services.AddCors(opt => opt.AddPolicy("AllowAll",
-                builder => builder.AllowAnyHeader()
-                    .AllowAnyMethod()
-                    .AllowAnyOrigin()));
+            services.AddCors(opt =>
+                opt.AddPolicy("AllowAll", builder =>
+                    builder.AllowAnyHeader()
+                           .AllowAnyMethod()
+                           .AllowAnyOrigin()
+                )
+            );
         }
 
         public static void ConfigureSwagger(this IServiceCollection services)

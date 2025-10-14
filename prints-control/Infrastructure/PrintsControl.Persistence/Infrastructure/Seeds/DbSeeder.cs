@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using Microsoft.EntityFrameworkCore;
 using PrintsControl.Domain.Entities;
 using PrintsControl.Persistence.Context;
 
@@ -10,6 +11,13 @@ namespace PrintsControl.Persistence.Infrastructure.Seeds
     {
         public static void Seed(AppDbContext context)
         {
+            if (context.Database.GetPendingMigrations().Any())
+                context.Database.Migrate();
+
+            if (!context.Database.CanConnect())
+                return;
+
+            
             if (context.Students.Any()) return;
 
             var studentNames = new List<string>

@@ -46,7 +46,7 @@ packages/
 *.runtimeconfig.dev.json
 
 # EF Core Migrations (opcional)
-Migrations/
+# Migrations/
 
 #################
 # IDEs e editores
