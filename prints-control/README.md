@@ -11,15 +11,22 @@
 - MediatR
 - CQRS
 - Migrations
-- Front-end: Angular CLI
+- Front-end: Angular cli
 - Containers: Docker 
-- Banco de dados: Microsoft SQL Server
+- Banco de dados relacionais SQL
 - Documentação: Swagger (Swashbuckle.AspNetCore)
 
-###### O projeto já se encontra hospedado rodando no servidor :
-Obs: O projeto está hospedado em uma parte gratuita do servidor que dorme quando não acessado aguarde 20 a 50 segundos para carregar.
+### Rodando no servidor com documentação Swagger, possui também mais end-points, mas fiz por exercícios e práticas.
+###### hospedado em uma parte gratuita do servidor que dorme quando não acessado aguarde 30 segundos para carregar.
+https://prints-control.onrender.com/index.html
+
+###### O projeto já se encontra hospedado rodando no servidor com front-end com a senha disponível para os Professores e Coordenadores :
+
+###### Obs: O projeto fullStack está hospedado em uma parte gratuita do servidor que dorme quando não acessado aguarde 30 segundos para carregar.
 ###### https://fullstack.b1010code.com.br/
 
+O front-end 'Angular' cli está sendo refatorado e com novas funcionalidade e foi transferido para outro repositório do github para ficar mais limpo, back-end em um repositório e front-end em outro. 
+###### https://github.com/gilberto-domingos/prints-control-Front-end
 
 <br/><br/>
 <img src="assets/logo.png" width="200" alt="logo">
