@@ -18,7 +18,7 @@ public class StudentController : ControllerBase
         _mediator = mediator;
     }
     
-    [HttpGet]
+    [HttpGet("All")]
     public async Task<ActionResult<List<StudentDto>>> GetAllAsync(CancellationToken cancellationToken)
     {
         var request = new GetAllStudentsQuery();
