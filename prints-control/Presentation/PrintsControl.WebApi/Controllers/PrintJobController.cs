@@ -18,8 +18,16 @@ public class PrintJobController : ControllerBase
         _mediator = mediator;
     }
 
-    [HttpGet]
+    [HttpGet("All")]
     public async Task<ActionResult<List<PrintJobDto>>> GetAllAsync([FromQuery]GetAllPrintJobsQuery request,
+        CancellationToken cancellationToken)
+    {
+        var response = await _mediator.Send(request, cancellationToken);
+        return Ok(response);
+    }
+    
+    [HttpGet("Print")]
+    public async Task<ActionResult<List<PrintJobDto>>> GetPrintDocumentsAsync([FromQuery]GetAllPrintJobsQuery request,
         CancellationToken cancellationToken)
     {
         var response = await _mediator.Send(request, cancellationToken);
