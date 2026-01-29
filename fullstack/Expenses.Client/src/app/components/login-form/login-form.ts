@@ -64,8 +64,8 @@ export class LoginForm implements OnInit {
     }
 
     this.form = this.fb.group({
-      email: ['', [Validators.required, Validators.email]],
-      password: ['', Validators.required],
+      email: ['gilberto.junior5@alunos.sc.senac.br', [Validators.required, Validators.email]],
+      password: ['aluno2025gilberto', Validators.required],
       rememberMe: [true],
     });
   }
