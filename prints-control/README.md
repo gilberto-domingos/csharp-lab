@@ -16,17 +16,7 @@
 - Banco de dados relacionais SQL
 - Documentação: Swagger (Swashbuckle.AspNetCore)
 
-### Rodando no servidor com documentação Swagger, possui também mais end-points, mas fiz por exercícios e práticas.
-###### hospedado em uma parte gratuita do servidor que dorme quando não acessado aguarde 30 segundos para carregar.
-https://prints-control.onrender.com/index.html
-
 ###### O projeto já se encontra hospedado rodando no servidor com front-end com a senha disponível para os Professores e Coordenadores :
-
-###### Obs: O projeto fullStack está hospedado em uma parte gratuita do servidor que dorme quando não acessado aguarde 30 segundos para carregar.
-###### https://fullstack.b1010code.com.br/
-
-O front-end 'Angular' cli está sendo refatorado e com novas funcionalidade e foi transferido para outro repositório do github para ficar mais limpo, back-end em um repositório e front-end em outro. 
-###### https://github.com/gilberto-domingos/prints-control-Front-end
 
 <br/><br/>
 <img src="assets/logo.png" width="200" alt="logo">
