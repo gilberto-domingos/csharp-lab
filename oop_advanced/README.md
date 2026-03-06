@@ -12,7 +12,6 @@ Technology Industry Veteran
 
 ## Advanced C#: Object-Oriented Programming
 This is the repository for the LinkedIn Learning course Advanced C#: Object-Oriented Programming. 
-![C# Avançado: Programação Orientada a Objetos][lil-thumbnail-url]
 
 ### Instrutor
 
