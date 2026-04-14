@@ -1,0 +1,89 @@
+using System.Security.Claims;
+using Expenses.API.Middleware;
+using Expenses.API.Models;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.IdentityModel.Tokens;
+using System.Text;
+using DotNetEnv;
+
+using Expenses.API.Data.Services;
+
+
+
+var builder = WebApplication.CreateBuilder(args);
+
+Env.Load();
+
+builder.Services.AddCors(opt => opt.AddPolicy("AllowAll",
+    opt => opt.AllowAnyHeader()
+              .AllowAnyMethod()
+              .AllowAnyOrigin())
+);
+
+builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
+    .AddJwtBearer(options =>
+    {
+        options.TokenValidationParameters = new TokenValidationParameters
+        {
+            ValidateIssuer = true,
+            ValidateAudience = true,
+            ValidateLifetime = true,
+            ValidateIssuerSigningKey = true,
+
+            ValidIssuer = "dotnethow.net",
+            ValidAudience = "dotnethow.net",
+            IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes("your-very-secure-secret-key-32-chars-long"))
+        };
+    });
+
+
+
+builder.Services.AddScoped<PasswordHasher<User>>();
+builder.Services.AddSingleton<FileDataService>();
+builder.Services.AddScoped<IStudentService, StudentService>();
+//builder.Services.AddScoped<ITransactionsService, TransactionsService>();
+
+builder.Services.AddControllers()
+    .AddJsonOptions(x =>
+        x.JsonSerializerOptions.ReferenceHandler = System.Text.Json.Serialization.ReferenceHandler.IgnoreCycles
+    );
+
+builder.Services.AddEndpointsApiExplorer();
+builder.Services.AddSwaggerGen();
+
+var app = builder.Build();
+
+app.UseMiddleware<GlobalExceptionMiddleware>();
+
+app.UseSwagger();
+app.UseSwaggerUI();
+
+if (app.Environment.IsDevelopment())
+{
+    app.Use(async (context, next) =>
+    {
+        if (!context.User.Identity.IsAuthenticated)
+        {
+            var claims = new List<Claim>
+            {
+                new Claim(ClaimTypes.NameIdentifier, "1"),
+                new Claim(ClaimTypes.Email, "devuser@example.com")
+            };
+            var identity = new ClaimsIdentity(claims, "Development");
+            context.User = new ClaimsPrincipal(identity);
+        }
+        await next();
+    });
+}
+
+app.UseCors("AllowAll");
+
+app.MapControllers();
+
+var dataDir = Path.Combine(AppContext.BaseDirectory, "data");
+Directory.CreateDirectory(dataDir);
+
+app.Urls.Add("http://0.0.0.0:5000");
+
+app.Run();
