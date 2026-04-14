@@ -1,0 +1,66 @@
+using System.ComponentModel.DataAnnotations;
+using System.Text.Json.Serialization;
+
+namespace PrintsControl.Domain.Entities;
+
+public class PrintJob : BaseEntity
+{
+    public Guid StudentId { get; private set; }
+
+    [JsonIgnore]
+    public Student? Student { get; private set; } = null;
+
+    public int Quantity { get; private set; }
+    
+   public DateTimeOffset PrintDate { get; private set; } = DateTimeOffset.UtcNow;
+
+    protected PrintJob(){}
+
+    public PrintJob(Guid studentId, int quantity, DateTimeOffset printDate)
+    {
+        StudentId = studentId;
+        Quantity = quantity;
+        PrintDate = printDate;
+    }
+    
+    public static PrintJob Create(Guid studentId, int quantity, DateTimeOffset printDate )
+    {
+        ValidateQuantity(quantity);
+
+        return new PrintJob
+        {
+            StudentId = studentId,
+            Quantity = quantity,
+            PrintDate = printDate
+        };
+    }
+
+    public void UpdateQuantity(int quantity)
+    {
+       ValidateQuantity(quantity);
+
+        Quantity = quantity;
+        MarkAsUpdated();
+    }
+
+    public void UpdatePrintDate()
+    {
+        MarkAsUpdated();
+    }
+
+    public void DeletePrintDate()
+    {
+        MarkAsDeleted();
+    }
+
+    private static void ValidateQuantity(int quantity)
+    {
+        if (quantity <= 0)
+            throw new ArgumentException("A quantidade impressa deve ser maior que zero");
+    }
+
+    public override string ToString()
+    {
+        return $"PrintJob [Id={Id}, StudentId={StudentId}, Quantity={Quantity}, Date={PrintDate}]";
+    }
+}

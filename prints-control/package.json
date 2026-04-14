@@ -1,0 +1,12 @@
+{
+  "name": "prints-control",
+  "version": "1.0.0",
+  "description": "- Back-end: ASP.NET Core - Modelo design DDD alinhado com os padrões (POO, SOLID) - Clean Architecture - UnitOfWork - Fluent API - Fluent Validation - MediatR - CQRS - Migrations - Front-end: Angular CLI - Containers: Docker  - Banco de dados: Microsoft SQL Server - Documentação: Swagger (Swashbuckle.AspNetCore)",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}
